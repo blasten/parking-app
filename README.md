@@ -1,9 +1,9 @@
-# Let people find parking sport quickly!
+## Let people find parking sport quickly!
 
 This repository contains two main folders:
 
-### /android
+#### /android
 Contains files that support the client-side android app.
 
-### /server
+#### /server
 Contains files that support the server-side app.
