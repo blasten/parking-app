@@ -1,4 +1,4 @@
-## Let people find parking sport quickly!
+## Let people find parking spots quickly!
 
 This repository contains two main folders:
 
