@@ -4,5 +4,15 @@
     <string name="app_name">NKU Parking Locator</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="lblLogin_Username">Username:</string>
+    <string name="lblLogin_Password">Password:</string>
+    <string name="txtLogin_Username_Hint">Enter your Username</string>
+    <string name="txtLogin_Password_Hint">Enter your Password</string>
+    <string name="btnLogin_Login">Login</string>
+    <string name="lblLogin_ForgotUsername">I Forgot My Username or Password</string>
+    <string name="lblForgotUsername_Description">Enter your e-mail address below to have your username and a temporary password sent to your email.</string>
+    <string name="lblForgotUsername_Email">Email:</string>
+    <string name="txtForgotUsername_Email_Hint">Enter your E-Mail Address:</string>
+    <string name="btnForgotUsername_Send">Send</string>
 
 </resources>
