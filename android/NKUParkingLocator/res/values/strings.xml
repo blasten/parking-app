@@ -4,15 +4,104 @@
     <string name="app_name">NKU Parking Locator</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    
+    <!-- Strings for Login Layout -->
     <string name="lblLogin_Username">Username:</string>
     <string name="lblLogin_Password">Password:</string>
     <string name="txtLogin_Username_Hint">Enter your Username</string>
     <string name="txtLogin_Password_Hint">Enter your Password</string>
     <string name="btnLogin_Login">Login</string>
+    
+    <!-- Strings for Forgot Username Layout -->
     <string name="lblLogin_ForgotUsername">I Forgot My Username or Password</string>
     <string name="lblForgotUsername_Description">Enter your e-mail address below to have your username and a temporary password sent to your email.</string>
     <string name="lblForgotUsername_Email">Email:</string>
     <string name="txtForgotUsername_Email_Hint">Enter your E-Mail Address:</string>
     <string name="btnForgotUsername_Send">Send</string>
+    
+    <!-- Strings for User Registration Layout -->
+    <string name="lblUserRegistration_FirstName">First Name:</string>
+    <string name="lblUserRegistration_LastName">Last Name:</string>
+    <string name="lblUserRegistration_AddressLine1">Address Line 1:</string>
+    <string name="lblUserRegistration_AddressLine2">Address Line 2:</string>
+    <string name="lblUserRegistration_City">City:</string>
+    <string name="lblUserRegistration_State">State:</string>
+    <string name="lblUserRegistration_PostalCode">Postal Code:</string>
+    <string name="lblUserRegistration_PhoneNumber1">Phone Number 1:</string>
+    <string name="lblUserRegistration_PhoneNumber2">Phone Number 2:</string>
+    <string name="lblUserRegistration_Email">NKU Email Address:</string>
+    <string name="lblUserRegistration_UserName">Username:</string>
+    <string name="lblUserRegistration_Password">Password:</string>
+    <string name="lblUserRegistration_ConfirmPassword">Confirm Password:</string>
+    <string name="strUserRegistration_InitialState">Kentucky</string>
+    
+    <string name="txtUserRegistration_FirstName_Hint">Enter your First Name</string>
+    <string name="txtUserRegistration_LastName_Hint">Enter your Last Name</string>
+    <string name="txtUserRegistration_AddressLine1_Hint">Enter your Address Line 1</string>
+    <string name="txtUserRegistration_AddressLine2_Hint">Enter your Address Line 2</string>
+    <string name="txtUserRegistration_City_Hint">Enter your City</string>
+    <string name="txtUserRegistration_PostalCode_Hint">Enter your Postal Code</string>
+    <string name="txtUserRegistration_PhoneNumber1_Hint">Enter your Phone Number 1</string>
+    <string name="txtUserRegistration_PhoneNumber2_Hint">Enter your Phone Number 2</string>
+    <string name="txtUserRegistration_Email_Hint">Enter your NKU Email Address</string>
+    <string name="txtUserRegistration_Password_Hint">Enter your Password</string>
+    <string name="txtUserRegistration_ConfirmPassword_Hint">Confirm your Password</string>
+    
+    <string name="btnUserRegistration_Confirm">Confirm</string>
+    <string name="btnUserRegistration_Clear">Clear</string>
+    
+    <string-array name="States">
+        <item>Alabama</item>
+        <item>Alaska</item>
+        <item>Arizona</item>
+        <item>Arkansas</item>
+        <item>California</item>
+        <item>Colorado</item>
+        <item>Connecticut</item>
+        <item>Delaware</item>
+        <item>District of Columbia</item>
+        <item>Florida</item>
+        <item>Georgia</item>
+        <item>Hawaii</item>
+        <item>Idaho</item>
+        <item>Illinois</item>
+        <item>Indiana</item>
+        <item>Iowa</item>
+        <item>Kansas</item>
+        <item>Kentucky</item>
+        <item>Louisiana</item>
+        <item>Maine</item>
+        <item>Maryland</item>
+        <item>Massachusetts</item>
+        <item>Michigan</item>
+        <item>Minnesota</item>
+        <item>Mississippi</item>
+        <item>Missouri</item>
+        <item>Montana</item>
+        <item>Nebraska</item>
+        <item>Nevada</item>
+        <item>New Hampshire</item>
+        <item>New Jersey</item>
+        <item>New Mexico</item>
+        <item>New York</item>
+        <item>North Carolina</item>
+        <item>North Dakota</item>
+        <item>Ohio</item>
+        <item>Oklahoma</item>
+        <item>Oregon</item>
+        <item>Pennsylvania</item>
+        <item>Rhode Island</item>
+        <item>South Carolina</item>
+        <item>South Dakota</item>
+        <item>Tennessee</item>
+        <item>Texas</item>
+        <item>Utah</item>
+        <item>Vermont</item>
+        <item>Virginia</item>
+        <item>Washington</item>
+        <item>West Virginia</item>
+        <item>Wisconsin</item>
+        <item>Wyoming</item>
+    </string-array>
 
 </resources>
