@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:columnCount="2"
+    android:rowCount="3">
+    
+    <TextView 
+	    android:id="@+id/lblForgotUsername_Description"
+	    android:text="@string/lblForgotUsername_Description"
+	    android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/textview_FontSize"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+        android:layout_columnSpan="2"
+    />
+    
+    <TextView 
+	    android:id="@+id/lblForgotUsername_Email"
+	    android:text="@string/lblForgotUsername_Email"
+	    android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right"
+        android:textSize="@dimen/textview_FontSize"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+    />
+    
+    <EditText
+		android:id="@+id/txtForgotUsername_Email"
+        android:hint="@string/txtForgotUsername_Email_Hint"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="left"
+        android:textSize="@dimen/textview_FontSize"
+        android:inputType="textEmailAddress"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+    
+    <Button
+    	android:id="@+id/btnForgotUsername_Send"
+    	android:text="@string/btnForgotUsername_Send"
+    	android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+    	android:layout_gravity="center_horizontal"
+    	android:textSize="@dimen/textview_FontSize"
+    	android:layout_columnSpan="2"
+    />
+
+</GridLayout>

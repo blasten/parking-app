@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:columnCount="2"
+    android:rowCount="4" >
+
+    <TextView
+		android:id="@+id/lblLogin_Username"
+        android:text="@string/lblLogin_Username"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right"
+        android:textSize="@dimen/textview_FontSize"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+    
+    <EditText
+		android:id="@+id/txtLogin_Username"
+        android:hint="@string/txtLogin_Username_Hint"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="left"
+        android:textSize="@dimen/textview_FontSize"
+        android:inputType="text"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+    
+    <TextView
+		android:id="@+id/lblLogin_Password"
+        android:text="@string/lblLogin_Password"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right"
+        android:textSize="@dimen/textview_FontSize"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+    
+    <EditText
+		android:id="@+id/txtLogin_Password"
+        android:hint="@string/txtLogin_Password_Hint"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="left"
+        android:textSize="@dimen/textview_FontSize"
+        android:inputType="textPassword"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+    
+    <TextView
+    	android:id="@+id/lblLogin_ForgotUsername"
+    	android:text="@string/lblLogin_ForgotUsername"
+    	android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+    	android:layout_gravity="right"
+    	android:textSize="@dimen/textview_FontSize"
+    	android:layout_columnSpan="2"
+    	android:clickable="true"
+    	android:textColor="@color/blue"
+    	android:paddingBottom="@dimen/paddingBetweenRows"
+    />
+    
+    <Button
+    	android:id="@+id/btnLogin_Login"
+    	android:text="@string/btnLogin_Login"
+    	android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+    	android:layout_gravity="center_horizontal"
+    	android:textSize="@dimen/textview_FontSize"
+    	android:layout_columnSpan="2"
+    />
+
+</GridLayout>
