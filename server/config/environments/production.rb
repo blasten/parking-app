@@ -77,4 +77,6 @@ Server::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  require 'auth_digest_ext'
 end
