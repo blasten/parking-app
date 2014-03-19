@@ -10,7 +10,7 @@
 package team1.parkingapp;
 
 import android.os.Bundle;
-import android.app.Activity;
+import android.app.Activity; 
 import android.view.Menu;
 import android.view.View;
 
