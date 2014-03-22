@@ -13,7 +13,7 @@ import android.os.Bundle;
 import android.app.Activity; 
 import android.view.Menu;
 import android.view.View;
-
+import android.view.MenuItem;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
@@ -87,6 +87,11 @@ public class MainActivity extends Activity {
 
 	  }
 
+		public boolean onOptionsItemSelected(MenuItem item)
+		{
+			return new MainMenu(this).handleOnClick(item);
+		}
+	  
 	  @Override
 	  public boolean onCreateOptionsMenu(Menu menu) {
 		  // Inflate the menu; this adds items to the action bar if it is present.
