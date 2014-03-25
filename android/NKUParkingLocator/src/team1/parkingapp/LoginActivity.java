@@ -1,9 +1,15 @@
+/*
+ * This is the code for the Login Activity.  It will handle verifying that the email
+ * and password combination is in the database and will give the users read-write
+ * access to our application.  Until the user is logged in, they will only have
+ * read access.
+ */
+
 package team1.parkingapp;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,15 +19,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
-/*
-	Need to add the Intent for the Map once it has been created
-
- */
 public class LoginActivity extends Activity
 {
 	
+	//Set references to the different views.
 	EditText txtEmail;
 	EditText txtPassword;
 	Button btnLogin;
@@ -33,6 +34,7 @@ public class LoginActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         
+        //Set the references
         txtEmail = (EditText)findViewById(R.id.txtLogin_Username);
         txtPassword = (EditText)findViewById(R.id.txtLogin_Password);
         btnLogin = (Button)findViewById(R.id.btnLogin_Login);
@@ -47,7 +49,7 @@ public class LoginActivity extends Activity
 	    		verifyLogin(v);
 	    	}
 	    } );
-		
+        //Create an onClick for the Forgot Username label
         lblForgotUsername.setOnClickListener(new View.OnClickListener()
 		{
 	    	public void onClick(View v)
@@ -55,7 +57,7 @@ public class LoginActivity extends Activity
 	    		forgotUsernameOrPassword();
 	    	}
 	    } );
-        
+      //Create an onClick for the Register label
         lblRegister.setOnClickListener(new View.OnClickListener()
 		{
 	    	public void onClick(View v)
@@ -66,12 +68,14 @@ public class LoginActivity extends Activity
 		
 	}
 	
+	//If the Register Label is clicked then start the User Registration Activity
 	private void register()
 	{
 		Intent intent = new Intent(this,UserRegistrationActivity.class);
 		this.startActivity(intent);
 	}
 	
+	//If the Register Label is clicked then start the ForgotUsername Activity
 	private void forgotUsernameOrPassword()
 	{
 		Intent intent = new Intent(this,ForgotUsernameActivity.class);
@@ -106,25 +110,23 @@ public class LoginActivity extends Activity
 			return false;
 		}
 		
-		//If there were no errors (username filled in, password filled in, password is correct for username)
-		//Then goto the Project1_activity Activity
-		//Toast.makeText(this, new DatabaseInteraction().testRequest(), Toast.LENGTH_LONG).show();
-		
+		//If the user is valid then close this activity and return true (not used)
 		this.finish();
 		return true;
 	}
 	
+	//Set up the menu
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		return new MainMenu(this).handleOnClick(item);
 	}
 	
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
+    //Get the String Text out of an edit text.
     private String getText(EditText e)
     {
     	return e.getText().toString();
