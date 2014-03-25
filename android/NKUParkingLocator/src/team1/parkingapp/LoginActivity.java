@@ -39,16 +39,6 @@ public class LoginActivity extends Activity
         lblForgotUsername = (TextView)findViewById(R.id.lblLogin_ForgotUsername);
         lblRegister = (TextView)findViewById(R.id.lblLogin_Register);
         
-        //Add a couple users for testing purposes
-        Login.addUser("user", "pass");
-        Login.addUser("test", "test");
-	
-        Intent i = new Intent(this,RestService.class);
-        i.setData(Uri.parse("LOGIN"));
-        i.putExtra("EMAIL", "mattTest");
-        i.putExtra("PASSWORD", "password");
-		this.startService(i);
-        
         //Create an onClick for the Login Button
         btnLogin.setOnClickListener(new View.OnClickListener()
 		{
@@ -106,7 +96,7 @@ public class LoginActivity extends Activity
 			Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		if(!Login.verifyPassword(username, password))
+		if(!AsyncRequestGenerator.verifyLogin(username, password))
 		{
 			new AlertDialog.Builder(this)
 				.setTitle("Login")
@@ -119,9 +109,6 @@ public class LoginActivity extends Activity
 		//If there were no errors (username filled in, password filled in, password is correct for username)
 		//Then goto the Project1_activity Activity
 		//Toast.makeText(this, new DatabaseInteraction().testRequest(), Toast.LENGTH_LONG).show();
-		
-		Intent i = new Intent(this,RestService.class);
-		this.startService(i);
 		
 		this.finish();
 		return true;

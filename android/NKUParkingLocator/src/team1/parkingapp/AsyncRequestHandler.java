@@ -1,12 +1,14 @@
 package team1.parkingapp;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
+import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.AuthenticationException;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.ClientProtocolException;
@@ -17,6 +19,7 @@ import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
+import org.apache.http.impl.client.AbstractHttpClient;
 
 import com.google.api.client.http.HttpRequest;
 
@@ -26,39 +29,63 @@ import android.util.Base64;
 
 public class AsyncRequestHandler extends AsyncTask<String, String, String>{
 	
-	private String _requestType = null;
+	private String _ExecuteResults;
 	
 	public AsyncRequestHandler()
 	{
 		super();
+		_ExecuteResults = null;
 	}
 	
-	public AsyncRequestHandler(String _requestType)
+	public boolean verifyUser(String url, String username, String password)
 	{
-		super();
-		this._requestType = _requestType;
+		try
+		{
+			this.execute("GET", url, username, password).get();
+		}
+		catch(ExecutionException e)
+		{
+			_ExecuteResults = null;
+		}
+		catch (InterruptedException e)
+		{
+			_ExecuteResults = null;
+		}
+		if(_ExecuteResults == null || (_ExecuteResults.toUpperCase().contains("ERROR") && _ExecuteResults.toUpperCase().contains("INVALID ACCESS")))
+			return false;
+		else 
+			return true;
 	}
 	
 	@Override
-    protected String doInBackground(String... uri) {
+    protected String doInBackground(String... uri)
+	{
         HttpClient httpclient = new DefaultHttpClient();
-        HttpResponse response;
-        String responseString = null;
+        UsernamePasswordCredentials creds = new UsernamePasswordCredentials(uri[2], uri[3]);
+        ((AbstractHttpClient) httpclient).getCredentialsProvider().setCredentials(new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), creds);
+        HttpResponse response = null;
         try {
-        	HttpGet request = new HttpGet(uri[0]);
-        	request = Authenticate(request, uri);
-            response = httpclient.execute(new HttpGet(uri[0]));
+        	if(uri[0].equals("GET"))
+        	{
+        		HttpGet request = new HttpGet(uri[1]);
+        		response = httpclient.execute(request);
+        	}
+        	else if (uri[1].equals("POST"))
+        	{
+        		HttpPost request = new HttpPost(uri[1]);
+        		response = httpclient.execute(request); 
+        	}
             StatusLine statusLine = response.getStatusLine();
             if(statusLine.getStatusCode() == HttpStatus.SC_OK)
             {
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
                 response.getEntity().writeTo(out);
                 out.close();
-                responseString = out.toString();
+                _ExecuteResults = out.toString();
             }
             else if (statusLine.getStatusCode() == HttpStatus.SC_UNAUTHORIZED) 
             {
-            	responseString = "{\"error\":\"Invalid access\"}";
+            	_ExecuteResults = "{\"error\":\"Invalid access\"}";
             	response.getEntity().getContent().close();
             }
             else
@@ -68,11 +95,11 @@ public class AsyncRequestHandler extends AsyncTask<String, String, String>{
                 throw new IOException(statusLine.getReasonPhrase());
             }
         } catch (ClientProtocolException e) {
-            //TODO Handle problems..
+        	_ExecuteResults = "{\"error\":\"Invalid access\"}";
         } catch (IOException e) {
-            //TODO Handle problems..
+        	_ExecuteResults = "{\"error\":\"Invalid access\"}";
         }
-        return responseString;
+        return _ExecuteResults;
     }
 	
 	private HttpGet Authenticate(HttpGet request, String ... uri)
@@ -94,7 +121,6 @@ public class AsyncRequestHandler extends AsyncTask<String, String, String>{
 	
 	@Override
     protected void onPostExecute(String result) {
-		setReadOnlyStatus(result);
         super.onPostExecute(result);
         //Do anything with response..
     }
