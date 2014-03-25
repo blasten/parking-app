@@ -19,6 +19,7 @@ public class RestService extends IntentService{
 		//Since this is static we only need to load it once
 		if(requestTypes == null)
 		{
+			requestTypes = new HashMap<String, Integer>();
 			requestTypes.put("LOGIN", 1);
 		}
 	}
