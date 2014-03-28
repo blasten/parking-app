@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="2"
+    android:rowCount="14">
+    
+    <TextView
+		android:id="@+id/lblUserRegistration_Email"
+        android:text="@string/lblUserRegistration_Email"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right"
+        android:textSize="@dimen/textview_FontSize"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+    
+    <EditText
+		android:id="@+id/txtUserRegistration_Email"
+        android:hint="@string/txtUserRegistration_Email_Hint"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="left"
+        android:textSize="@dimen/textview_FontSize"
+        android:inputType="textEmailAddress"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+
+    <TextView
+		android:id="@+id/lblUserRegistration_Password"
+        android:text="@string/lblUserRegistration_Password"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right"
+        android:textSize="@dimen/textview_FontSize"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+    
+    <EditText
+		android:id="@+id/txtUserRegistration_Password"
+        android:hint="@string/txtUserRegistration_Password_Hint"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="left"
+        android:textSize="@dimen/textview_FontSize"
+        android:inputType="textPassword"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+    
+    <TextView
+		android:id="@+id/lblUserRegistration_ConfirmPassword"
+        android:text="@string/lblUserRegistration_ConfirmPassword"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right"
+        android:textSize="@dimen/textview_FontSize"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+    
+    <EditText
+		android:id="@+id/txtUserRegistration_ConfirmPassword"
+        android:hint="@string/txtUserRegistration_ConfirmPassword_Hint"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="left"
+        android:textSize="@dimen/textview_FontSize"
+        android:inputType="textPassword"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+    
+	<Button
+	    android:id="@+id/btnUserRegistration_Confirm"
+    	android:text="@string/btnUserRegistration_Confirm"
+    	android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+    	android:layout_gravity="center_horizontal"
+    	android:textSize="@dimen/textview_FontSize"
+	/>
+	
+	<Button
+	    android:id="@+id/btnUserRegistration_Clear"
+    	android:text="@string/btnUserRegistration_Clear"
+    	android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+    	android:layout_gravity="center_horizontal"
+    	android:textSize="@dimen/textview_FontSize"
+	/>
+
+</GridLayout>

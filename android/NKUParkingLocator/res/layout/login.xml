@@ -48,6 +48,19 @@
 	/>
     
     <TextView
+    	android:id="@+id/lblLogin_Register"
+    	android:text="@string/lblLogin_Register"
+    	android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+    	android:layout_gravity="right"
+    	android:textSize="@dimen/textview_FontSize"
+    	android:layout_columnSpan="2"
+    	android:clickable="true"
+    	android:textColor="@color/blue"
+    	android:paddingBottom="@dimen/paddingBetweenRows"
+    />
+    
+    <TextView
     	android:id="@+id/lblLogin_ForgotUsername"
     	android:text="@string/lblLogin_ForgotUsername"
     	android:layout_height="wrap_content"

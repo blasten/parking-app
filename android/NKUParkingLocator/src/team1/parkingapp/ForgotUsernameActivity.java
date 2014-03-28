@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,6 +48,11 @@ public class ForgotUsernameActivity extends Activity
 				.setNeutralButton("OK", null)
 				.show();
 		}
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		return new MainMenu(this).handleOnClick(item);
 	}
 	
     public boolean onCreateOptionsMenu(Menu menu) {
