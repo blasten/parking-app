@@ -2,9 +2,13 @@ Server::Application.routes.draw do
 
 
 
-namespace :api do
-  get '/', to: 'base#index', format: 'json' 
-  resources :users, :defaults => { :format => 'json' }
+namespace :api, :defaults => { :format => 'json'} do
+  get '/', to: 'base#index'
+  resources :users do
+    collection do
+      get 'me'
+    end
+  end
 end
 
   # The priority is based upon order of creation: first created -> highest priority.
