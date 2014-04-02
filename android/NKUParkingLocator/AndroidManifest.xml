@@ -53,10 +53,11 @@
         
         <meta-data 
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBiIU-pQCqceEBPZ-X4PYhEvfwXDZuA4M4" />
+            android:value="AIzaSyAggYp_ZVj8SIx9s1dQVnZXegfmoaRCYQs" />
         
         <meta-data android:name="com.google.android.gms.version"
-           android:value="@integer/google_play_services_version" />
+           android:value="3027110" /> <!--  -->
+            
 		
     </application>
 

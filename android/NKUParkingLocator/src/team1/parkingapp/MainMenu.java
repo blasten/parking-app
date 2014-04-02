@@ -25,16 +25,18 @@ public class MainMenu extends Activity {
 	//This will actually handle the onClick Events
 	public boolean handleOnClick(MenuItem item)
 	{
-		//
+		 
 		switch(item.getItemId())
 		{
-		//If Login Was clicked then start the Login Activity
-		case R.id.menuLogin:		//Login
-			Intent i = new Intent(a,team1.parkingapp.LoginActivity.class);
-			a.startActivity(i);
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
+			//If Login Was clicked then start the Login Activity
+			case R.id.menuLogin:		//Login
+				Intent i = new Intent(a,team1.parkingapp.LoginActivity.class);
+				a.startActivity(i);
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
 		}
+	
 	}
+	
 }
