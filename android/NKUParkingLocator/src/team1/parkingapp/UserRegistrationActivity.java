@@ -53,21 +53,8 @@ public class UserRegistrationActivity extends Activity {
 		String pwd = password.getText().toString();
 		
 		if (verifyInput()) {
-			// Start the POST request and display a 
-			PostUserTask userTask = RestTaskFactory.createNewUser(emailAddr, pwd, fName, lName);
-			ProgressDialog progress = ProgressDialog.show(this, "Creating New User", "Creating user, please wait.");
-			try {
-				userTask.get();
-			}
-			catch (Exception e) {
-				Log.e("onConfirmClick()", "Error creating new user.");
-			}
-			finally {
-				// Dismiss the progress dialog and close the activity (NEEDS TO BE DONE ONLY IF SUCCESSFULLY CREATED).
-				progress.dismiss();
-				
-				this.finish();
-			}
+			// Start the POST request
+			PostUserTask userTask = RestTaskFactory.createNewUser(this, emailAddr, pwd, fName, lName);
 		}
 	}
 	

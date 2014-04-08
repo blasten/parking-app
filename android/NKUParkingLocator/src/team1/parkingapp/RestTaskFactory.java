@@ -18,6 +18,8 @@
  */
 package team1.parkingapp;
 
+import android.content.Context;
+
 public class RestTaskFactory {
 	protected static final String BASE_API_URL = "http://parking-app.herokuapp.com/api/";
 
@@ -25,7 +27,7 @@ public class RestTaskFactory {
 	 * Creates a new user with the given email, password, first name, and lastname.
 	 * Returns the PostUserTask object that was created.
 	 */
-	public static PostUserTask createNewUser(String email, String password, String firstName, String lastName) {
-		return (PostUserTask) new PostUserTask().execute(email, password, firstName, lastName);
+	public static PostUserTask createNewUser(Context ctx, String email, String password, String firstName, String lastName) {
+		return (PostUserTask) new PostUserTask(ctx).execute(email, password, firstName, lastName);
 	}
 }
