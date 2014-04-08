@@ -132,8 +132,6 @@ public class UserRegistrationActivity extends Activity {
 		if (emailAddr.equals("")) // Can't have a blank address
 			return false;
 		
-		// NEED TO ADD REGEX VERIFICATION HERE
-		
-		return true;
+		return android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddr).matches();
 	}
 }
