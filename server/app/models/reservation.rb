@@ -1,9 +1,9 @@
 class Reservation < ActiveRecord::Base
-
   belongs_to :user
-
+  belongs_to :spot
   validate :verify_status 
   validate :verify_spot
+
   before_save :update_spot
   before_destroy :restore_spot
   validates_uniqueness_of :user_id, :scope => :spot_id
@@ -37,13 +37,15 @@ class Reservation < ActiveRecord::Base
     def update_spot
       spot = Spot.find(spot_id)
       if status == "RESERVED"
-        spot.update(:status => Spot::STATUS["RESERVED"])
+        spot.update_attribute(:status, Spot::STATUS["RESERVED"])
       elsif status == "OCCUPIED"
-        spot.update(:status => Spot::STATUS["OCCUPIED"])
+        spot.update_attribute(:status, Spot::STATUS["OCCUPIED"])
       end
     end
 
     def restore_spot
-      Spot.find(spot_id).update(:status => Spot::STATUS["AVAILABLE"])
+      if self.spot.status != Spot::STATUS["UNAVAILABLE"] && self.spot.lot.enabled == true
+        self.spot.update(:status => Spot::STATUS["AVAILABLE"])
+      end
     end
 end

@@ -18,9 +18,9 @@ class Api::SpotsController < ApplicationController
     valid_params = spot_params
     spot = Spot.new(valid_params.merge(:status => Spot::STATUS[valid_params["status"]]))
     if spot.save
-      respond_with(spot, :location => "/")
+      render(:json => spot)
     else
-      respond_with({:error => spot.errors}, :location => "/")
+      render(:json => {:error => spot.errors})
     end
   end
 
@@ -28,18 +28,18 @@ class Api::SpotsController < ApplicationController
     valid_params = spot_params
     spot = Spot.find(params[:id])
     if spot.update(valid_params.merge(:status => Spot::STATUS[valid_params["status"]]))
-      respond_with(spot)
+      render(:json => spot)
     else
-      respond_with({:error => spot.errors})
+      render(:json => {:error => spot.errors})
     end
   end
 
   def destroy
     spot = Spot.find(params[:id])
     if spot.destroy
-      respond_with({:deleted => true}, :location => "/")
+      render(:json => {:deleted => true})
     else
-      respond_with({:error => spot.errors}, :location => "/")
+      render(:json => {:error => spot.errors})
     end
   end
 

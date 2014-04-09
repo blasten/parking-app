@@ -55,7 +55,7 @@ class Api::UsersController < ApplicationController
 
     def authenticate
       authenticate_or_request_with_http_digest(REALM) do |email|
-        if user = User.find_by_email(email)
+        if (user = User.find_by_email(email)) && user.is_mobile_user?
           @authenticated_user = user
           user.password
         end

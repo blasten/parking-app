@@ -18,9 +18,7 @@ class Api::ReservationsController < ApplicationController
     reservation = Reservation.where("spot_id = ? and user_id = ?", params[:spot_id],  @authenticated_user[:id]).first
 
     if not reservation.nil?
-      if reservation.update(params.merge(
-        :status => Spot::STATUS[reservation_params["status"]]
-        ))
+      if reservation.update(params.merge(:status => Spot::STATUS[reservation_params["status"]]))
         respond_with(reservation, :location => "/")
       else
         respond_with({:error => reservation.errors}, :location => "/")
@@ -64,7 +62,7 @@ class Api::ReservationsController < ApplicationController
     end
     def authenticate
       authenticate_or_request_with_http_digest(REALM) do |email|
-        if user = User.find_by_email(email)
+        if (user = User.find_by_email(email)) && user.is_mobile_user?
           @authenticated_user = user
           user.password
         end
