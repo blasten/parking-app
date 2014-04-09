@@ -1,14 +1,20 @@
 Server::Application.routes.draw do
 
 
+match "/404", to: "errors#not_found", via: :all
+match "/500", to: "errors#exception", via: :all
 
 namespace :api, :defaults => { :format => 'json'} do
   get '/', to: 'base#index'
   resources :users do
     collection do
-      get 'me'
+      get 'me', to: 'users#show_me'
+      put 'me', to: 'users#update_me'
     end
   end
+  resources :spots
+  resources :lots
+  resources :reservations
 end
 
   # The priority is based upon order of creation: first created -> highest priority.
