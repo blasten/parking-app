@@ -51,6 +51,11 @@
     <string name="btnUserRegistration_Confirm">Confirm</string>
     <string name="btnUserRegistration_Clear">Clear</string>
     
+    <string name="invalid_email">Please enter a valid email address.</string>
+    <string name="invalid_password">Please enter a valid password</string>
+    <string name="invalid_passwords">The passwords do not match. Please re-enter your password.</string>
+    <string name="invalid_names">Please enter a first and last name.</string>
+    
     <string-array name="States">
         <item>Alabama</item>
         <item>Alaska</item>
@@ -109,5 +114,8 @@
     <!-- String for Main Menu -->
     <string name="menuMain_Login">Login</string>
     <string name="menuMain_Logout">Logout</string>
+    
+    <!--  Miscellaneous strings -->
+    <string name="empty_string"></string>
 
 </resources>

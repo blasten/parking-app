@@ -9,6 +9,7 @@
  */
 package team1.parkingapp;
 
+
 import android.os.Bundle;
 import android.app.Activity; 
 import android.view.Menu;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import android.widget.ImageView;
 
 public class MainActivity extends Activity {
 	  static final LatLng NKU = new LatLng(39.031087, -84.466808);
@@ -43,19 +45,19 @@ public class MainActivity extends Activity {
 		    map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 		    		.getMap();
 		    
-		    Marker G1 = map.addMarker(new MarkerOptions().position(GarageOne)
-			        .title("Garage 1").snippet("Number Of Avalable Spots: 32 \n Number of Total Spots: 52 \n ") );
-		    Marker G2 = map.addMarker(new MarkerOptions().position(GarageTwo)
+		    final Marker G1 = map.addMarker(new MarkerOptions().position(GarageOne)
+			        .title("Garage 1"));
+		    final Marker G2 = map.addMarker(new MarkerOptions().position(GarageTwo)
 			        .title("Garage 2"));
-		    Marker G3 = map.addMarker(new MarkerOptions().position(GarageThree)
+		    final Marker G3 = map.addMarker(new MarkerOptions().position(GarageThree)
 			        .title("Garage 3"));
-		    Marker G4 = map.addMarker(new MarkerOptions().position(GarageFour)
+		    final  Marker G4 = map.addMarker(new MarkerOptions().position(GarageFour)
 			        .title("Garage 4"));
-		    Marker G5 = map.addMarker(new MarkerOptions().position(GarageFive)
+		    final Marker G5 = map.addMarker(new MarkerOptions().position(GarageFive)
 			        .title("Garage 5"));
-		    Marker G6 = map.addMarker(new MarkerOptions().position(GarageSix)
+		    final  Marker G6 = map.addMarker(new MarkerOptions().position(GarageSix)
 			        .title("Garage 6"));
-		    Marker G7 = map.addMarker(new MarkerOptions().position(GarageSeven)
+		    final Marker G7 = map.addMarker(new MarkerOptions().position(GarageSeven)
 			        .title("Garage 7"));
 		    
 		    Marker aim = map.addMarker(new MarkerOptions()
@@ -71,6 +73,7 @@ public class MainActivity extends Activity {
 		    // Custom Marker Window... 
 		    map.setInfoWindowAdapter(new InfoWindowAdapter() {
 
+		    	// Do nothing here.. 
 		        @Override
 		        public View getInfoWindow(Marker arg0) {
 		            return null;
@@ -78,8 +81,18 @@ public class MainActivity extends Activity {
 
 		        @Override
 		        public View getInfoContents(Marker arg0) {
-		        	//if(arg0.equals(G1) ){; }
-		            View v = getLayoutInflater().inflate(R.layout.customlayoutg1, null);
+		        	View v = getLayoutInflater().inflate(R.layout.customlayout, null);
+		        	 
+		        	ImageView image = (ImageView) v.findViewById(R.id.parkinglotphoto);
+		        	// Modify the custom view here to change the objects with in..
+		        	if(arg0.equals(G1) ){image.setImageResource(R.drawable.parkinglot1); }
+		        	else if( arg0.equals(G2)){image.setImageResource(R.drawable.parkinglot2); }
+		        	else if( arg0.equals(G3)){image.setImageResource(R.drawable.parkinglot3); }
+		        	else if( arg0.equals(G4)){image.setImageResource(R.drawable.parkinglot4); }
+		        	else if( arg0.equals(G5)){image.setImageResource(R.drawable.parkinglot5); }
+		        	else if( arg0.equals(G6)){image.setImageResource(R.drawable.parkinglot6); }
+		        	else if( arg0.equals(G7)){image.setImageResource(R.drawable.parkinglot7); }
+		           
 		            return v;
 
 		        }

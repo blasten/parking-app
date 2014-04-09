@@ -25,6 +25,48 @@
         android:inputType="textEmailAddress"
         android:paddingBottom="@dimen/paddingBetweenRows"
 	/>
+    
+    <TextView
+		android:id="@+id/lblUserRegistration_FirstName"
+        android:text="@string/lblUserRegistration_FirstName"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right"
+        android:textSize="@dimen/textview_FontSize"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+    
+    <EditText
+		android:id="@+id/txtUserRegistration_FirstName"
+        android:hint="@string/txtUserRegistration_FirstName_Hint"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="left"
+        android:textSize="@dimen/textview_FontSize"
+        android:inputType="textEmailAddress"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+    
+    <TextView
+		android:id="@+id/lblUserRegistration_LastName"
+        android:text="@string/lblUserRegistration_LastName"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right"
+        android:textSize="@dimen/textview_FontSize"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
+    
+    <EditText
+		android:id="@+id/txtUserRegistration_LastName"
+        android:hint="@string/txtUserRegistration_LastName_Hint"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="left"
+        android:textSize="@dimen/textview_FontSize"
+        android:inputType="textEmailAddress"
+        android:paddingBottom="@dimen/paddingBetweenRows"
+	/>
 
     <TextView
 		android:id="@+id/lblUserRegistration_Password"
@@ -75,6 +117,7 @@
         android:layout_width="wrap_content"
     	android:layout_gravity="center_horizontal"
     	android:textSize="@dimen/textview_FontSize"
+    	android:onClick="onConfirmClick"
 	/>
 	
 	<Button
@@ -84,6 +127,7 @@
         android:layout_width="wrap_content"
     	android:layout_gravity="center_horizontal"
     	android:textSize="@dimen/textview_FontSize"
+    	android:onClick="onClearClick"
 	/>
 
 </GridLayout>
