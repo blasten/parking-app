@@ -1,6 +1,6 @@
 class Lot < ActiveRecord::Base
   has_many :spots
-  validates :name, presence: true, length: { within: 2..10 }
+  validates :name, presence: true, length: { within: 2..30 }
   validates :max_wait, numericality: {only_integer: true, :greater_than_or_equal_to => 0}
   before_save :set_enabled
   before_save :update_spot
