@@ -1,6 +1,8 @@
 class Spot < ActiveRecord::Base
   validate :verify_lot
   validate :verify_status
+  validates :latitude, presence: true, numericality: true
+  validates :longitude, presence: true, numericality: true
 
   before_destroy :remove_reservations
   before_save :config_reservations

@@ -4,6 +4,7 @@ Server::Application.routes.draw do
 match "/404", to: "errors#not_found", via: :all
 match "/500", to: "errors#exception", via: :all
 
+
 namespace :api, :defaults => { :format => 'json'} do
   get '/', to: 'base#index'
   resources :users do
