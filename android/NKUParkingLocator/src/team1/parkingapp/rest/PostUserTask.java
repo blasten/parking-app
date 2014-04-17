@@ -19,27 +19,20 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
+
 
 public class PostUserTask extends AsyncTask<String, Void, Void> {
-	private final static String USERS_API 		= "users";
-	private final static String EMAIL_FIELD 	= "email";
-	private final static String PASSWORD_FIELD	= "password";
-	private final static String NAME_FIELD 		= "name";
-	private final static String LASTNAME_FIELD 	= "lastname";
 	private ProgressDialog progress;	// ProgressDialog to let the user know the app is working
 	private Context ctx;				// Context on which to show the ProgressDialog
 
 	/*
 	 * Just assign the context of the Activity to the ctx member variable.
 	 */
-	public PostUserTask(Context ctx) {
+	protected PostUserTask(Context ctx) {
 		super();
 		this.ctx = ctx;
 	}
@@ -62,18 +55,23 @@ public class PostUserTask extends AsyncTask<String, Void, Void> {
 	 */
 	@Override
 	protected Void doInBackground(String... params) {
-		    // Create a new HttpClient and Post Header
-		    HttpClient httpclient = new DefaultHttpClient();
-		    HttpPost httppost = new HttpPost(RestTaskFactory.BASE_API_URL + USERS_API);
+		    HttpClient httpclient = new DefaultHttpClient();			// HTTP client used to perform the request;
+		    HttpPost httppost = new HttpPost(RestContract.USERS_API);	// HTTP Post header
+		    String[] postKeys = 										// Array of keys to be sent to the server
+		    	{RestContract.EMAIL, RestContract.PASSWORD, RestContract.NAME, RestContract.LASTNAME};
 
+		    // There should be exactly 4 parameters passed in
+		    if (params.length != 4) {
+		    	Log.e("POST user", "Incorrect number of parameters received.");
+		    	return null;
+		    }
+		    
 		    try {
 		        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);
 		        
 		        // Add the data to the request
-		        nameValuePairs.add(new BasicNameValuePair(EMAIL_FIELD, params[0]));
-		        nameValuePairs.add(new BasicNameValuePair(PASSWORD_FIELD, params[1]));
-		        nameValuePairs.add(new BasicNameValuePair(NAME_FIELD, params[2]));
-		        nameValuePairs.add(new BasicNameValuePair(LASTNAME_FIELD, params[3]));
+		        for (int i = 0; i < postKeys.length; i++) 
+		        	nameValuePairs.add(new BasicNameValuePair(postKeys[i], params[i]));
 		       
 		        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 

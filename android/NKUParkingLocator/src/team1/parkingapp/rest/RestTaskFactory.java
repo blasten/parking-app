@@ -21,7 +21,6 @@ package team1.parkingapp.rest;
 import android.content.Context;
 
 public class RestTaskFactory {
-	protected static final String BASE_API_URL = "http://parking-app.herokuapp.com/api/";
 
 	/*
 	 * Creates a new user with the given email, password, first name, and lastname.
@@ -29,5 +28,19 @@ public class RestTaskFactory {
 	 */
 	public static PostUserTask createNewUser(Context ctx, String email, String password, String firstName, String lastName) {
 		return (PostUserTask) new PostUserTask(ctx).execute(email, password, firstName, lastName);
+	}
+	
+	/*
+	 * Gets a spot based on its ID.
+	 */
+	public static GetSpotsTask getSpotsById(int spotId) {
+		return (GetSpotsTask) new GetSpotsTask().execute(Integer.toString(spotId));
+	}
+	
+	/*
+	 * Get spot(s) based on their latitude and longitude coordinates.
+	 */
+	public static GetSpotsTask getSpotsByCoords(String lat1, String long1, String lat2, String long2) {
+		return (GetSpotsTask) new GetSpotsTask().execute(lat1, long1, lat2, long2);
 	}
 }

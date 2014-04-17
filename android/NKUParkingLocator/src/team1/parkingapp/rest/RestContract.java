@@ -29,6 +29,12 @@ public final class RestContract {
 	protected static final String LAT2				= 	"lat2";
 	protected static final String LONG2				= 	"long2";
 	
+	// Spot Status strings
+	protected static final String AVAILABLE			=	"AVAILABLE";
+	protected static final String RESERVED			=	"RESERVED";
+	protected static final String OCCUPIED			=	"OCCUPIED";
+	protected static final String UNAVAILABLE		=	"UNAVAILABLE";
+	
 	// Lots API key-value parameters
 	// There are none that can be placed into constants
 	
