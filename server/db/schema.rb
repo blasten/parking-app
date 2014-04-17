@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408192748) do
+ActiveRecord::Schema.define(version: 20140417032405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "lots", force: true do |t|
     t.string   "name"
-    t.string   "coords"
     t.boolean  "enabled"
     t.integer  "max_wait"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
   end
 
   create_table "reservations", force: true do |t|
