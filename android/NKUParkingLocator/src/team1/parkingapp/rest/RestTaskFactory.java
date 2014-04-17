@@ -51,4 +51,4 @@ public class RestTaskFactory {
 	{
 		return (GetLotTask) new GetLotTask(ctx).execute();
 	}
-	}
+}

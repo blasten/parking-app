@@ -8,11 +8,12 @@
 package team1.parkingapp.data;
 
 public class User {
-	private int id;				// User's ID
-	private String email;		// User's email address
-	private String password;	// User's password (most likely boobs)
-	private String name;		// User's first name
-	private String lastName;	// User's last name
+	private int id;						// User's ID
+	private String email;				// User's email address
+	private String password;			// User's password (most likely boobs)
+	private String name;				// User's first name
+	private String lastName;			// User's last name
+	private Reservation reservation;	// Current reservation
 	
 	public User(int id, String email, String password, String name, String lastName) {
 		this.id = id;
@@ -20,6 +21,7 @@ public class User {
 		this.password = password;
 		this.name = name;
 		this.lastName = lastName;
+		this.reservation = null;
 	}
 
 	/*
@@ -67,5 +69,13 @@ public class User {
 	
 	public String getFullName() {
 		return this.name + " " + this.lastName;
+	}
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
 	}
 }
