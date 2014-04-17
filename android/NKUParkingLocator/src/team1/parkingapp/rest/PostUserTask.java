@@ -6,7 +6,7 @@
  * This class contains the task to create a new user. Before the request is made, a ProgressDialog is shown on the UI thread of
  * the Activity making the request. 
  */
-package team1.parkingapp;
+package team1.parkingapp.rest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -27,6 +28,11 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class PostUserTask extends AsyncTask<String, Void, Void> {
+	private final static String USERS_API 		= "users";
+	private final static String EMAIL_FIELD 	= "email";
+	private final static String PASSWORD_FIELD	= "password";
+	private final static String NAME_FIELD 		= "name";
+	private final static String LASTNAME_FIELD 	= "lastname";
 	private ProgressDialog progress;	// ProgressDialog to let the user know the app is working
 	private Context ctx;				// Context on which to show the ProgressDialog
 
@@ -58,16 +64,16 @@ public class PostUserTask extends AsyncTask<String, Void, Void> {
 	protected Void doInBackground(String... params) {
 		    // Create a new HttpClient and Post Header
 		    HttpClient httpclient = new DefaultHttpClient();
-		    HttpPost httppost = new HttpPost("http://parking-app.herokuapp.com/api/users");
+		    HttpPost httppost = new HttpPost(RestTaskFactory.BASE_API_URL + USERS_API);
 
 		    try {
 		        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);
 		        
 		        // Add the data to the request
-		        nameValuePairs.add(new BasicNameValuePair("email", params[0]));
-		        nameValuePairs.add(new BasicNameValuePair("password", params[1]));
-		        nameValuePairs.add(new BasicNameValuePair("name", params[2]));
-		        nameValuePairs.add(new BasicNameValuePair("lastname", params[3]));
+		        nameValuePairs.add(new BasicNameValuePair(EMAIL_FIELD, params[0]));
+		        nameValuePairs.add(new BasicNameValuePair(PASSWORD_FIELD, params[1]));
+		        nameValuePairs.add(new BasicNameValuePair(NAME_FIELD, params[2]));
+		        nameValuePairs.add(new BasicNameValuePair(LASTNAME_FIELD, params[3]));
 		       
 		        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 

@@ -55,6 +55,7 @@
     <string name="invalid_password">Please enter a valid password</string>
     <string name="invalid_passwords">The passwords do not match. Please re-enter your password.</string>
     <string name="invalid_names">Please enter a first and last name.</string>
+    <string name="invalid_password_length">Password must be at least four characters long.</string>
     
     <string-array name="States">
         <item>Alabama</item>

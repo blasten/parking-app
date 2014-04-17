@@ -16,7 +16,7 @@
  * POST checkout - Check out from a spot.
  * GET my-spots - Returns a list of spots the user has used.
  */
-package team1.parkingapp;
+package team1.parkingapp.rest;
 
 import android.content.Context;
 

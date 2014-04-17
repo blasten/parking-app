@@ -8,6 +8,8 @@
  */
 package team1.parkingapp;
 
+import team1.parkingapp.rest.PostUserTask;
+import team1.parkingapp.rest.RestTaskFactory;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class UserRegistrationActivity extends Activity {
+	private final static int MIN_PASSWORD_LENGTH = 4;
 	private EditText email;			
 	private EditText password;		
 	private EditText confirmPwd;
@@ -94,11 +97,11 @@ public class UserRegistrationActivity extends Activity {
 			Toast.makeText(getApplicationContext(), R.string.invalid_email, Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		else if (fName.equals("") || lName.equals("")) {		// Neither of the names can be blank
+		else if (fName.isEmpty() || lName.isEmpty()) {			// Neither of the names can be blank
 			Toast.makeText(getApplicationContext(), R.string.invalid_names, Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		else if (pwd.equals("") || pwdConfirm.equals("")) {		// Neither of the passwords can be blank
+		else if (pwd.isEmpty()  || pwdConfirm.isEmpty()) {		// Neither of the passwords can be blank
 			Toast.makeText(getApplicationContext(), R.string.invalid_password, Toast.LENGTH_SHORT).show();
 			return false;
 		}
@@ -106,6 +109,10 @@ public class UserRegistrationActivity extends Activity {
 			Toast.makeText(getApplicationContext(), R.string.invalid_passwords, Toast.LENGTH_SHORT).show();
 			resetPasswords();
 			return false;
+		}
+		else if (pwd.length() <= MIN_PASSWORD_LENGTH) {
+			Toast.makeText(getApplicationContext(), R.string.invalid_password_length, Toast.LENGTH_SHORT).show();
+			resetPasswords();
 		}
 		
 		return true;											// The user entered valid input, allow the create request to happen
