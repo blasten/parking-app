@@ -43,4 +43,12 @@ public class RestTaskFactory {
 	public static GetSpotsTask getSpotsByCoords(String lat1, String long1, String lat2, String long2) {
 		return (GetSpotsTask) new GetSpotsTask().execute(lat1, long1, lat2, long2);
 	}
-}
+	
+	/*
+	 * Get all parking lots
+	 */
+	public static GetLotTask getParkingLots(Context ctx)
+	{
+		return (GetLotTask) new GetLotTask(ctx).execute();
+	}
+	}
