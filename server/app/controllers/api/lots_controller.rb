@@ -42,7 +42,7 @@ class Api::LotsController < ApplicationController
 
   private
     def lot_params
-      params.permit(:name, :coords, :enabled, :max_wait)
+      params.permit(:name, :coords, :enabled, :max_wait, :latitude, :longitude)
     end
     def authenticate_admin_user
       authenticate_or_request_with_http_digest(REALM) do |email|

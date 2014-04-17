@@ -42,7 +42,7 @@ class Api::UsersController < ApplicationController
   def update_me
     user = @authenticated_user
     if user.update(user_params)
-      render(:json => {:error => user.to_hash})
+      render(:json => user.to_hash)
     else
       render(:json => {:error => user.errors})
     end
