@@ -95,7 +95,10 @@ public class MainActivity extends Activity {
 		        	{
 		        		if(arg0.getTitle().equals(lots.get(i).getName()))
 		        		{
-		        			image.setImageResource(getRandomDrawable());
+		        			// If we have a picture for it use it.
+		        			if( i < NUMBER_OF_PARKING_LOT_PICTURES ) image.setImageResource(  getResources().getIdentifier("parkinglot" + (i + 1) , "drawable", "team1.parkingapp"));
+		        			//If not get a random one
+		        			else image.setImageResource( getRandomDrawable());
 		        		}
 		        	}
 		            return v;
