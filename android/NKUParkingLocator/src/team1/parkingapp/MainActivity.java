@@ -18,18 +18,20 @@ import team1.parkingapp.rest.RestTaskFactory;
 import android.os.Bundle;
 import android.app.Activity; 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import android.widget.ImageView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements  OnInfoWindowClickListener  {
 	  private static final LatLng NKU = new LatLng(39.031087, -84.466808);
 	  private static final int NUMBER_OF_PARKING_LOT_PICTURES = 7;
 	  private Vector<ParkingLot> lots;
@@ -75,7 +77,8 @@ public class MainActivity extends Activity {
 		    // Move the camera instantly to NKU with a zoom of 16.
 		    map.moveCamera(CameraUpdateFactory.newLatLngZoom(NKU, 16));
 		    
-		    
+		    // Set the custom info screen listener 
+		    map.setOnInfoWindowClickListener(this);
 		    
 		    // Custom Marker Window... 
 		    map.setInfoWindowAdapter(new InfoWindowAdapter() {
@@ -126,4 +129,12 @@ public class MainActivity extends Activity {
 		  int res = getResources().getIdentifier("parkinglot" + n, "drawable", "team1.parkingapp");
 		  return res;
 	  }
+
+		@Override
+		public void onInfoWindowClick(Marker arg0) {
+			Intent i = new Intent(this, team1.parkingapp.ParkingSpotDetailActivity.class);
+			i.putExtra("GarageTitle",arg0.getTitle());
+			startActivity(i);
+			
+		}
 }
