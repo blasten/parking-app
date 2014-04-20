@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Garage"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="320dp"
+    android:layout_height="460dp"
     tools:context=".MainActivity" >
 
     <TextView
@@ -24,9 +24,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/txtTitle"
-        android:layout_marginBottom="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
+        android:layout_marginTop="17dp"
         android:src="@drawable/spotdetail" />
 
     <TextView
@@ -42,12 +40,11 @@
         android:id="@+id/spot1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/spot3"
         android:layout_alignLeft="@+id/txtTitle"
-        android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/txtTitle"
         android:layout_alignTop="@+id/imageView1"
-        android:layout_marginBottom="356dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15px"
         android:layout_marginRight="16dp"
         android:layout_marginTop="23dp"
         android:src="@drawable/star" />
@@ -353,17 +350,6 @@
         android:src="@drawable/star" />
 
     <ImageView
-        android:id="@+id/spot30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/spot29"
-        android:layout_alignLeft="@+id/spot24"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/spot29"
-        android:layout_marginRight="26dp"
-        android:src="@drawable/star" />
-
-    <ImageView
         android:id="@+id/spot31"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -436,6 +422,16 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/lblDescription"
         android:layout_centerHorizontal="true"
+        android:src="@drawable/star" />
+
+    <ImageView
+        android:id="@+id/spot30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/spot32"
+        android:layout_alignLeft="@+id/spot24"
+        android:layout_alignRight="@+id/spot24"
+        android:layout_alignTop="@+id/spot29"
         android:src="@drawable/star" />
     
 </RelativeLayout>
