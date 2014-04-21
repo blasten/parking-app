@@ -41,12 +41,12 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 	 */
 	@Override
 	protected void onPreExecute() {
-		progress = new ProgressDialog(ctx);
-		progress.setTitle("Creating User");
+		super.onPreExecute();
+		progress = new ProgressDialog(this.ctx);
+		progress.setTitle("Getting parking spots");
 		progress.setMessage("Please wait.");
 		progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		progress.show();
-		super.onPreExecute();
 	}
 	
 	@Override
@@ -74,11 +74,11 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 	        StatusLine status = response.getStatusLine();
 	        
 	        if(status.getStatusCode() == HttpStatus.SC_OK) {
-	        	Log.i("GET Lot", Integer.toString(status.getStatusCode()));
-	        	Log.i("GET Lot", status.getReasonPhrase());
+	        	Log.i("GET Spots", Integer.toString(status.getStatusCode()));
+	        	Log.i("GET Spots", status.getReasonPhrase());
 	        	ByteArrayOutputStream out = new ByteArrayOutputStream();
                 response.getEntity().writeTo(out);
-                spots = GetSpotsTask.parseResults(out.toString());
+                spots = this.parseResults(out.toString());
                 out.close();
 	        }
 	        
@@ -95,8 +95,8 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 	 */
 	@Override
 	protected void onPostExecute(Vector<Spot> spots) {
-		progress.dismiss();
 		super.onPostExecute(spots);
+		progress.dismiss();
 	}
 	
 	/*
@@ -125,7 +125,7 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 	 * Takes a string containing JSON data, parses it out, and creates a vector of spot objects.
 	 * This vector is returned.
 	 */
-	private static Vector<Spot> parseResults(String results)
+	private Vector<Spot> parseResults(String results)
 	{
 		Vector<Spot> spots = new Vector<Spot>();
 
@@ -134,7 +134,7 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 			JSONArray arr = new JSONArray(tokener);
 			for(int i = 0 ; i < arr.length() ; ++i) {
 				JSONObject json = arr.getJSONObject(i);
-				spots.add(GetSpotsTask.validateData(json));
+				spots.add(this.validateJSONData(json));
 			}
 		}
 		catch(Exception e) {
@@ -149,7 +149,7 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 	 * Pulls out the data from each JSON object and returns a SPOT object from that data.
 	 * If any fields in the database are null, they are set to default invalid values.
 	 */
-	private static Spot validateData(JSONObject json) {
+	private Spot validateJSONData(JSONObject json) {
 		int id, lot_id;
 		double lat, lng;
 		String status;

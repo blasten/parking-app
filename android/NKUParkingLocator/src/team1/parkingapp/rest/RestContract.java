@@ -17,10 +17,11 @@ public final class RestContract {
 	
 	// User API key-value parameters
 	// POST parameters
-	protected static final String EMAIL 			= 	"email";
-	protected static final String PASSWORD			= 	"password";
-	protected static final String NAME		 		=	"name";
-	protected static final String LASTNAME			= 	"lastname";
+	protected static final String USER_EMAIL 		= 	"email";
+	protected static final String USER_PASSWORD		= 	"password";
+	protected static final String USER_NAME		 	=	"name";
+	protected static final String USER_LASTNAME		= 	"lastname";
+	protected static final String USER_ID			=	"id";
 	
 	// Spots API key-value parameters
 	// GET parameters
@@ -51,4 +52,7 @@ public final class RestContract {
 	protected static final String SPOT_LAT			=	"latitude";
 	protected static final String SPOT_LONG			=	"longitude";
 	protected static final String SPOT_STATUS		=	"status";
+	
+	// Miscellaneous API constants
+	protected static final String ERROR				=	"error";
 }

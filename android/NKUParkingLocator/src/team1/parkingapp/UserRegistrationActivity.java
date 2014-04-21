@@ -11,9 +11,7 @@ package team1.parkingapp;
 import team1.parkingapp.rest.PostUserTask;
 import team1.parkingapp.rest.RestTaskFactory;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -110,9 +108,10 @@ public class UserRegistrationActivity extends Activity {
 			resetPasswords();
 			return false;
 		}
-		else if (pwd.length() <= MIN_PASSWORD_LENGTH) {
+		else if (pwd.length() < MIN_PASSWORD_LENGTH) {
 			Toast.makeText(getApplicationContext(), R.string.invalid_password_length, Toast.LENGTH_SHORT).show();
 			resetPasswords();
+			return false;
 		}
 		
 		return true;											// The user entered valid input, allow the create request to happen

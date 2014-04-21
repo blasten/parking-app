@@ -56,6 +56,7 @@
     <string name="invalid_passwords">The passwords do not match. Please re-enter your password.</string>
     <string name="invalid_names">Please enter a first and last name.</string>
     <string name="invalid_password_length">Password must be at least four characters long.</string>
+    <string name="email_taken">Email address already in use.</string>
     
     <string-array name="States">
         <item>Alabama</item>
@@ -110,7 +111,6 @@
         <item>Wisconsin</item>
         <item>Wyoming</item>
     </string-array>
-    
     
     <!-- String for Main Menu -->
     <string name="menuMain_Login">Login</string>
