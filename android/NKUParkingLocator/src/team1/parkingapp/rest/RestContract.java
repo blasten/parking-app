@@ -36,7 +36,7 @@ public final class RestContract {
 	protected static final String UNAVAILABLE		=	"UNAVAILABLE";
 	
 	// Lots API key-value parameters
-	// API Field Names
+	// API field names
 	protected static final String LOT_ID			=	"id";
 	protected static final String LOT_NAME			=	"name";
 	protected static final String LOT_ENABLED		=	"enabled";
@@ -45,7 +45,10 @@ public final class RestContract {
 	protected static final String LOT_LNG			=	"longitude";
 	
 	// Reservation API key-value parameters
-	// POST & PUT parameters
-	protected static final String SPOT_ID			=	"spot_id";
-	protected static final String STATUS			=	"status";
+	// API field names
+	protected static final String SPOT_ID			=	"id";
+	protected static final String SPOT_LOT_ID		=	"lot_id";
+	protected static final String SPOT_LAT			=	"latitude";
+	protected static final String SPOT_LONG			=	"longitude";
+	protected static final String SPOT_STATUS		=	"status";
 }

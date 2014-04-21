@@ -33,15 +33,15 @@ public class RestTaskFactory {
 	/*
 	 * Gets a spot based on its ID.
 	 */
-	public static GetSpotsTask getSpotsById(int spotId) {
-		return (GetSpotsTask) new GetSpotsTask().execute(Integer.toString(spotId));
+	public static GetSpotsTask getSpotsById(Context ctx, int spotId) {
+		return (GetSpotsTask) new GetSpotsTask(ctx).execute(Integer.toString(spotId));
 	}
 	
 	/*
 	 * Get spot(s) based on their latitude and longitude coordinates.
 	 */
-	public static GetSpotsTask getSpotsByCoords(String lat1, String long1, String lat2, String long2) {
-		return (GetSpotsTask) new GetSpotsTask().execute(lat1, long1, lat2, long2);
+	public static GetSpotsTask getSpotsByCoords(Context ctx, String lat1, String long1, String lat2, String long2) {
+		return (GetSpotsTask) new GetSpotsTask(ctx).execute(lat1, long1, lat2, long2);
 	}
 	
 	/*

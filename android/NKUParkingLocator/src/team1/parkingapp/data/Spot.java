@@ -10,16 +10,16 @@ package team1.parkingapp.data;
 public class Spot {
 	private int id;				// The spot's ID
 	private int lotId;			// ID of the lot containing the spot
-	private String status;		// Current status of the spot
 	private double lat;			// Latitude of the spot
 	private double longitude;	// Longitude of the spot
+	private String status;		// Current status of the spot
 	
-	public Spot(int id, int lotId, String status, double lat, double longitude) {
+	public Spot(int id, int lotId, double lat, double longitude, String status) {
 		this.id = id;
 		this.lotId = lotId;
-		this.status = status;
 		this.lat = lat;
 		this.longitude = longitude;
+		this.status = status;
 	}
 
 	/*
