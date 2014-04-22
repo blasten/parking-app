@@ -57,6 +57,7 @@
     <string name="invalid_names">Please enter a first and last name.</string>
     <string name="invalid_password_length">Password must be at least four characters long.</string>
     <string name="email_taken">Email address already in use.</string>
+    <string name="user_created">User created successfully!</string>
     
     <string-array name="States">
         <item>Alabama</item>

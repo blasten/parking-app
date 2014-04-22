@@ -4,17 +4,13 @@
  * Travis Carney, Mat Ferry, Todd Phillips
  * 
  * This file contains the main activity for the NKU Parking Locator app.
- * Right now it is just a test bed for the map that has two markers.
- * For reference, this tutorial was used: http://www.vogella.com/tutorials/AndroidGoogleMaps/article.html#overview_intro
  */
 package team1.parkingapp;
 
-
-
 import java.util.Vector;
 import team1.parkingapp.data.ParkingLot;
-import team1.parkingapp.rest.GetLotTask;
 import team1.parkingapp.rest.RestTaskFactory;
+import team1.parkingapp.rest.Session;
 import android.os.Bundle;
 import android.app.Activity; 
 import android.app.AlertDialog;
@@ -68,7 +64,7 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 					.show();
 		    	finish();
 		    }
-		    lots = GetLotTask.getParkingLots();
+		    lots = Session.getParkingLots();
 		    for(int i = 0 ; i < lots.size() ; ++i)
 		    {
 		    	map.addMarker(lots.get(i).getMarkerOptions());

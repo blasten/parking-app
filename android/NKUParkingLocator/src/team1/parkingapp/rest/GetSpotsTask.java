@@ -144,4 +144,19 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 		
 		return spots;
 	}
+	
+	/*
+	 * Each spot lotId in the spots vector that matches the lotId is placed into a new vector and returned.
+	 */
+	protected static Vector<Spot> filterSpotsByLotId(Vector<Spot> spots, int lotId) {
+		Vector<Spot> filtered = new Vector<Spot>();
+		
+		for (Spot spot : spots) {
+			if (spot.getLotId() == lotId) {
+				filtered.add(spot);
+			}
+		}
+		
+		return filtered;
+	}
 }

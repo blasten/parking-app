@@ -24,11 +24,13 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import team1.parkingapp.UserRegistrationActivity;
 import team1.parkingapp.data.User;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import team1.parkingapp.R;
 
 public class PostUserTask extends AsyncTask<String, Void, User> {
 	private ProgressDialog progress;	// ProgressDialog to let the user know the app is working
@@ -123,15 +125,17 @@ public class PostUserTask extends AsyncTask<String, Void, User> {
 		User user = null;
 		
 		Log.i("Result", results);
-
-		if (results.contains(RestContract.ERROR)) {
-			return null;
-		}
 	
 		JSONTokener tokener = new JSONTokener(results);
 		try {
 			JSONObject json = new JSONObject(tokener);
 			user = User.validateJSONData(json);
+			// If the user came back null, it means the email was in use
+			if (user == null)
+				((UserRegistrationActivity) ctx).showToast(ctx.getResources().getString(R.string.email_taken));
+			// If the user isn't null, it was created successfully. Show a Toast.
+			else
+				((UserRegistrationActivity) ctx).showToast(ctx.getResources().getString(R.string.user_created));
 		}
 		catch(Exception e) {
 			Log.e("POST User", "Error parsing JSON objects");

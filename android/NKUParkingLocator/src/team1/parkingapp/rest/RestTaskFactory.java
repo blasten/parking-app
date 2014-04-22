@@ -18,13 +18,18 @@
  */
 package team1.parkingapp.rest;
 
+import java.util.Vector;
+
+import team1.parkingapp.data.Spot;
+
 import android.content.Context;
+import android.util.Log;
 
 public class RestTaskFactory {
 
 	/*
 	 * Creates a new user with the given email, password, first name, and lastname.
-	 * Returns the PostUserTask object that was created.
+	 * Returns the PostUserTask object that was created. This task assumes that UserRegistrationActivity is calling it.
 	 */
 	public static PostUserTask createNewUser(Context ctx, String email, String password, String firstName, String lastName) {
 		return (PostUserTask) new PostUserTask(ctx).execute(email, password, firstName, lastName);
@@ -42,6 +47,22 @@ public class RestTaskFactory {
 	 */
 	public static GetSpotsTask getSpotsByCoords(Context ctx, String lat1, String long1, String lat2, String long2) {
 		return (GetSpotsTask) new GetSpotsTask(ctx).execute(lat1, long1, lat2, long2);
+	}
+	
+	/*
+	 * Gets all spots that are in the lot specified by lotId.
+	 */
+	public static Vector<Spot> getSpotsByLot(Context ctx, int lotId) {
+		GetSpotsTask getSpots = (GetSpotsTask) new GetSpotsTask(ctx).execute(RestContract.MIN_LAT, RestContract.MIN_LNG,
+				RestContract.MAX_LAT, RestContract.MAX_LNG);
+		try {
+			Vector<Spot> spots = getSpots.get();
+			return GetSpotsTask.filterSpotsByLotId(spots, lotId);
+		}
+		catch (Exception e) {
+			Log.e("Get Spots By Lot ID", e.getMessage());
+			return null;
+		}
 	}
 	
 	/*
@@ -75,6 +96,7 @@ public class RestTaskFactory {
 	public static GetReservationsTask getReservationById(Context ctx, String email, String password, String resId) {
 		return (GetReservationsTask) new GetReservationsTask(ctx).execute(email, password, resId);
 	}
+	
 	public static PutReservationTask changeReservation(Context ctx, int reservationID, int spotID, String status, String username, String password)
 	{
 		return (PutReservationTask) new PutReservationTask(ctx).execute(Integer.toString(reservationID), Integer.toString(spotID),status, username, password);

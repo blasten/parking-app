@@ -8,11 +8,13 @@
  */
 package team1.parkingapp;
 
+import team1.parkingapp.data.User;
 import team1.parkingapp.rest.PostUserTask;
 import team1.parkingapp.rest.RestTaskFactory;
 import team1.parkingapp.rest.Session;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -57,24 +59,14 @@ public class UserRegistrationActivity extends Activity {
 		if (verifyInput()) {
 			// Start the POST request
 			PostUserTask userTask = RestTaskFactory.createNewUser(this, emailAddr, pwd, fName, lName);
-			try
-			{
-				userTask.get();
+			
+			try {
+				User temp = userTask.get();
+				if (temp != null)
+					this.finish();
 			}
-			catch(Exception e)
-			{
-				
-			}
-			finally
-			{
-				if(Session.getUser() == null)
-				{
-					Toast.makeText(this, getResources().getString(R.string.email_taken), Toast.LENGTH_SHORT).show();
-				}
-				else
-				{
-					Toast.makeText(this, "User Created", Toast.LENGTH_SHORT).show();
-				}
+			catch (Exception e) {
+				Log.e("User Registration", e.getMessage());
 			}
 		}
 	}
@@ -146,5 +138,16 @@ public class UserRegistrationActivity extends Activity {
 			return false;
 		
 		return android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddr).matches();
+	}
+	
+	/*
+	 * Displays a Toast on this activity. Useful for showing a Toast from another thread.
+	 */
+	public void showToast(final String msg) {
+		runOnUiThread(new Runnable() {
+			public void run() {
+				Toast.makeText(UserRegistrationActivity.this, msg, Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 }

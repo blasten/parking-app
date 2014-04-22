@@ -60,4 +60,8 @@ public final class RestContract {
 
 	// Miscellaneous API constants
 	public static final String ERROR				=	"error";
+	public static final String MIN_LAT				=	"-180";
+	public static final String MAX_LAT				=	"180";
+	public static final String MIN_LNG				=	"-180";
+	public static final String MAX_LNG				=	"180";
 }
