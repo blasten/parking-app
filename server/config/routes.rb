@@ -14,7 +14,9 @@ namespace :api, :defaults => { :format => 'json'} do
     end
   end
   resources :spots
-  resources :lots
+  resources :lots do
+    get 'spots', to: 'lots#show_spots'
+  end
   resources :reservations
 end
 

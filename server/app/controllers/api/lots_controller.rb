@@ -40,6 +40,11 @@ class Api::LotsController < ApplicationController
     end
   end
 
+  def show_spots
+    lot = Lot.find(params[:lot_id])
+    render(:json => lot.spots)
+  end
+
   private
     def lot_params
       params.permit(:name, :coords, :enabled, :max_wait, :latitude, :longitude)

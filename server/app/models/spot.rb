@@ -41,13 +41,22 @@ class Spot < ActiveRecord::Base
     return self.attributes["status"] == STATUS["UNAVAILABLE"]
   end
 
-  def self.within(lat1, long1, lat2, long2)
-    spots = Spot.where("latitude >= ? and longitude >= ? and latitude <= ? and longitude <= ?", 
-        lat1.to_f,
-        long1.to_f,
-        lat2.to_f,
-        long2.to_f)
-    .take(MAX_SPOT_WITHIN_REGION)
+  def self.within(lot_id, lat1, long1, lat2, long2)
+    spots = lot_id.nil? ?
+      Spot.where("latitude >= ? and longitude >= ? and latitude <= ? and longitude <= ?", 
+          lat1.to_f,
+          long1.to_f,
+          lat2.to_f,
+          long2.to_f)
+      .take(MAX_SPOT_WITHIN_REGION)
+      :
+      Spot.where("lot_id = ? and latitude >= ? and longitude >= ? and latitude <= ? and longitude <= ?", 
+          lot_id,
+          lat1.to_f,
+          long1.to_f,
+          lat2.to_f,
+          long2.to_f)
+      .take(MAX_SPOT_WITHIN_REGION)
 
     spots.map { |i| {
       id: i.id,

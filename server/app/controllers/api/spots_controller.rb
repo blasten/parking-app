@@ -6,7 +6,7 @@ class Api::SpotsController < ApplicationController
   before_action :authenticate_admin_user, only: [:create, :update, :destroy]
 
   def index
-    respond_with(Spot.within(params[:lat1], params[:long1], params[:lat2], params[:long2]))
+    respond_with(Spot.within(params[:lot_id], params[:lat1], params[:long1], params[:lat2], params[:long2]))
   end
 
   def show
