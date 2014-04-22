@@ -5,15 +5,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class ParkingLot
 {
-	
-	private int id;
-	private String name;
-	private boolean enabled;
-	private long spotsAvailable;
-	private double lat;
-	private double lng;
-	private MarkerOptions markerOptions;
-	private LatLng latlng;
+	private int id;							//Lot ID
+	private String name;					//Name of lot
+	private boolean enabled;				//Whatever enabled is
+	private long spotsAvailable;			//Number of spots that are available
+	private double lat;						//Latitude of center of parking lot
+	private double lng;						//Longitude of center of parking lot
+	private MarkerOptions markerOptions;	//Marker Options for placing lot on map
+	private LatLng latlng;					//LatLng object that holds that lat and Long - for use in map
 	
 	public ParkingLot(int id, String name, boolean enabled, long spotsAvailable, double lat, double lng)
 	{
@@ -27,6 +26,7 @@ public class ParkingLot
 		this.markerOptions = new MarkerOptions().position(this.latlng).title(this.name);
 	}
 
+	//Only Accessors are below.  Mutators are not included because mobile users cannot modify parking lots
 	public int getId()
 	{
 		return this.id;
@@ -67,6 +67,8 @@ public class ParkingLot
 		return this.markerOptions;
 	}
 	
+	
+	//Override toString() to give useful information when printed.
 	@Override
 	public String toString()
 	{

@@ -7,6 +7,10 @@
 
 package team1.parkingapp;
 
+import java.util.concurrent.TimeUnit;
+
+import team1.parkingapp.rest.RestTaskFactory;
+import team1.parkingapp.rest.Session;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -100,7 +104,20 @@ public class LoginActivity extends Activity
 			Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		if(!AsyncRequestGenerator.verifyLogin(username, password))
+		try
+		{
+			RestTaskFactory.getUser(this, username, password).get(15, TimeUnit.SECONDS);
+		}
+		catch(Exception e)
+		{
+			new AlertDialog.Builder(this)
+				.setTitle("Login")
+				.setMessage("Network Connection is unstable.  Please try again.")
+				.setNeutralButton("OK", null)
+				.show();
+			return false;
+		}
+		if(Session.getUser() == null)
 		{
 			new AlertDialog.Builder(this)
 				.setTitle("Login")
@@ -111,6 +128,8 @@ public class LoginActivity extends Activity
 		}
 		
 		//If the user is valid then close this activity and return true (not used)
+		Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
+		
 		this.finish();
 		return true;
 	}

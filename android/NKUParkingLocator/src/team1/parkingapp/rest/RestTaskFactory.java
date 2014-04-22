@@ -75,4 +75,19 @@ public class RestTaskFactory {
 	public static GetReservationsTask getReservationById(Context ctx, String email, String password, String resId) {
 		return (GetReservationsTask) new GetReservationsTask(ctx).execute(email, password, resId);
 	}
+	public static PutReservationTask changeReservation(Context ctx, int reservationID, int spotID, String status, String username, String password)
+	{
+		return (PutReservationTask) new PutReservationTask(ctx).execute(Integer.toString(reservationID), Integer.toString(spotID),status, username, password);
+	}
+	
+	public static GetUserTask getUser(Context ctx, String username, String password)
+	{
+		return (GetUserTask) new GetUserTask(ctx).execute(username, password);
+	}
+	
+	public static DeleteReservationTask deleteReservation(Context ctx, String username, String password, int spotId)
+	{
+		return (DeleteReservationTask) new DeleteReservationTask(ctx).execute(Integer.toString(spotId),username, password);
+	}
+	
 }

@@ -24,14 +24,11 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import team1.parkingapp.R;
 import team1.parkingapp.data.User;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
-
 
 public class PostUserTask extends AsyncTask<String, Void, User> {
 	private ProgressDialog progress;	// ProgressDialog to let the user know the app is working
@@ -96,13 +93,18 @@ public class PostUserTask extends AsyncTask<String, Void, User> {
                 user = this.parseResults(out.toString());
                 out.close();
 	        }
+	        else
+	        {
+	        	throw new Exception();
+	        }
 	    } 
 	    catch (Exception e) {
 	    	Log.e("POST User", e.getMessage());
-	    	return null;
+	    	user = null;
 	    }
 	    
-	    return user;
+	    Session.setUser(user);
+	    return Session.getUser();
 	}
 	
 	/*
@@ -123,7 +125,6 @@ public class PostUserTask extends AsyncTask<String, Void, User> {
 		Log.i("Result", results);
 
 		if (results.contains(RestContract.ERROR)) {
-			Toast.makeText(this.ctx, R.string.email_taken, Toast.LENGTH_SHORT).show();
 			return null;
 		}
 	

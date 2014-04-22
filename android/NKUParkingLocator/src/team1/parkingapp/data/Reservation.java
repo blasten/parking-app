@@ -7,8 +7,6 @@
  */
 package team1.parkingapp.data;
 
-import java.sql.Timestamp;
-
 import org.json.JSONObject;
 
 import team1.parkingapp.rest.RestContract;
@@ -18,15 +16,13 @@ public class Reservation {
 	private int id;				// Reservation ID
 	private int userId;			// ID of the user making the reservation
 	private String status;		// Current status of the reservation
-	private Timestamp created;	// When the reservation was created
-	private Timestamp updated;	// When the reservation was last updated
+	private int spotId;			// Spot ID of the reservation
 	
-	public Reservation(int id, int userId, String status, Timestamp created, Timestamp updated) {
+	public Reservation(int id, int userId, String status, int spotId) {
 		this.id = id;
 		this.userId = userId;
 		this.status = status;
-		this.created = created;
-		this.updated = updated;
+		this.spotId = spotId;
 	}
 	
 	/*
@@ -34,46 +30,40 @@ public class Reservation {
 	 * If any of the fields are null, default data is used.
 	 */
 	public static Reservation validateJSONData(JSONObject json) {
-		int id, userId;
+		int id, userId, spotId;
 		String status;
-		Timestamp created;
-		Timestamp updated;
 
 		Log.i("Creating Reservaton from JSON", json.toString());
 		
 		// Another disgusting wall of try catches
 		try {
-			id = json.getInt(RestContract.RES_ID);
+			id = json.getInt(RestContract.RESERVATION_ID);
 		}
 		catch (Exception e) {
 			id = -1;
 		}	
 		try {
-			userId = json.getInt(RestContract.RES_USER);
+			userId = json.getInt(RestContract.RESERVATION_USER_ID);
 		}
 		catch (Exception e){
 			userId = -1;
 		}
 		try {
-			status = json.getString(RestContract.RES_STATUS);
+			status = json.getString(RestContract.RESERVATION_STATUS);
 		}
 		catch (Exception e) {
 			status = "";
-		}		
-		try {
-			created = Timestamp.valueOf(json.getString(RestContract.RES_CREATED));
 		}
-		catch (Exception e) {
-			created = null;
-		}		
-		try {
-			updated = Timestamp.valueOf(json.getString(RestContract.RES_UPDATED));
+		try
+		{
+			spotId = json.getInt(RestContract.RESERVATION_SPOT_ID);
 		}
-		catch (Exception e) {
-			updated = null;
+		catch(Exception e)
+		{
+			spotId = -1;
 		}
 		
-		return new Reservation(id, userId, status, created, updated);
+		return new Reservation(id, userId, status, spotId);
 	}
 
 	/*
@@ -95,27 +85,21 @@ public class Reservation {
 		this.userId = userId;
 	}
 
+	public int getSpotId()
+	{
+		return spotId;
+	}
+	
+	public void setSpotId(int spotId)
+	{
+		this.spotId = spotId;
+	}
+	
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public Timestamp getCreated() {
-		return created;
-	}
-
-	public void setCreated(Timestamp created) {
-		this.created = created;
-	}
-
-	public Timestamp getUpdated() {
-		return updated;
-	}
-
-	public void setUpdated(Timestamp updated) {
-		this.updated = updated;
 	}
 }
