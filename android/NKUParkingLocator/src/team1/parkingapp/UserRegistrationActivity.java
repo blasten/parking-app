@@ -67,7 +67,7 @@ public class UserRegistrationActivity extends Activity {
 			}
 			finally
 			{
-				if(Session.getUser() == null)
+				if(Session.getInstance().getUser() == null)
 				{
 					Toast.makeText(this, getResources().getString(R.string.email_taken), Toast.LENGTH_SHORT).show();
 				}

@@ -117,7 +117,7 @@ public class LoginActivity extends Activity
 				.show();
 			return false;
 		}
-		if(Session.getUser() == null)
+		if(Session.getInstance().getUser() == null)
 		{
 			new AlertDialog.Builder(this)
 				.setTitle("Login")
