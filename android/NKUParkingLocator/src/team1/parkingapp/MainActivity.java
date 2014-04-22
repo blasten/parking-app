@@ -8,16 +8,19 @@
 package team1.parkingapp;
 
 import java.util.Vector;
+
 import team1.parkingapp.data.ParkingLot;
 import team1.parkingapp.rest.RestTaskFactory;
 import team1.parkingapp.rest.Session;
-import android.os.Bundle;
-import android.app.Activity; 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
@@ -25,7 +28,6 @@ import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import android.widget.ImageView;
 
 public class MainActivity extends Activity implements  OnInfoWindowClickListener  {
 	  private static final LatLng NKU = new LatLng(39.031087, -84.466808);
