@@ -17,13 +17,15 @@ import android.util.Log;
 public class Reservation {
 	private int id;				// Reservation ID
 	private int userId;			// ID of the user making the reservation
+	private int spotId;			// ID of the spot being reserved
 	private String status;		// Current status of the reservation
 	private Timestamp created;	// When the reservation was created
 	private Timestamp updated;	// When the reservation was last updated
 	
-	public Reservation(int id, int userId, String status, Timestamp created, Timestamp updated) {
+	public Reservation(int id, int userId, int spotId, String status, Timestamp created, Timestamp updated) {
 		this.id = id;
 		this.userId = userId;
+		this.spotId = spotId;
 		this.status = status;
 		this.created = created;
 		this.updated = updated;
@@ -34,7 +36,7 @@ public class Reservation {
 	 * If any of the fields are null, default data is used.
 	 */
 	public static Reservation validateJSONData(JSONObject json) {
-		int id, userId;
+		int id, userId, spotId;
 		String status;
 		Timestamp created;
 		Timestamp updated;
@@ -55,6 +57,12 @@ public class Reservation {
 			userId = -1;
 		}
 		try {
+			spotId = json.getInt(RestContract.RES_SPOT);
+		}
+		catch (Exception e) {
+			spotId = -1;
+		}
+		try {
 			status = json.getString(RestContract.RES_STATUS);
 		}
 		catch (Exception e) {
@@ -73,7 +81,7 @@ public class Reservation {
 			updated = null;
 		}
 		
-		return new Reservation(id, userId, status, created, updated);
+		return new Reservation(id, userId, spotId, status, created, updated);
 	}
 
 	/*
@@ -117,5 +125,13 @@ public class Reservation {
 
 	public void setUpdated(Timestamp updated) {
 		this.updated = updated;
+	}
+
+	public int getSpotId() {
+		return spotId;
+	}
+
+	public void setSpotId(int spotId) {
+		this.spotId = spotId;
 	}
 }

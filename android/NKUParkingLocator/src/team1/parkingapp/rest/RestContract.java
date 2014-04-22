@@ -53,6 +53,7 @@ public final class RestContract {
 	// Reservation API key-value parameters
 	public static final String RES_ID			=	"id";
 	public static final String RES_USER			= 	"user_id";
+	public static final String RES_SPOT			=	"spot_id";
 	public static final String RES_STATUS		=	"status";
 	public static final String RES_CREATED		=	"created_at";
 	public static final String RES_UPDATED		=	"updated_at";

@@ -74,7 +74,8 @@ public class GetReservationsTask extends AsyncTask<String, Void, Vector<Reservat
 			resId = Integer.parseInt(params[2]);
 		
 		// Add those credentials brah
-		((AbstractHttpClient) client).getCredentialsProvider().setCredentials(new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), creds);
+		((AbstractHttpClient) client).getCredentialsProvider()
+			.setCredentials(new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), creds);
 		try {
 
 			if (resId != null)
