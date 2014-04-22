@@ -9,6 +9,11 @@ package team1.parkingapp.data;
 
 import java.sql.Timestamp;
 
+import org.json.JSONObject;
+
+import team1.parkingapp.rest.RestContract;
+import android.util.Log;
+
 public class Reservation {
 	private int id;				// Reservation ID
 	private int userId;			// ID of the user making the reservation
@@ -22,6 +27,53 @@ public class Reservation {
 		this.status = status;
 		this.created = created;
 		this.updated = updated;
+	}
+	
+	/*
+	 * Takes in a JSONObject containing reservation data and creates a reservation object from it.
+	 * If any of the fields are null, default data is used.
+	 */
+	public static Reservation validateJSONData(JSONObject json) {
+		int id, userId;
+		String status;
+		Timestamp created;
+		Timestamp updated;
+
+		Log.i("Creating Reservaton from JSON", json.toString());
+		
+		// Another disgusting wall of try catches
+		try {
+			id = json.getInt(RestContract.RES_ID);
+		}
+		catch (Exception e) {
+			id = -1;
+		}	
+		try {
+			userId = json.getInt(RestContract.RES_USER);
+		}
+		catch (Exception e){
+			userId = -1;
+		}
+		try {
+			status = json.getString(RestContract.RES_STATUS);
+		}
+		catch (Exception e) {
+			status = "";
+		}		
+		try {
+			created = Timestamp.valueOf(json.getString(RestContract.RES_CREATED));
+		}
+		catch (Exception e) {
+			created = null;
+		}		
+		try {
+			updated = Timestamp.valueOf(json.getString(RestContract.RES_UPDATED));
+		}
+		catch (Exception e) {
+			updated = null;
+		}
+		
+		return new Reservation(id, userId, status, created, updated);
 	}
 
 	/*

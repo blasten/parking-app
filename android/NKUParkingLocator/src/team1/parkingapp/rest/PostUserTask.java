@@ -65,7 +65,7 @@ public class PostUserTask extends AsyncTask<String, Void, User> {
 	protected User doInBackground(String... params) {
 		User user = null;											// User to be returned
 	    HttpClient httpclient = new DefaultHttpClient();			// HTTP client used to perform the request;
-	    HttpPost httppost = new HttpPost(RestContract.USERS_API);	// HTTP Post header
+	    HttpPost httppost = new HttpPost(RestContract.USERS_API);	// HTTP POST header
 	    String[] postKeys = 										// Array of keys to be sent to the server
 	    	{RestContract.USER_EMAIL, RestContract.USER_PASSWORD, RestContract.USER_NAME, RestContract.USER_LASTNAME};
 
@@ -130,7 +130,7 @@ public class PostUserTask extends AsyncTask<String, Void, User> {
 		JSONTokener tokener = new JSONTokener(results);
 		try {
 			JSONObject json = new JSONObject(tokener);
-			user = this.validateJSONData(json);
+			user = User.validateJSONData(json);
 		}
 		catch(Exception e) {
 			Log.e("POST User", "Error parsing JSON objects");
@@ -138,50 +138,5 @@ public class PostUserTask extends AsyncTask<String, Void, User> {
 		}
 		
 		return user;
-	}
-	
-	/*
-	 * Takes in a JSONObject containing user data and creates a user object from it.
-	 * If any of the fields are null, default data is used.
-	 */
-	private User validateJSONData(JSONObject json) {
-		int id;
-		String email, password, name, lastname;
-
-		Log.i("POST User", json.toString());
-		
-		// Another disgusting wall of try catches
-		try {
-			id = json.getInt(RestContract.USER_ID);
-		}
-		catch (Exception e) {
-			id = -1;
-		}	
-		try {
-			email = json.getString(RestContract.USER_EMAIL);
-		}
-		catch (Exception e){
-			email = "";
-		}
-		try {
-			password = json.getString(RestContract.USER_PASSWORD);
-		}
-		catch (Exception e) {
-			password = "";
-		}		
-		try {
-			name = json.getString(RestContract.USER_PASSWORD);
-		}
-		catch (Exception e) {
-			name = "";
-		}		
-		try {
-			lastname = json.getString(RestContract.USER_LASTNAME);
-		}
-		catch (Exception e) {
-			lastname = "";
-		}
-		
-		return new User(id, email, password, name, lastname);
 	}
 }

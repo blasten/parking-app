@@ -134,7 +134,7 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 			JSONArray arr = new JSONArray(tokener);
 			for(int i = 0 ; i < arr.length() ; ++i) {
 				JSONObject json = arr.getJSONObject(i);
-				spots.add(this.validateJSONData(json));
+				spots.add(Spot.validateJSONData(json));
 			}
 		}
 		catch(Exception e) {
@@ -143,49 +143,5 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 		}
 		
 		return spots;
-	}
-	
-	/*
-	 * Pulls out the data from each JSON object and returns a SPOT object from that data.
-	 * If any fields in the database are null, they are set to default invalid values.
-	 */
-	private Spot validateJSONData(JSONObject json) {
-		int id, lot_id;
-		double lat, lng;
-		String status;
-		
-		// Begin the disgusting wall of try-catches
-		try {
-			id = json.getInt(RestContract.SPOT_ID);
-		}
-		catch (Exception e) {
-			id = -1;
-		}
-		try {
-			lot_id = json.getInt(RestContract.SPOT_LOT_ID);
-		}
-		catch (Exception e) {
-			lot_id = -1;
-		}
-		try {
-			lat = json.getDouble(RestContract.SPOT_LAT);
-		}
-		catch (Exception e) {
-			lat = 0;
-		}
-		try {
-			lng = json.getDouble(RestContract.SPOT_LONG);
-		}
-		catch (Exception e) {
-			lng = 0;
-		}
-		try {
-			status = json.getString(RestContract.SPOT_STATUS);
-		}
-		catch (Exception e) {
-			status = "";
-		}
-		
-		return new Spot(id, lot_id, lat, lng, status);
 	}
 }

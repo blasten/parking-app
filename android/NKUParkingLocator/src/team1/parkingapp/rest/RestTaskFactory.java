@@ -47,8 +47,32 @@ public class RestTaskFactory {
 	/*
 	 * Get all parking lots
 	 */
-	public static GetLotTask getParkingLots(Context ctx)
-	{
+	public static GetLotTask getParkingLots(Context ctx) {
 		return (GetLotTask) new GetLotTask(ctx).execute();
+	}
+	
+	/*
+	 * Updates a user's information. If you don't want to change one or more of the fields for a user,
+	 * pass in null for the field(s) you don't want to change. For example if you only want to change the
+	 * user's password, pass in null for newEmail, newName, and newLastname.
+	 */
+	public static PutUserTask putUser(Context ctx, String email, String pwd, String newEmail, String newPwd, 
+			String newName, String newLastname) {
+		return (PutUserTask) new PutUserTask(ctx).execute(email, pwd, newEmail, newPwd, newName, newLastname);
+	}
+	
+	/*
+	 * Gets all reservations a user has made.
+	 */
+	public static GetReservationsTask getAllReservations(Context ctx, String email, String password) {
+		return (GetReservationsTask) new GetReservationsTask(ctx).execute(email, password, null);
+	}
+	
+	/*
+	 * Gets information about a particular reservation a user has made. The resId parameter is the id of
+	 * the reservation you want to see.
+	 */
+	public static GetReservationsTask getReservationById(Context ctx, String email, String password, String resId) {
+		return (GetReservationsTask) new GetReservationsTask(ctx).execute(email, password, resId);
 	}
 }

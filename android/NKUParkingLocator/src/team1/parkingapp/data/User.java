@@ -7,6 +7,11 @@
  */
 package team1.parkingapp.data;
 
+import org.json.JSONObject;
+
+import team1.parkingapp.rest.RestContract;
+import android.util.Log;
+
 public class User {
 	private int id;						// User's ID
 	private String email;				// User's email address
@@ -22,6 +27,51 @@ public class User {
 		this.name = name;
 		this.lastName = lastName;
 		this.reservation = null;
+	}
+	
+	/*
+	 * Takes in a JSONObject containing user data and creates a user object from it.
+	 * If any of the fields are null, default data is used.
+	 */
+	public static User validateJSONData(JSONObject json) {
+		int id;
+		String email, password, name, lastname;
+
+		Log.i("Creating User from JSON", json.toString());
+		
+		// Another disgusting wall of try catches
+		try {
+			id = json.getInt(RestContract.USER_ID);
+		}
+		catch (Exception e) {
+			id = -1;
+		}	
+		try {
+			email = json.getString(RestContract.USER_EMAIL);
+		}
+		catch (Exception e){
+			email = "";
+		}
+		try {
+			password = json.getString(RestContract.USER_PASSWORD);
+		}
+		catch (Exception e) {
+			password = "";
+		}		
+		try {
+			name = json.getString(RestContract.USER_PASSWORD);
+		}
+		catch (Exception e) {
+			name = "";
+		}		
+		try {
+			lastname = json.getString(RestContract.USER_LASTNAME);
+		}
+		catch (Exception e) {
+			lastname = "";
+		}
+		
+		return new User(id, email, password, name, lastname);
 	}
 
 	/*
