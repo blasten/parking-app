@@ -72,8 +72,8 @@ public class PostReservationTask extends AsyncTask<String, Void, Reservation> {
 			// Add the parameters to the request
 			List<NameValuePair> args = new ArrayList<NameValuePair>(2);
 			
-			args.add(new BasicNameValuePair(RestContract.RES_SPOT, spot));
-			args.add(new BasicNameValuePair(RestContract.RES_STATUS, resStatus));
+			args.add(new BasicNameValuePair(RestContract.RESERVATION_SPOT_ID, spot));
+			args.add(new BasicNameValuePair(RestContract.RESERVATION_STATUS, resStatus));
 			
 			// Execute the request and get the response
 			httpPost.setEntity(new UrlEncodedFormEntity(args));

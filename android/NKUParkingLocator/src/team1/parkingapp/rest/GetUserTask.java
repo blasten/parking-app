@@ -8,25 +8,25 @@
  */
 package team1.parkingapp.rest;
 
-import java.util.Vector;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-
-import team1.parkingapp.data.ParkingLot;
+import team1.parkingapp.data.User;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class GetLotTask extends AsyncTask<String, String, String> {
+public class GetUserTask extends AsyncTask<String, String, String> {
 	private ProgressDialog progress;	// ProgressDialog to let the user know the app is working
 	private Context ctx;				// Context on which to show the ProgressDialog
 
@@ -34,7 +34,7 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 	 * Just assign the context of the Activity to the ctx member variable.
 	 */
 	
-	public GetLotTask(Context ctx)
+	public GetUserTask(Context ctx)
 	{
 		super();
 		this.ctx = ctx;
@@ -47,7 +47,7 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 	protected void onPreExecute()
 	{
 		progress = new ProgressDialog(ctx);
-		progress.setTitle("Retrieving Parking Information");
+		progress.setTitle("Logging in");
 		progress.setMessage("Please wait.");
 		progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		progress.show();
@@ -61,16 +61,13 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 	protected String doInBackground(String... params)
 	{
 		    // Create a new HttpClient and Post Header
-			HttpClient httpclient = new DefaultHttpClient();
+		
+		
+		HttpClient httpclient = new DefaultHttpClient();
+        UsernamePasswordCredentials creds = new UsernamePasswordCredentials(params[0], params[1]);
+        ((AbstractHttpClient) httpclient).getCredentialsProvider().setCredentials(new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), creds);
 			
-			//Use the same method to get a single lot.  Just add on the id to the end of the uri.
-			String uri = RestContract.LOTS_API;
-			if(params.length > 0)
-		    {
-		    	uri = uri + "/" + params[0];
-		    }
-			
-		    HttpGet httpget = new HttpGet(uri);
+		HttpGet httpget = new HttpGet(RestContract.USERS_API);
 
 		    try {
 		        // Execute HTTP GET request & get the response
@@ -80,17 +77,17 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 		        
 		        if(status.getStatusCode() == HttpStatus.SC_OK)
 		        {
-		        	//Log.i("GET Lot", Integer.toString(status.getStatusCode()));
-		        	//Log.i("GET Lot", status.getReasonPhrase());
+		        	//Log.i("GET User", Integer.toString(status.getStatusCode()));
+		        	//Log.i("GET User", status.getReasonPhrase());
 		        	ByteArrayOutputStream out = new ByteArrayOutputStream();
 	                response.getEntity().writeTo(out);
-	                Session.setParkingLots(parseResults(out.toString()));
+	                Session.setUser(parseResults(out.toString()));
 		        	out.close();
 		        }
 
 		    } 
 		    catch (Exception e) {
-		    	Log.e("GET Lot", e.getMessage());
+		    	Log.e("GET User", e.getMessage());
 		    }
 		    
 		    
@@ -107,39 +104,29 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 		super.onPostExecute(result);
 	}
 	
-	private Vector<ParkingLot> parseResults(String results)
+	private User parseResults(String results)
 	{
-		Vector<ParkingLot> v = new Vector<ParkingLot>();
-
 		JSONTokener tokener = new JSONTokener(results);
 		try
 		{
-			JSONArray arr = new JSONArray(tokener);
-			for(int i = 0 ; i < arr.length() ; ++i)
-			{
-				JSONObject obj = arr.getJSONObject(i);
-				//Have to do some data validation before trying to create the object because of nullable entries in the database
-				v.add(validateData(obj));
-			}
+			JSONObject obj = new JSONObject(tokener);
+			return validateData(obj);
 		}
 		catch(Exception e)
 		{
 			return null;
 		}
-		return v;
 	}
 	
-	private ParkingLot validateData(JSONObject obj)
+	private User validateData(JSONObject obj)
 	{
-		int id, num_spots_available;
-		String name;
-		boolean enabled;
-		double lat, lng;
+		int id;
+		String email, password, name, lastName;
 		
 		//Try each one individually and then put in base values if there is an error.
 		try
 		{
-			id = obj.getInt(RestContract.LOT_ID);
+			id = obj.getInt(RestContract.USER_ID);
 		}
 		catch(Exception e)
 		{
@@ -147,15 +134,23 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 		}
 		try
 		{
-			num_spots_available = obj.getInt(RestContract.LOT_SPOTS_AVAIL);
+			email = obj.getString(RestContract.USER_EMAIL);
 		}
 		catch(Exception e)
 		{
-			num_spots_available = -1;
+			email = "";
 		}
 		try
 		{
-			name = obj.getString(RestContract.LOT_NAME);
+			password = obj.getString(RestContract.USER_PASSWORD);
+		}
+		catch(Exception e)
+		{
+			password = "";
+		}
+		try
+		{
+			name = obj.getString(RestContract.USER_NAME);
 		}
 		catch(Exception e)
 		{
@@ -163,30 +158,14 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 		}
 		try
 		{
-			enabled = obj.getBoolean(RestContract.LOT_ENABLED);
+			lastName = obj.getString(RestContract.USER_LASTNAME);
 		}
 		catch(Exception e)
 		{
-			enabled = false;
-		}
-		try
-		{
-			lat = obj.getDouble(RestContract.LOT_LAT);
-		}
-		catch(Exception e)
-		{
-			lat = 0;
-		}
-		try
-		{
-			lng = obj.getDouble(RestContract.LOT_LNG);
-		}
-		catch(Exception e)
-		{
-			lng = 0;
+			lastName = "";
 		}
 		
-		return new ParkingLot(id, name, enabled, num_spots_available, lat, lng);
+		return new User(id, email, password, name, lastName);
 		
 	}
 	

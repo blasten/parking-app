@@ -105,7 +105,7 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 	 */
 	private String buildGetParameterString(String[] params) {
 		String paramString = "";
-		String[] getParams = {RestContract.LAT1, RestContract.LONG1, RestContract.LAT2, RestContract.LONG2};
+		String[] getParams = {RestContract.SPOT_LAT1, RestContract.SPOT_LONG1, RestContract.SPOT_LAT2, RestContract.SPOT_LONG2};
 		
 		// To request a spot by ID, it simply append the ID to the end of the URL
 		if (params.length == 1) {

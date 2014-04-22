@@ -49,13 +49,13 @@ public class Spot {
 			lot_id = -1;
 		}
 		try {
-			lat = json.getDouble(RestContract.SPOT_LAT);
+			lat = json.getDouble(RestContract.SPOT_LATITUDE);
 		}
 		catch (Exception e) {
 			lat = 0;
 		}
 		try {
-			lng = json.getDouble(RestContract.SPOT_LONG);
+			lng = json.getDouble(RestContract.SPOT_LONGITUDE);
 		}
 		catch (Exception e) {
 			lng = 0;

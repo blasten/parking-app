@@ -20,7 +20,7 @@ public class Reservation {
 	private int spotId;			// ID of the spot being reserved
 	private String status;		// Current status of the reservation
 	private Timestamp created;	// When the reservation was created
-	private Timestamp updated;	// When the reservation was last updated
+	private Timestamp updated;	// When the reservation was updated
 	
 	public Reservation(int id, int userId, int spotId, String status, Timestamp created, Timestamp updated) {
 		this.id = id;
@@ -38,44 +38,45 @@ public class Reservation {
 	public static Reservation validateJSONData(JSONObject json) {
 		int id, userId, spotId;
 		String status;
-		Timestamp created;
-		Timestamp updated;
+		Timestamp created, updated;
 
 		Log.i("Creating Reservaton from JSON", json.toString());
 		
 		// Another disgusting wall of try catches
 		try {
-			id = json.getInt(RestContract.RES_ID);
+			id = json.getInt(RestContract.RESERVATION_ID);
 		}
 		catch (Exception e) {
 			id = -1;
 		}	
 		try {
-			userId = json.getInt(RestContract.RES_USER);
+			userId = json.getInt(RestContract.RESERVATION_USER_ID);
 		}
 		catch (Exception e){
 			userId = -1;
 		}
 		try {
-			spotId = json.getInt(RestContract.RES_SPOT);
+			spotId = json.getInt(RestContract.RESERVATION_SPOT_ID);
 		}
 		catch (Exception e) {
 			spotId = -1;
 		}
 		try {
-			status = json.getString(RestContract.RES_STATUS);
+			status = json.getString(RestContract.RESERVATION_STATUS);
 		}
 		catch (Exception e) {
 			status = "";
-		}		
-		try {
-			created = Timestamp.valueOf(json.getString(RestContract.RES_CREATED));
 		}
-		catch (Exception e) {
+		try
+		{
+			created = Timestamp.valueOf(json.getString(RestContract.RESERVATION_CREATED));
+		}
+		catch(Exception e)
+		{
 			created = null;
-		}		
+		}
 		try {
-			updated = Timestamp.valueOf(json.getString(RestContract.RES_UPDATED));
+			updated = Timestamp.valueOf(json.getString(RestContract.RESERVATION_UPDATED));
 		}
 		catch (Exception e) {
 			updated = null;
@@ -102,13 +103,21 @@ public class Reservation {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-
+	
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public int getSpotId() {
+		return spotId;
+	}
+
+	public void setSpotId(int spotId) {
+		this.spotId = spotId;
 	}
 
 	public Timestamp getCreated() {
@@ -125,13 +134,5 @@ public class Reservation {
 
 	public void setUpdated(Timestamp updated) {
 		this.updated = updated;
-	}
-
-	public int getSpotId() {
-		return spotId;
-	}
-
-	public void setSpotId(int spotId) {
-		this.spotId = spotId;
 	}
 }
