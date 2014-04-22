@@ -81,7 +81,7 @@ public class GetUserTask extends AsyncTask<String, String, String> {
 		        	//Log.i("GET User", status.getReasonPhrase());
 		        	ByteArrayOutputStream out = new ByteArrayOutputStream();
 	                response.getEntity().writeTo(out);
-	                Session.setUser(parseResults(out.toString()));
+	                Session.getInstance().setUser(parseResults(out.toString()));
 		        	out.close();
 		        }
 

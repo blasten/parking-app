@@ -66,7 +66,7 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 					.show();
 		    	finish();
 		    }
-		    lots = Session.getParkingLots();
+		    lots = Session.getInstance().getParkingLots();
 		    for(int i = 0 ; i < lots.size() ; ++i)
 		    {
 		    	map.addMarker(lots.get(i).getMarkerOptions());

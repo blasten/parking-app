@@ -105,8 +105,8 @@ public class PostUserTask extends AsyncTask<String, Void, User> {
 	    	user = null;
 	    }
 	    
-	    Session.setUser(user);
-	    return Session.getUser();
+	    Session.getInstance().setUser(user);
+	    return Session.getInstance().getUser();
 	}
 	
 	/*

@@ -6,43 +6,52 @@ import team1.parkingapp.data.ParkingLot;
 import team1.parkingapp.data.Reservation;
 import team1.parkingapp.data.User;
 
-public class Session {
+public final class Session {
 
-	private static User u = null;
+	private User u = null;
 	//private static Reservation r;
-	private static Vector < ParkingLot > parkingLots = null;
-	private static Reservation curR = null;
+	private Vector < ParkingLot > parkingLots = null;
+	private Reservation curR = null;
+	
+	private static Session instance = null;
 	
 	private Session() {}
 	
-	public static User getUser()
+	public static Session getInstance()
+	{
+		if(instance == null)
+			instance = new Session();
+		return instance;
+	}
+	
+	public User getUser()
 	{
 		return u;
 	}
 	
-	protected static void setUser(User u)
+	protected void setUser(User u)
 	{
-		Session.u = u;
+		this.u = u;
 	}
 	
-	public static Vector < ParkingLot > getParkingLots()
+	public Vector < ParkingLot > getParkingLots()
 	{
 		return parkingLots;
 	}
 	
-	protected static void setParkingLots(Vector < ParkingLot > v)
+	protected void setParkingLots(Vector < ParkingLot > v)
 	{
-		Session.parkingLots = v;
+		this.parkingLots = v;
 	}
 	
-	public static Reservation getReservation()
+	public Reservation getReservation()
 	{
-		return Session.curR;
+		return this.curR;
 	}
 	
-	protected static void setReservation(Reservation reservation)
+	protected void setReservation(Reservation reservation)
 	{
-		Session.curR = reservation;
+		this.curR = reservation;
 	}
 	
 }

@@ -84,7 +84,7 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 		        	//Log.i("GET Lot", status.getReasonPhrase());
 		        	ByteArrayOutputStream out = new ByteArrayOutputStream();
 	                response.getEntity().writeTo(out);
-	                Session.setParkingLots(parseResults(out.toString()));
+	                Session.getInstance().setParkingLots(parseResults(out.toString()));
 		        	out.close();
 		        }
 
