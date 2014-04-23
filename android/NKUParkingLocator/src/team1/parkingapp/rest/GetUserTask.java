@@ -20,6 +20,7 @@ import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
 import team1.parkingapp.data.User;
 import android.app.ProgressDialog;
 import android.content.Context;

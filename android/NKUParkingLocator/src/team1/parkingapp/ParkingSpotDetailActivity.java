@@ -45,7 +45,7 @@ public class ParkingSpotDetailActivity extends Activity {
   	        intLotID = getLotID(TitleScreen);	
   	      	
   	      	// Display the spots for this lot The Rest API is not currently returning the spots so this does not wok atm
-  	      	//DisplaySpots(intLotID);
+  	      	DisplaySpots(intLotID);
   	      	
   	      	
   	      	// May need to use this later if the spot updating process takes to long 

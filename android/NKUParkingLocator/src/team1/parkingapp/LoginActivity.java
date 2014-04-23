@@ -70,6 +70,10 @@ public class LoginActivity extends Activity
 	    	}
 	    } );
 		
+        // Already logged in, shouldn't be here.
+        if (Session.getInstance().getUser() != null) {
+        	this.finish();
+        }
 	}
 	
 	//If the Register Label is clicked then start the User Registration Activity

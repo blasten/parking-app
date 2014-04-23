@@ -60,7 +60,7 @@ public class RestTaskFactory {
 			return GetSpotsTask.filterSpotsByLotId(spots, lotId);
 		}
 		catch (Exception e) {
-			Log.e("Get Spots By Lot ID", e.getMessage());
+			Log.e("Get Spots By Lot ID", "Error getting spots");
 			return null;
 		}
 	}

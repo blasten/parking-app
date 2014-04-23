@@ -55,22 +55,25 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 		Vector<Spot> spots = new Vector<Spot>();			// List of spots to be returned
 		HttpClient httpclient = new DefaultHttpClient();	// HTTP client used to execute the request
 		HttpGet httpGet;									// HTTP Get header
-		 
+		
+		Log.i("GET Spots", "Num params: " + params.length);
+		
 		try {	
 			// If one parameter was passed in, it should be the spot ID
 			// If four parameters were passed in, it should be lat & long data
-			if (params.length != 1 || params.length != 4) {
-				Log.e("GET spots", "Too few arguments.");
-				return null;
+			if (params.length == 1 || params.length == 4) {
+				getParams = buildGetParameterString(params);
 			}
 			else {
-				getParams = buildGetParameterString(params);
+				Log.e("GET spots", "Wrong number of arguments.");
+				return null;
 			}
 
 	        // Execute HTTP Get request & get the response
 			httpGet = new HttpGet(RestContract.SPOTS_API + getParams);
 	        HttpResponse response = httpclient.execute(httpGet);
 	        
+	        Log.i("GET Spots URL", RestContract.SPOTS_API + getParams);
 	        StatusLine status = response.getStatusLine();
 	        
 	        if(status.getStatusCode() == HttpStatus.SC_OK) {
@@ -84,7 +87,7 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 	        
 		}
 		catch (Exception e) {
-			Log.e("GET spots", e.getMessage());
+			Log.e("GET spots", "Error in getSpots");
 		}
 		 
 		return spots;
@@ -115,7 +118,7 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 		else {
 			paramString += "?";
 			for (int i = 0; i < getParams.length; i++) {
-				paramString += getParams[i] + params[i];
+				paramString += getParams[i] + "=" + params[i] + "&";
 			}
 		}
 		return paramString;

@@ -9,6 +9,8 @@ package team1.parkingapp.data;
 
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import team1.parkingapp.rest.RestContract;
 
 public class Spot {
@@ -34,6 +36,8 @@ public class Spot {
 		int id, lot_id;
 		double lat, lng;
 		String status;
+		
+		Log.i("Spot JSON", json.toString());
 		
 		// Begin the disgusting wall of try-catches
 		try {
