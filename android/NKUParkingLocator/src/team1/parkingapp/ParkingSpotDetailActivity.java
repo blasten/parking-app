@@ -9,12 +9,21 @@
 
 package team1.parkingapp;
 
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import team1.parkingapp.data.ParkingLot;
+import team1.parkingapp.data.Spot;
+import team1.parkingapp.rest.RestTaskFactory;
+import team1.parkingapp.rest.Session;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ParkingSpotDetailActivity extends Activity {
@@ -23,21 +32,59 @@ public class ParkingSpotDetailActivity extends Activity {
 	  protected void onCreate(Bundle savedInstanceState) { 
 		  super.onCreate(savedInstanceState);
 		    setContentView(R.layout.parking_spot_detail);
-		    
+		    int intLotID;
 		    // update the title
 		    String TitleScreen = getIntent().getExtras().getString("GarageTitle");
   	      	TextView txtTitle = (TextView) findViewById(R.id.txtTitle);
   	      	txtTitle.setText( TitleScreen); 
 		    
-  	      	// Update the spots.. (set visible to inviable, and then re update spots) 
-  	      	
+  	      	// Clear the stars
+  	      	ClearSpots();
   	      
+  	      	// Get the lot ID
+  	        intLotID = getLotID(TitleScreen);	
+  	      	
+  	      	// Display the spots for this lot The Rest API is not currently returning the spots so this does not wok atm
+  	      	//DisplaySpots(intLotID);
+  	      	
+  	      	
   	      	// May need to use this later if the spot updating process takes to long 
   	      	// and the app times out so please leave this here...
 		    //new UpdateTitle().execute();
 		    
 	  }
 	  
+	  // Remove all stars from layout.
+	  public void ClearSpots()
+	  {
+		  ImageView star; 
+		  for(int i = 1; i <= 36; i++)
+		  {
+			  star = (ImageView) findViewById(getResources().getIdentifier("spot" + i, "id", "team1.parkingapp"));
+			  star.setVisibility(star.INVISIBLE);
+		  }
+	  }
+	  
+	  public void DisplaySpots(int intLotNumber)
+	  {
+		  Vector<Spot> spots;
+		  spots = RestTaskFactory.getSpotsByLot(this,intLotNumber );
+		  
+	  }
+	  
+	  public int getLotID(String strTitle)
+	  {
+		  	int intLotID = 0;
+		  	Vector<ParkingLot> lots = Session.getInstance().getParkingLots();
+      		for(int i = 0 ; i < lots.size() ; ++i)
+      		{
+      			if(strTitle.equals(lots.get(i).getName()))
+      			{
+      				intLotID = lots.get(i).getId();
+      			}
+      		}
+      		return intLotID;
+	  }
 
 	 public boolean onOptionsItemSelected(MenuItem item)
 	 {
