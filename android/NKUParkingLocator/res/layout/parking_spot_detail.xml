@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Garage"
-    android:layout_width="320dp"
+    android:layout_width="330dp"
     android:layout_height="460dp"
     tools:context=".MainActivity" >
 
@@ -25,6 +25,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/txtTitle"
         android:layout_marginTop="17dp"
+        
         android:src="@drawable/spotdetail" />
 
     <TextView
@@ -45,19 +46,20 @@
         android:layout_alignRight="@+id/txtTitle"
         android:layout_alignTop="@+id/imageView1"
         android:layout_marginLeft="15px"
-        android:layout_marginRight="16dp"
         android:layout_marginTop="23dp"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
         android:id="@+id/spot2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/spot1"
+        android:layout_alignBottom="@+id/spot3"
         android:layout_alignTop="@+id/spot1"
-        android:layout_marginRight="63dp"
-        android:layout_toLeftOf="@+id/spot4"
+        android:layout_marginRight="44dp"
+        android:layout_toLeftOf="@+id/imageView2"
         android:layout_toRightOf="@+id/spot1"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -69,9 +71,9 @@
         android:layout_alignTop="@+id/imageView1"
         android:layout_marginBottom="352dp"
         android:layout_marginLeft="42dp"
-        android:layout_marginRight="16dp"
         android:layout_marginTop="21dp"
-        android:layout_toLeftOf="@+id/spot4"
+        android:layout_toLeftOf="@+id/imageView2"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -82,7 +84,8 @@
         android:layout_alignLeft="@+id/lblDescription"
         android:layout_alignRight="@+id/lblDescription"
         android:layout_alignTop="@+id/spot2"
-        android:layout_marginRight="75dp"
+        android:layout_marginRight="85dp"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -93,8 +96,9 @@
         android:layout_alignLeft="@+id/spot4"
         android:layout_alignRight="@+id/lblDescription"
         android:layout_alignTop="@+id/spot4"
-        android:layout_marginLeft="42dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -105,8 +109,9 @@
         android:layout_alignLeft="@+id/spot5"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/spot5"
-        android:layout_marginLeft="52dp"
-        android:layout_marginRight="27dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="36dp"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -119,6 +124,7 @@
         android:layout_below="@+id/spot2"
         android:layout_marginBottom="300dp"
         android:layout_marginTop="16dp"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -129,6 +135,7 @@
         android:layout_alignLeft="@+id/spot2"
         android:layout_alignRight="@+id/spot2"
         android:layout_alignTop="@+id/spot7"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -139,6 +146,7 @@
         android:layout_alignLeft="@+id/spot3"
         android:layout_alignRight="@+id/spot3"
         android:layout_alignTop="@+id/spot8"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -149,6 +157,7 @@
         android:layout_alignLeft="@+id/spot4"
         android:layout_alignRight="@+id/spot4"
         android:layout_alignTop="@+id/spot9"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -159,6 +168,7 @@
         android:layout_alignLeft="@+id/spot5"
         android:layout_alignRight="@+id/spot5"
         android:layout_alignTop="@+id/spot10"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -169,6 +179,7 @@
         android:layout_alignLeft="@+id/spot6"
         android:layout_alignRight="@+id/spot6"
         android:layout_alignTop="@+id/spot11"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -181,6 +192,7 @@
         android:layout_below="@+id/spot8"
         android:layout_marginBottom="232dp"
         android:layout_marginTop="22dp"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -191,6 +203,7 @@
         android:layout_alignLeft="@+id/spot8"
         android:layout_alignRight="@+id/spot8"
         android:layout_alignTop="@+id/spot13"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -201,6 +214,7 @@
         android:layout_alignLeft="@+id/spot9"
         android:layout_alignRight="@+id/spot9"
         android:layout_alignTop="@+id/spot14"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -211,6 +225,7 @@
         android:layout_alignLeft="@+id/spot10"
         android:layout_alignRight="@+id/spot10"
         android:layout_alignTop="@+id/spot15"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -221,6 +236,7 @@
         android:layout_alignLeft="@+id/spot11"
         android:layout_alignRight="@+id/spot11"
         android:layout_alignTop="@+id/spot16"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -231,6 +247,7 @@
         android:layout_alignLeft="@+id/spot12"
         android:layout_alignRight="@+id/spot12"
         android:layout_alignTop="@+id/spot17"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -243,6 +260,7 @@
         android:layout_below="@+id/spot14"
         android:layout_marginBottom="171dp"
         android:layout_marginTop="16dp"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -253,6 +271,7 @@
         android:layout_alignLeft="@+id/spot14"
         android:layout_alignRight="@+id/spot14"
         android:layout_alignTop="@+id/spot19"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -264,6 +283,7 @@
         android:layout_alignTop="@+id/spot20"
         android:layout_marginRight="18dp"
         android:layout_toLeftOf="@+id/spot16"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -274,6 +294,7 @@
         android:layout_alignLeft="@+id/spot16"
         android:layout_alignRight="@+id/spot16"
         android:layout_alignTop="@+id/spot21"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -284,6 +305,7 @@
         android:layout_alignLeft="@+id/spot17"
         android:layout_alignRight="@+id/spot17"
         android:layout_alignTop="@+id/spot22"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -294,6 +316,7 @@
         android:layout_alignLeft="@+id/spot18"
         android:layout_alignRight="@+id/spot18"
         android:layout_alignTop="@+id/spot23"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -306,6 +329,7 @@
         android:layout_below="@+id/spot20"
         android:layout_marginBottom="98dp"
         android:layout_marginTop="30dp"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -316,6 +340,7 @@
         android:layout_alignRight="@+id/spot20"
         android:layout_alignTop="@+id/spot25"
         android:layout_toRightOf="@+id/spot1"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -325,8 +350,8 @@
         android:layout_alignBottom="@+id/spot26"
         android:layout_alignLeft="@+id/spot21"
         android:layout_alignTop="@+id/spot26"
-        android:layout_marginRight="18dp"
-        android:layout_toLeftOf="@+id/spot28"
+        android:layout_toLeftOf="@+id/imageView2"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -337,6 +362,7 @@
         android:layout_alignLeft="@+id/spot22"
         android:layout_alignRight="@+id/spot22"
         android:layout_alignTop="@+id/spot27"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -347,6 +373,7 @@
         android:layout_alignLeft="@+id/spot23"
         android:layout_alignRight="@+id/spot23"
         android:layout_alignTop="@+id/spot28"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -359,6 +386,7 @@
         android:layout_below="@+id/spot26"
         android:layout_marginBottom="45dp"
         android:layout_marginTop="16dp"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -366,12 +394,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/spot31"
+        android:layout_alignLeft="@+id/spot26"
+        android:layout_alignRight="@+id/spot26"
         android:layout_below="@+id/spot26"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="14dp"
         android:layout_marginTop="15dp"
-        android:layout_toLeftOf="@+id/spot33"
-        android:layout_toRightOf="@+id/spot31"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -380,9 +407,10 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/spot27"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/spot21"
+        android:layout_alignRight="@+id/spot27"
         android:layout_alignTop="@+id/spot32"
         android:layout_marginBottom="44dp"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -393,6 +421,7 @@
         android:layout_alignRight="@+id/spot28"
         android:layout_alignTop="@+id/spot33"
         android:layout_toRightOf="@+id/spot21"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -401,9 +430,9 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/spot34"
         android:layout_alignLeft="@+id/spot29"
+        android:layout_alignRight="@+id/spot29"
         android:layout_alignTop="@+id/spot34"
-        android:layout_marginRight="16dp"
-        android:layout_toLeftOf="@+id/spot36"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -412,8 +441,9 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/spot35"
         android:layout_alignLeft="@+id/spot30"
-        android:layout_alignRight="@+id/spot24"
+        android:layout_alignRight="@+id/spot30"
         android:layout_alignTop="@+id/spot35"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -422,6 +452,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/lblDescription"
         android:layout_centerHorizontal="true"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
 
     <ImageView
@@ -432,6 +463,7 @@
         android:layout_alignLeft="@+id/spot24"
         android:layout_alignRight="@+id/spot24"
         android:layout_alignTop="@+id/spot29"
+        android:scaleType="centerInside"
         android:src="@drawable/star" />
     
 </RelativeLayout>
