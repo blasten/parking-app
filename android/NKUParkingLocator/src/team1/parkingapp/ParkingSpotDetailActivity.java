@@ -10,24 +10,25 @@
 package team1.parkingapp;
 
 import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import team1.parkingapp.data.ParkingLot;
 import team1.parkingapp.data.Spot;
 import team1.parkingapp.rest.RestTaskFactory;
 import team1.parkingapp.rest.Session;
 import android.app.Activity;
-import android.os.AsyncTask;
+import android.content.Context;
+import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ParkingSpotDetailActivity extends Activity {
-
+	
 	  @Override
 	  protected void onCreate(Bundle savedInstanceState) { 
 		  super.onCreate(savedInstanceState);
@@ -42,7 +43,9 @@ public class ParkingSpotDetailActivity extends Activity {
   	      	ClearSpots();
   	      
   	      	// Get the lot ID
-  	        intLotID = getLotID(TitleScreen);	
+  	        intLotID = getLotID(TitleScreen);
+  	        
+  	        navigate(39.032266, -84.461506);
   	      	
   	      	// Display the spots for this lot The Rest API is not currently returning the spots so this does not wok atm
   	      	DisplaySpots(intLotID);
@@ -97,6 +100,18 @@ public class ParkingSpotDetailActivity extends Activity {
 		  getMenuInflater().inflate(R.menu.main, menu);
 		  return true;
 	  }
+	  
+	  
+	  private void navigate(double Latitude, double Longitude)
+	  {
+		  LocationManager sensorManager = ((LocationManager)getSystemService(Context.LOCATION_SERVICE));
+		  Location location = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		  String googleMapsIntent = "http://maps.google.com/maps?saddr=" + location.getLatitude() + "," + location.getLongitude() + "&daddr=" + Latitude + "," + Longitude;
+		  Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(googleMapsIntent));
+		  startActivity(i);
+	  }
+	  
+	  
 	  /* We may have to use this if the spot process takes to long so im saving this here for now.. 
 	     If we find we don't need it we can always just take it out... 
 	  private class UpdateTitle extends AsyncTask<Void, String, Void>  {
