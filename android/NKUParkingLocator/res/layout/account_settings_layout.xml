@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:rowCount="5" 
+    android:columnCount="5">
+	
+	<EditText
+	    android:id="@+id/txtOldPassword"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_row="0"
+	    android:layout_column="1"
+	    android:layout_gravity="fill_horizontal"
+	    android:inputType="textPassword"
+	    android:hint="@string/txtOldPassword_hint" />
+    
+	
+	<EditText
+	    android:id="@+id/txtNewPassword"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_row="1"
+	    android:layout_column="1"
+	    android:layout_gravity="fill_horizontal"
+	    android:inputType="textPassword"
+	    android:hint="@string/txtNewPassword_hint" />
+	
+	<EditText
+	    android:id="@+id/txtConfirmedPassword"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_row="2"
+	    android:layout_column="1"
+	    android:layout_gravity="fill_horizontal"
+	    android:inputType="textPassword" 
+	    android:hint="@string/txtConfirmedPassword_hint" />
+	
+	<Button
+	    android:id="@+id/btnConfirm"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_row="3"
+	    android:layout_column="0"
+	    android:layout_columnSpan="5"
+	    android:layout_gravity="fill_horizontal"
+	    android:text="@string/btnUserRegistration_Confirm"
+	    android:onClick="onConfirmClicked" />
+	
+	<Button
+	    android:id="@+id/btnClear"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_row="4"
+	    android:layout_column="0"
+	    android:layout_columnSpan="5"
+	    android:layout_gravity="fill_horizontal"
+	    android:text="@string/btnUserRegistration_Clear"
+	    android:onClick="onClearClicked" />
+	
+</GridLayout>
