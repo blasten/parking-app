@@ -21,7 +21,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class UserRegistrationActivity extends Activity {
-	private final static int MIN_PASSWORD_LENGTH = 4;
 	private EditText email;			
 	private EditText password;		
 	private EditText confirmPwd;
@@ -120,7 +119,7 @@ public class UserRegistrationActivity extends Activity {
 			resetPasswords();
 			return false;
 		}
-		else if (pwd.length() < MIN_PASSWORD_LENGTH) {
+		else if (pwd.length() < User.MIN_PASSWORD_LENGTH) {
 			Toast.makeText(getApplicationContext(), R.string.invalid_password_length, Toast.LENGTH_SHORT).show();
 			resetPasswords();
 			return false;

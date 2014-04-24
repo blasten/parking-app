@@ -44,16 +44,22 @@
         </activity>
          <activity
             android:name="team1.parkingapp.LoginActivity"
-            android:label="@string/app_name" >
+            android:label="@string/login_label" >
         </activity>
          <activity
             android:name="team1.parkingapp.UserRegistrationActivity"
-            android:label="@string/app_name" >
+            android:label="@string/user_registration_label" >
         </activity>
         
         <activity
             android:name="team1.parkingapp.ParkingSpotDetailActivity"
-            android:label="@string/app_name" >
+            android:label="@string/spot_detail_label" >
+        </activity>
+        
+        <activity
+            android:name="team1.parkingapp.AccountSettingsActivity"
+            android:label="@string/account_settings_label"
+            android:logo="@drawable/recdonger" >
         </activity>
          
         <meta-data 
