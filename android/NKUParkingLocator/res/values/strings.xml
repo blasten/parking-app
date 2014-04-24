@@ -130,6 +130,7 @@
     <string name="menuMain_Login">Login</string>
     <string name="menuMain_Logout">Logout</string>
     <string name="menuMain_EditUser">Account Information</string>
+    <string name="logged_out">Successfully logged out</string>
     
     <!--  Miscellaneous strings -->
     <string name="empty_string"></string>

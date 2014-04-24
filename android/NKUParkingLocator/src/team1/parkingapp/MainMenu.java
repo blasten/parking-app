@@ -11,6 +11,7 @@ import team1.parkingapp.rest.Session;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainMenu extends Activity {
 
@@ -41,6 +42,7 @@ public class MainMenu extends Activity {
 			case R.id.menuLogout:
 				Session.getInstance().setUser(null);
 				a.invalidateOptionsMenu();
+				Toast.makeText(a, R.string.logged_out, Toast.LENGTH_SHORT).show();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
