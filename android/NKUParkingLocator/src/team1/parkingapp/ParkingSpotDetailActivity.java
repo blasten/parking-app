@@ -24,8 +24,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ParkingSpotDetailActivity extends Activity {
 	
@@ -45,7 +47,7 @@ public class ParkingSpotDetailActivity extends Activity {
   	      	// Get the lot ID
   	        intLotID = getLotID(TitleScreen);
   	        
-  	        navigate(39.032266, -84.461506);
+  	        //navigate(39.032266, -84.461506);
   	      	
   	      	// Display the spots for this lot The Rest API is not currently returning the spots so this does not wok atm
   	      	DisplaySpots(intLotID);
@@ -70,10 +72,34 @@ public class ParkingSpotDetailActivity extends Activity {
 	  
 	  public void DisplaySpots(int intLotNumber)
 	  {
+		  ImageView star; 
 		  Vector<Spot> spots;
 		  spots = RestTaskFactory.getSpotsByLot(this,intLotNumber );
+		  for(int i = 0; i < spots.size();i++)
+		  {
+			  // Is the spot occupied?
+			  if(spots.get(i).getStatus().equals("OCCUPIED") )
+			  {
+				  star = (ImageView) findViewById(getResources().getIdentifier("spot" + (i + 1), "id", "team1.parkingapp"));
+				  star.setVisibility(star.VISIBLE);
+				  star.setClickable(true);
+				  star.setOnClickListener(new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						ImageView star = (ImageView) v;
+						Toast.makeText(ParkingSpotDetailActivity.this,"You clicked a star for spot " + star.getTag(),Toast.LENGTH_LONG).show();
+						
+					}
+					  
+				  });
+						  
+			  }
+		  }
+			    
+	 }
 		  
-	  }
+	  
 	  
 	  public int getLotID(String strTitle)
 	  {
