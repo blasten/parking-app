@@ -13,9 +13,11 @@ import team1.parkingapp.rest.PostUserTask;
 import team1.parkingapp.rest.RestTaskFactory;
 import team1.parkingapp.rest.Session;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -40,10 +42,19 @@ public class UserRegistrationActivity extends Activity {
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+		if(Session.getInstance().getUser() != null)
+    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
+    	else
+    		getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		boolean result = new MainMenu(this).handleOnClick(item);
+		invalidateOptionsMenu();
+		return result;
+	}
 	
 	/*
 	 * This is the onClick() listener for the confirm button.
@@ -137,6 +148,12 @@ public class UserRegistrationActivity extends Activity {
 			return false;
 		
 		return android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddr).matches();
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		invalidateOptionsMenu();
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 	
 	/*

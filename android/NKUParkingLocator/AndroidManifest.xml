@@ -66,12 +66,13 @@
         
         <activity
             android:name="team1.parkingapp.AccountSettingsActivity"
-            android:label="@string/account_settings_label"
-            android:logo="@drawable/recdonger" 
+            android:label="@string/account_settings_label" 
             android:screenOrientation="portrait" >
         </activity>
         
-        <activity android:name="com.google.android.apps.MapsActivity" android:screenOrientation="portrait">
+        <activity
+            android:name="com.google.android.apps.MapsActivity"
+            android:screenOrientation="portrait" >
 		</activity>
          
         <meta-data 

@@ -7,6 +7,7 @@
 
 package team1.parkingapp;
 
+import team1.parkingapp.rest.Session;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.MenuItem;
@@ -25,18 +26,33 @@ public class MainMenu extends Activity {
 	//This will actually handle the onClick Events
 	public boolean handleOnClick(MenuItem item)
 	{
-		 
+		Intent i;
 		switch(item.getItemId())
 		{
 			//If Login Was clicked then start the Login Activity
 			case R.id.menuLogin:		//Login
-				Intent i = new Intent(a,team1.parkingapp.LoginActivity.class);
-				a.startActivity(i);
+				i = new Intent(a,team1.parkingapp.LoginActivity.class);
+				a.startActivityForResult(i, 1);
+				a.invalidateOptionsMenu();
+				return true;
+			case R.id.menuEditUser:		//Edit User Information
+				
+				return true;
+			case R.id.menuLogout:
+				Session.getInstance().setUser(null);
+				a.invalidateOptionsMenu();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
 	
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		a.invalidateOptionsMenu();
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 	
 }

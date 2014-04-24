@@ -80,14 +80,14 @@ public class LoginActivity extends Activity
 	private void register()
 	{
 		Intent intent = new Intent(this,UserRegistrationActivity.class);
-		this.startActivity(intent);
+		this.startActivityForResult(intent, 1);
 	}
 	
 	//If the Register Label is clicked then start the ForgotUsername Activity
 	private void forgotUsernameOrPassword()
 	{
 		Intent intent = new Intent(this,ForgotUsernameActivity.class);
-		this.startActivity(intent);
+		this.startActivityForResult(intent, 1);
 	}
 	
 	//This will verify the username and password in the username and password edittexts
@@ -138,14 +138,25 @@ public class LoginActivity extends Activity
 		return true;
 	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		invalidateOptionsMenu();
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+	
 	//Set up the menu
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		return new MainMenu(this).handleOnClick(item);
+		boolean result = new MainMenu(this).handleOnClick(item);
+		invalidateOptionsMenu();
+		return result;
 	}
 	
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+    	if(Session.getInstance().getUser() != null)
+    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
+    	else
+    		getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
