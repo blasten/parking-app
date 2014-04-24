@@ -35,7 +35,7 @@ public final class Session {
 		return u;
 	}
 	
-	protected void setUser(User u)
+	public void setUser(User u)
 	{
 		this.u = u;
 	}

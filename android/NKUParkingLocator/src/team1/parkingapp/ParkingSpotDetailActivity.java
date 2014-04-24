@@ -117,16 +117,25 @@ public class ParkingSpotDetailActivity extends Activity {
 
 	 public boolean onOptionsItemSelected(MenuItem item)
 	 {
-		 return new MainMenu(this).handleOnClick(item);
+		 boolean result = new MainMenu(this).handleOnClick(item);
+			invalidateOptionsMenu();
+			return result;
 	 }
 	  
 	  @Override
 	  public boolean onCreateOptionsMenu(Menu menu) {
-		  // Inflate the menu; this adds items to the action bar if it is present.
-		  getMenuInflater().inflate(R.menu.main, menu);
-		  return true;
+		  if(Session.getInstance().getUser() != null)
+	    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
+	    	else
+	    		getMenuInflater().inflate(R.menu.main, menu);
+	        return true;
 	  }
 	  
+	  @Override
+		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+			invalidateOptionsMenu();
+			super.onActivityResult(requestCode, resultCode, data);
+		}
 	  
 	  private void navigate(double Latitude, double Longitude)
 	  {
@@ -134,7 +143,7 @@ public class ParkingSpotDetailActivity extends Activity {
 		  Location location = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		  String googleMapsIntent = "http://maps.google.com/maps?saddr=" + location.getLatitude() + "," + location.getLongitude() + "&daddr=" + Latitude + "," + Longitude;
 		  Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(googleMapsIntent));
-		  startActivity(i);
+		  startActivityForResult(i, 1);
 	  }
 	  
 	  
