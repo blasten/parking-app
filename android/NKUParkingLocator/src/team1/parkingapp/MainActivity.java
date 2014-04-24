@@ -119,16 +119,26 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 
 	  }
 
+	  @Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		invalidateOptionsMenu();
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+	  
 		public boolean onOptionsItemSelected(MenuItem item)
 		{
-			return new MainMenu(this).handleOnClick(item);
+			boolean result = new MainMenu(this).handleOnClick(item);
+			invalidateOptionsMenu();
+			return result;
 		}
 	  
 	  @Override
 	  public boolean onCreateOptionsMenu(Menu menu) {
-		  // Inflate the menu; this adds items to the action bar if it is present.
-		  getMenuInflater().inflate(R.menu.main, menu);
-		  return true;
+		  if(Session.getInstance().getUser() != null)
+	    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
+	    	else
+	    		getMenuInflater().inflate(R.menu.main, menu);
+	        return true;
 	  }
 	  
 	  private int getRandomDrawable()
@@ -142,7 +152,7 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 		public void onInfoWindowClick(Marker arg0) {
 			Intent i = new Intent(this, team1.parkingapp.ParkingSpotDetailActivity.class);
 			i.putExtra("GarageTitle",arg0.getTitle());
-			startActivity(i);
+			startActivityForResult(i, 1);
 			
 		}
 }
