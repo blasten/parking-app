@@ -35,6 +35,8 @@ public class AccountSettingsActivity extends Activity {
 		passwordNew = (EditText) findViewById(R.id.txtNewPassword);
 		passwordConfirmed = (EditText) findViewById(R.id.txtConfirmedPassword);
 		user = Session.getInstance().getUser();
+		
+		Log.i("User", user.getFullName());
 	}
 	
 	@Override
@@ -49,14 +51,15 @@ public class AccountSettingsActivity extends Activity {
 	public void onConfirmClicked(View v) {
 		String email = this.user.getEmail();
 		String oldPwd = this.user.getPassword();
+		String newPwd = getPasswordNew();
+		String userId = Integer.toString(this.user.getId());
 		
 		if (validatePasswords()) {
-			PutUserTask updateUser = RestTaskFactory.putUser(this, email, oldPwd, null, getPasswordNew(), null, null);
+			PutUserTask updateUser = RestTaskFactory.putUser(this, email, oldPwd, userId, null, newPwd, null, null);
 			
 			try {
 				User temp = updateUser.get();
 				if (temp != null) {
-					String newPwd = temp.getPassword();
 					Session.getInstance().getUser().setPassword(newPwd);
 					Toast.makeText(getApplicationContext(), R.string.password_changed, Toast.LENGTH_SHORT).show();
 					this.finish();
@@ -84,8 +87,8 @@ public class AccountSettingsActivity extends Activity {
 		String confirmed = getPasswordConfirmed();
 		
 		// The old password must match
-		if ( !current.equals(user.getPassword()) ) {
-			Toast.makeText(getApplicationContext(), R.string.old_password_bad, Toast.LENGTH_SHORT);
+		if ( current.isEmpty() || !current.equals(user.getPassword()) ) {
+			Toast.makeText(getApplicationContext(), R.string.old_password_bad, Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		
@@ -96,14 +99,14 @@ public class AccountSettingsActivity extends Activity {
 		}
 		
 		// The passwords must match
-		else if ( !newPwd.equals(confirmed) ) {
+		if ( !newPwd.equals(confirmed) ) {
 			Toast.makeText(getApplicationContext(), R.string.invalid_passwords, Toast.LENGTH_SHORT).show();
 			resetPasswords();
 			return false;
 		}
 		
 		// The passwords must be at least 4 characters long
-		else if (newPwd.length() < User.MIN_PASSWORD_LENGTH) {
+		if (newPwd.length() < User.MIN_PASSWORD_LENGTH) {
 			Toast.makeText(getApplicationContext(), R.string.invalid_password_length, Toast.LENGTH_SHORT).show();
 			resetPasswords();
 			return false;

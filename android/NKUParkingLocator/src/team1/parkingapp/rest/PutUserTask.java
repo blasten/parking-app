@@ -65,13 +65,15 @@ public class PutUserTask extends AsyncTask<String, Void, User> {
 	protected User doInBackground(String... params) {
 		String currentEmail = params[0];						// Email address of the user to modify
 		String currentPwd = params[1];							// Password of the user to modify
-		String newEmail = params[2];							// Modified user's new email (if not null)
-		String newPwd = params[3];								// Modified user's new pwd (if not null)
-		String newName  = params[4];							// Modified user's new name (if not null)
-		String newLastname = params[5];							// Modified user's new last name (if not null)
+		String id = params[2];									// User's ID
+		String newEmail = params[3];							// Modified user's new email (if not null)
+		String newPwd = params[4];								// Modified user's new pwd (if not null)
+		String newName  = params[5];							// Modified user's new name (if not null)
+		String newLastname = params[6];							// Modified user's new last name (if not null)
 		User user = null;										// User to be returned
 		HttpClient httpClient = new DefaultHttpClient();		// HTTP client used to perform the request;
-		HttpPut httpPut = new HttpPut(RestContract.USERS_API);	// HTTP PUT header
+		HttpPut httpPut = 										// HTTP PUT header
+				new HttpPut(RestContract.USERS_API + id);	
 	    UsernamePasswordCredentials creds = 					// User's credentials 
 	    		new UsernamePasswordCredentials(currentEmail, currentPwd);
 		
@@ -81,14 +83,22 @@ public class PutUserTask extends AsyncTask<String, Void, User> {
 			List<NameValuePair> args = new ArrayList<NameValuePair>();
 			
 			// Add any non null parameters to the request.
-			if (newEmail != null)
+			if (newEmail != null) {
 				args.add(new BasicNameValuePair(RestContract.USER_EMAIL, newEmail));
-			if (newPwd != null)
+				Log.i("PUT User", "Email not null");
+			}
+			if (newPwd != null) {
 				args.add(new BasicNameValuePair(RestContract.USER_PASSWORD, newPwd));
-			if (newName != null)
+				Log.i("PUT User", "Password not null");
+			}
+			if (newName != null) {
 				args.add(new BasicNameValuePair(RestContract.USER_NAME, newName));
-			if (newLastname != null)
+				Log.i("PUT User", "Name not null");
+			}
+			if (newLastname != null) {
 				args.add(new BasicNameValuePair(RestContract.USER_LASTNAME, newLastname));
+				Log.i("PUT User", "Lastname not null");
+			}
 			
 			// Execute the PUT request and get the response
 			httpPut.setEntity(new UrlEncodedFormEntity(args));
@@ -102,6 +112,10 @@ public class PutUserTask extends AsyncTask<String, Void, User> {
 				response.getEntity().writeTo(out);
 				user = this.parseResults(out.toString());
 				out.close();
+			}
+			else {
+				Log.e("PUT User", Integer.toString(status.getStatusCode()));
+				Log.e("PUT User", status.getReasonPhrase());
 			}
 		}
 		catch (Exception e) {

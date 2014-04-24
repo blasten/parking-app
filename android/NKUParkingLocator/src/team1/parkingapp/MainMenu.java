@@ -33,10 +33,10 @@ public class MainMenu extends Activity {
 			case R.id.menuLogin:		//Login
 				i = new Intent(a,team1.parkingapp.LoginActivity.class);
 				a.startActivityForResult(i, 1);
-				a.invalidateOptionsMenu();
 				return true;
 			case R.id.menuEditUser:		//Edit User Information
-				
+				i = new Intent(a, team1.parkingapp.AccountSettingsActivity.class);
+				a.startActivityForResult(i, 1);
 				return true;
 			case R.id.menuLogout:
 				Session.getInstance().setUser(null);

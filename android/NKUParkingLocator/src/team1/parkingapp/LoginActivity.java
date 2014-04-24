@@ -131,6 +131,8 @@ public class LoginActivity extends Activity
 			return false;
 		}
 		
+		// Need to set the password
+		Session.getInstance().getUser().setPassword(password);
 		//If the user is valid then close this activity and return true (not used)
 		Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
 		
