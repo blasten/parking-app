@@ -6,6 +6,7 @@
     <string name="hello_world">Hello world!</string>
     
     <!-- Strings for Login Layout -->
+    <string name="login_label">Login</string>
     <string name="lblLogin_Username">Username:</string>
     <string name="lblLogin_Password">Password:</string>
     <string name="txtLogin_Username_Hint">Enter your Username</string>
@@ -21,6 +22,7 @@
     <string name="btnForgotUsername_Send">Send</string>
     
     <!-- Strings for User Registration Layout -->
+    <string name="user_registration_label">New User Registration</string>
     <string name="lblUserRegistration_FirstName">First Name:</string>
     <string name="lblUserRegistration_LastName">Last Name:</string>
     <string name="lblUserRegistration_AddressLine1">Address Line 1:</string>
@@ -36,8 +38,8 @@
     <string name="lblUserRegistration_ConfirmPassword">Confirm Password:</string>
     <string name="strUserRegistration_InitialState">Kentucky</string>
     
-    <string name="txtUserRegistration_FirstName_Hint">Enter your First Name</string>
-    <string name="txtUserRegistration_LastName_Hint">Enter your Last Name</string>
+    <string name="txtUserRegistration_FirstName_Hint">Enter your first name</string>
+    <string name="txtUserRegistration_LastName_Hint">Enter your last name</string>
     <string name="txtUserRegistration_AddressLine1_Hint">Enter your Address Line 1</string>
     <string name="txtUserRegistration_AddressLine2_Hint">Enter your Address Line 2</string>
     <string name="txtUserRegistration_City_Hint">Enter your City</string>
@@ -45,8 +47,8 @@
     <string name="txtUserRegistration_PhoneNumber1_Hint">Enter your Phone Number 1</string>
     <string name="txtUserRegistration_PhoneNumber2_Hint">Enter your Phone Number 2</string>
     <string name="txtUserRegistration_Email_Hint">Enter your NKU Email Address</string>
-    <string name="txtUserRegistration_Password_Hint">Enter your Password</string>
-    <string name="txtUserRegistration_ConfirmPassword_Hint">Confirm your Password</string>
+    <string name="txtUserRegistration_Password_Hint">Enter a password</string>
+    <string name="txtUserRegistration_ConfirmPassword_Hint">Confirm password</string>
     
     <string name="btnUserRegistration_Confirm">Confirm</string>
     <string name="btnUserRegistration_Clear">Clear</string>
@@ -58,6 +60,17 @@
     <string name="invalid_password_length">Password must be at least four characters long.</string>
     <string name="email_taken">Email address already in use.</string>
     <string name="user_created">User created successfully!</string>
+    
+    <!-- Account Settings Strings -->
+    <string name="account_settings_label">Change Password</string>
+    <string name="password_changed">Password changed successfully.</string>
+    <string name="txtOldPassword_hint">Enter your current password</string>
+    <string name="txtNewPassword_hint">Enter a new password</string>
+    <string name="txtConfirmedPassword_hint">Confirm your new password</string>
+    <string name="old_password_bad">The current password is not correct</string>
+    
+    <!-- Spot Detail Strings -->
+    <string name="spot_detail_label">Lot Information</string>
     
     <string-array name="States">
         <item>Alabama</item>
@@ -116,8 +129,12 @@
     <!-- String for Main Menu -->
     <string name="menuMain_Login">Login</string>
     <string name="menuMain_Logout">Logout</string>
+    <string name="menuMain_EditUser">Change Password</string>
+    <string name="logged_out">Successfully logged out</string>
     
     <!--  Miscellaneous strings -->
     <string name="empty_string"></string>
+    
+ 
 
 </resources>

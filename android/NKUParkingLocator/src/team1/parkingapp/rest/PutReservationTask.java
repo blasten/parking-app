@@ -15,6 +15,11 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import team1.parkingapp.data.Reservation;
+import team1.parkingapp.data.User;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -90,7 +95,11 @@ public class PutReservationTask  extends AsyncTask<String, String, String> {
 	                out.close();
 	                if(s.toLowerCase().contains("error"))
 	                {
-	                	return null;
+	                	Session.getInstance().setReservation(null);
+	                }
+	                else
+	                {
+	                	Session.getInstance().setReservation(parseResults(s));
 	                }
 	                return s;
 		        }
@@ -100,6 +109,25 @@ public class PutReservationTask  extends AsyncTask<String, String, String> {
 		    	Log.e("GET Lot", e.getMessage());
 		    	return null;
 		    }
+	}
+	
+	private Reservation parseResults(String results)
+	{
+		Reservation reservation = null;
+		
+		Log.i("PUT User Resuls", results);
+		
+		JSONTokener tokener = new JSONTokener(results);
+		try {
+			JSONObject json = new JSONObject(tokener);
+			reservation = Reservation.validateJSONData(json);
+		}
+		catch (Exception e) {
+			Log.e("PUT User", "Error parsing JSON objects");
+			return null;
+		}
+		
+		return reservation;
 	}
 	
 	/*

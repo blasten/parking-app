@@ -20,6 +20,7 @@ import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
 import team1.parkingapp.data.User;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -33,7 +34,6 @@ public class GetUserTask extends AsyncTask<String, String, String> {
 	/*
 	 * Just assign the context of the Activity to the ctx member variable.
 	 */
-	
 	public GetUserTask(Context ctx)
 	{
 		super();
@@ -110,63 +110,12 @@ public class GetUserTask extends AsyncTask<String, String, String> {
 		try
 		{
 			JSONObject obj = new JSONObject(tokener);
-			return validateData(obj);
+			return User.validateJSONData(obj);
 		}
 		catch(Exception e)
 		{
 			return null;
 		}
-	}
-	
-	private User validateData(JSONObject obj)
-	{
-		int id;
-		String email, password, name, lastName;
-		
-		//Try each one individually and then put in base values if there is an error.
-		try
-		{
-			id = obj.getInt(RestContract.USER_ID);
-		}
-		catch(Exception e)
-		{
-			id = -1;
-		}
-		try
-		{
-			email = obj.getString(RestContract.USER_EMAIL);
-		}
-		catch(Exception e)
-		{
-			email = "";
-		}
-		try
-		{
-			password = obj.getString(RestContract.USER_PASSWORD);
-		}
-		catch(Exception e)
-		{
-			password = "";
-		}
-		try
-		{
-			name = obj.getString(RestContract.USER_NAME);
-		}
-		catch(Exception e)
-		{
-			name = "";
-		}
-		try
-		{
-			lastName = obj.getString(RestContract.USER_LASTNAME);
-		}
-		catch(Exception e)
-		{
-			lastName = "";
-		}
-		
-		return new User(id, email, password, name, lastName);
-		
 	}
 	
 }

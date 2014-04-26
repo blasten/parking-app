@@ -70,20 +70,24 @@ public class LoginActivity extends Activity
 	    	}
 	    } );
 		
+        // Already logged in, shouldn't be here.
+        if (Session.getInstance().getUser() != null) {
+        	this.finish();
+        }
 	}
 	
 	//If the Register Label is clicked then start the User Registration Activity
 	private void register()
 	{
 		Intent intent = new Intent(this,UserRegistrationActivity.class);
-		this.startActivity(intent);
+		this.startActivityForResult(intent, 1);
 	}
 	
 	//If the Register Label is clicked then start the ForgotUsername Activity
 	private void forgotUsernameOrPassword()
 	{
 		Intent intent = new Intent(this,ForgotUsernameActivity.class);
-		this.startActivity(intent);
+		this.startActivityForResult(intent, 1);
 	}
 	
 	//This will verify the username and password in the username and password edittexts
@@ -127,6 +131,8 @@ public class LoginActivity extends Activity
 			return false;
 		}
 		
+		// Need to set the password
+		Session.getInstance().getUser().setPassword(password);
 		//If the user is valid then close this activity and return true (not used)
 		Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
 		
@@ -134,14 +140,25 @@ public class LoginActivity extends Activity
 		return true;
 	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		invalidateOptionsMenu();
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+	
 	//Set up the menu
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		return new MainMenu(this).handleOnClick(item);
+		boolean result = new MainMenu(this).handleOnClick(item);
+		invalidateOptionsMenu();
+		return result;
 	}
 	
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+    	if(Session.getInstance().getUser() != null)
+    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
+    	else
+    		getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 

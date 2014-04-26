@@ -13,6 +13,7 @@ import team1.parkingapp.rest.RestContract;
 import android.util.Log;
 
 public class User {
+	public final static int MIN_PASSWORD_LENGTH = 4;
 	private int id;						// User's ID
 	private String email;				// User's email address
 	private String password;			// User's password (most likely boobs)

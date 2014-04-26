@@ -1,3 +1,10 @@
+/*
+ * Session.java
+ * 4/22/14
+ * Mat Ferry
+ * 
+ * This is a Singleton that tracks the current user, their reservation, and parking lots that are available.
+ */
 package team1.parkingapp.rest;
 
 import java.util.Vector;
@@ -8,8 +15,7 @@ import team1.parkingapp.data.User;
 
 public final class Session {
 
-	private User u = null;
-	//private static Reservation r;
+	private User u = null;			
 	private Vector < ParkingLot > parkingLots = null;
 	private Reservation curR = null;
 	
@@ -29,7 +35,7 @@ public final class Session {
 		return u;
 	}
 	
-	protected void setUser(User u)
+	public void setUser(User u)
 	{
 		this.u = u;
 	}

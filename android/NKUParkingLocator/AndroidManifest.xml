@@ -31,30 +31,49 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="team1.parkingapp.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 			<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name="team1.parkingapp.ForgotUsernameActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            android:screenOrientation="portrait" >
         </activity>
+        
          <activity
             android:name="team1.parkingapp.LoginActivity"
-            android:label="@string/app_name" >
+            android:label="@string/login_label" 
+            android:screenOrientation="portrait" >
         </activity>
+        
          <activity
             android:name="team1.parkingapp.UserRegistrationActivity"
-            android:label="@string/app_name" >
+            android:label="@string/user_registration_label"
+            android:screenOrientation="portrait" >
         </activity>
         
         <activity
             android:name="team1.parkingapp.ParkingSpotDetailActivity"
-            android:label="@string/app_name" >
+            android:label="@string/spot_detail_label" 
+            android:screenOrientation="portrait" >
         </activity>
+        
+        <activity
+            android:name="team1.parkingapp.AccountSettingsActivity"
+            android:label="@string/account_settings_label" 
+            android:screenOrientation="portrait" >
+        </activity>
+        
+        <activity
+            android:name="com.google.android.apps.MapsActivity"
+            android:screenOrientation="portrait" >
+		</activity>
          
         <meta-data 
             android:name="com.google.android.maps.v2.API_KEY"

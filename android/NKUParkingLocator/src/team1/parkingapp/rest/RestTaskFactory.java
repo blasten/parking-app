@@ -60,7 +60,7 @@ public class RestTaskFactory {
 			return GetSpotsTask.filterSpotsByLotId(spots, lotId);
 		}
 		catch (Exception e) {
-			Log.e("Get Spots By Lot ID", e.getMessage());
+			Log.e("Get Spots By Lot ID", "Error getting spots");
 			return null;
 		}
 	}
@@ -77,9 +77,9 @@ public class RestTaskFactory {
 	 * pass in null for the field(s) you don't want to change. For example if you only want to change the
 	 * user's password, pass in null for newEmail, newName, and newLastname.
 	 */
-	public static PutUserTask putUser(Context ctx, String email, String pwd, String newEmail, String newPwd, 
+	public static PutUserTask putUser(Context ctx, String email, String pwd, String userId, String newEmail, String newPwd, 
 			String newName, String newLastname) {
-		return (PutUserTask) new PutUserTask(ctx).execute(email, pwd, newEmail, newPwd, newName, newLastname);
+		return (PutUserTask) new PutUserTask(ctx).execute(email, pwd, userId, newEmail, newPwd, newName, newLastname);
 	}
 	
 	/*
