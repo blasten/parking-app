@@ -52,7 +52,7 @@ public class ParkingSpotDetailActivity extends Activity {
   	      	// Display the spots for this lot The Rest API is not currently returning the spots so this does not wok atm
   	      	DisplaySpots(intLotID);
   	      	
-  	      	
+  	      	 
   	      	// May need to use this later if the spot updating process takes to long 
   	      	// and the app times out so please leave this here...
 		    //new UpdateTitle().execute();
@@ -78,7 +78,7 @@ public class ParkingSpotDetailActivity extends Activity {
 		  for(int i = 0; i < spots.size();i++)
 		  {
 			  // Is the spot occupied?
-			  if(spots.get(i).getStatus().equals("OCCUPIED") )
+			  if(spots.get(i).getStatus().equals("AVAILABLE") )
 			  {
 				  star = (ImageView) findViewById(getResources().getIdentifier("spot" + (i + 1), "id", "team1.parkingapp"));
 				  star.setVisibility(star.VISIBLE);
@@ -89,7 +89,7 @@ public class ParkingSpotDetailActivity extends Activity {
 					public void onClick(View v) {
 						ImageView star = (ImageView) v;
 						Toast.makeText(ParkingSpotDetailActivity.this,"You clicked a star for spot " + star.getTag(),Toast.LENGTH_LONG).show();
-						
+						ReserveSpot();
 					}
 					  
 				  });
@@ -99,7 +99,10 @@ public class ParkingSpotDetailActivity extends Activity {
 			    
 	 }
 		  
+	  public void ReserveSpot()
+	  {
 	  
+	  }
 	  
 	  public int getLotID(String strTitle)
 	  {

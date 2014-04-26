@@ -35,7 +35,7 @@
         android:layout_above="@+id/imageView1"
         android:layout_marginLeft="93dp"
         android:layout_toRightOf="@+id/txtTitle"
-        android:text=" = Occupied Spot" />
+        android:text=" = Available Spot" />
 
     <ImageView
         android:id="@+id/spot1"
