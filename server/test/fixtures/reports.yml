@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  lot_id: 
+  checkin_time: 2014-04-26 17:02:25
+  check_out_time: 2014-04-26 17:02:25
+
+two:
+  user_id: 
+  lot_id: 
+  checkin_time: 2014-04-26 17:02:25
+  check_out_time: 2014-04-26 17:02:25

@@ -45,7 +45,7 @@ class Api::SpotsController < ApplicationController
 
   private
     def spot_params
-      params.permit(:lot_id, :latitude, :longitude, :status)
+      params.permit(:lot_id, :latitude, :longitude, :status, :number)
     end
 
     def authenticate_admin_user

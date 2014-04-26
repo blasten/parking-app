@@ -1,0 +1,71 @@
+
+<%= form_for @lot do |f| %> 
+
+<div class="row">
+<div class="col-md-5">
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, :placeholder => "Lot name", autofocus: true, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :designation %> <br />
+    <%= f.select :designation, Lot::DESIGNATIONS.invert %>
+  </div>
+
+  <div class="form-group">
+    <%= f.check_box :enabled %>
+    <%= f.label :enabled %>
+  </div>
+ 
+  <%= f.hidden_field :latitude %>
+  <%= f.hidden_field :longitude %>
+
+  <hr />
+
+  <%= f.submit :class=> "btn btn-primary", :value => "Save" %> or <%= link_to "Cancel", lots_path %>
+  </div>
+
+  <div class="col-md-7">
+    <div id="map-canvas"  style="width: 550px; height: 300px;"/>
+  </div>
+</div>
+</form>
+<% end %>
+
+<%= content_for :javascript do %>
+ <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhUlKrO2zd_LVj1HCRhlIlyiFn7Cj_C0Q&sensor=false">
+  </script>
+  <script type="text/javascript">
+    function initialize() {
+      var latLong = new google.maps.LatLng(<%= @lot.latitude %>, <%= @lot.longitude %>);
+
+      var mapOptions = {
+        center: latLong,
+        zoom: 15
+      };
+      
+      var marker = new google.maps.Marker({
+        position: latLong,
+        draggable: true
+    });
+
+    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+      google.maps.event.addListener(map, 'dblclick', function(event) {
+        marker.setPosition(event.latLng);
+        event.preventDefault();
+      });
+
+      google.maps.event.addListener(marker, 'position_changed', function(event) {
+        $('#lot_latitude').attr('value', marker.getPosition().lat());
+        $('#lot_longitude').attr('value', marker.getPosition().lng());
+      });
+
+      marker.setMap(map);
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+<% end %>

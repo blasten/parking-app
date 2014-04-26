@@ -1,0 +1,21 @@
+<%- title "Account settings" %>
+
+<% if @user.errors.any? %>
+<div id="error_explanation" class="alert alert-danger">
+  <strong><%= pluralize(@user.errors.count, "error") %> prohibited
+    this post from being saved:</strong>
+  <ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="col-md-4">
+  <h3>Account settings</h3>
+  <%= render 'form' %>
+  <hr />
+  <h4>Danger zone</h4>
+  <%=link_to "Delete account", user_path(@user), method: :delete, data: {confirm: "You sure?"}, class: "btn btn-danger" %>
+</div>

@@ -1,0 +1,18 @@
+<%- title "New user" %>
+
+<% if @user.errors.any? %>
+<div id="error_explanation" class="alert alert-danger">
+  <strong><%= pluralize(@user.errors.count, "error") %> prohibited
+    this post from being saved:</strong>
+  <ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="col-md-4">
+  <h3>New user</h3>
+  <%= render 'form' %>
+</div>

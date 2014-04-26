@@ -27,6 +27,9 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
+
 
 gem 'rails_12factor', group: :production
 

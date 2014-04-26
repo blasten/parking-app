@@ -1,0 +1,52 @@
+<%= form_for @user do |f| %>  
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, :placeholder => "Your name", autofocus: true, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :lastname %>
+    <%= f.text_field :lastname, :placeholder => "Your lastname", class: "form-control"  %>
+  </div>
+ 
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, :placeholder => "Your email address", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :role %>
+    <%= f.select :role, User::ROLES.invert %>
+  </div>
+
+  <% if action_name == 'new' || action_name == 'create' %>
+   <div class="form-group">
+       <%= f.label :password %>
+      <%= f.password_field :password, :placeholder => "6 to 10 characters", class: "form-control"%>
+    </div>
+  <% else %>
+    <div class="form-group">
+      <%= check_box_tag 'change_password', 1, params[:change_password] %>
+      <label for="change_password">Change password</label>
+      <%= f.password_field :password, :placeholder => "6 to 10 characters", class: "form-control"%>
+    </div>
+
+    <%= content_for :javascript do %>
+    <script type="text/javascript">
+      $("#change_password").click(function() { 
+        if (this.checked) {
+          $("#user_password").attr("disabled", false);
+          $("#user_password").focus();
+        } else {
+          $("#user_password").attr("disabled", true);
+        }
+      }).trigger("click").trigger("click");
+    </script>
+    <% end %>
+  <% end %>
+
+  <%= f.submit  :class=> "btn btn-primary", :value => "Save" %>
+
+  or <%= link_to "Cancel", users_path %>
+</form>
+<% end %>

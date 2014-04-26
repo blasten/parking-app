@@ -1,0 +1,14 @@
+<% if @lot.errors.any? %>
+<div id="error_explanation" class="alert alert-danger">
+  <strong><%= pluralize(@lot.errors.count, "error") %> prohibited
+    this post from being saved:</strong>
+  <ul>
+  <% @lot.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+
+<h3>Edit lot</h3>
+<%= render 'form' %>

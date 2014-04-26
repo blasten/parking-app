@@ -4,7 +4,6 @@ class Spot < ActiveRecord::Base
   validates :latitude, presence: true, numericality: {:greater_than_or_equal_to => -180, :less_than_or_equal_to => 180}
   validates :longitude, presence: true, numericality: {:greater_than_or_equal_to => -180, :less_than_or_equal_to => 180}
 
-
   before_destroy :remove_reservations
   before_save :config_reservations
 
@@ -86,12 +85,13 @@ class Spot < ActiveRecord::Base
     end
 
     def config_reservations
-      if self.id.present? && status == "UNAVAILABLE"
+      if self.id.present? && (status == "AVAILABLE"  || status == "UNAVAILABLE")
         Reservation.destroy_all(:spot_id => self.id)
       end
     end
 
     def remove_reservations
-      Reservation.find_by_spot_id(self.attributes["spot_id"]).destroy
+      reservations = Reservation.find_by_spot_id(self.attributes["spot_id"])
+      reservations.destroy unless reservations.nil?
     end
 end

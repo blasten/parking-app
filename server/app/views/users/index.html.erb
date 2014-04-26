@@ -1,0 +1,32 @@
+<%= flash_messages %>
+
+<a class="btn btn-default pull-right" href="<%=new_user_path%>">
+  <i class="fa fa fa-plus"></i>
+  <b>New user</b>
+</a>
+
+<h3 class="page-header">Users</h3>
+
+<% unless @users.blank? %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user|  %>
+    <tr>
+      <td> <%= link_to user.name, user_path(user) %> </td>
+      <td> <%= link_to user.email, user_path(user) %> </td>
+      <td> <%= user.role_to_s%> </td>
+    </tr>  
+  <% end %>
+  </tbody>
+</table>
+<% else %>
+  No user created yet.
+<% end %>
+

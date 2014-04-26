@@ -1,0 +1,35 @@
+<div class="dropdown pull-right">
+  <a data-toggle="dropdown" href="#" class="btn btn-default"><i class="fa fa-download"></i> Reports</a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+    <li><%= link_to "Parking lot usage", parking_lot_report_path(:format => 'csv') %></li>
+    <li><%= link_to "User parking report", user_usage_report_path %></li>
+  </ul>
+</div>
+
+<h3 class="page-header">Reservations</h3>
+
+<% unless @reservations.blank? %>
+<table class="table table-striped table-vertical-aligned">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Lot/Spot</th>
+      <th>Status</th>
+      <th>When</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @reservations.each do |reservation| %>
+    <tr>
+      <td> <%= link_to reservation.user.name, user_path(reservation.user) %> </td>
+      <td> <%= link_to reservation.spot.lot.name, lot_path(reservation.spot.lot) %>, 
+         <%= link_to reservation.spot.number, edit_lot_spot_path(reservation.spot.lot, reservation.spot) %></td>
+      <td> <%= reservation.status %> </td>
+      <td> <%= time_ago_in_words(reservation.created_at) %> go</td>
+    </tr>  
+  <% end %>
+  </tbody>
+</table>
+<% else %>
+  No reservation made yet.
+<% end %>

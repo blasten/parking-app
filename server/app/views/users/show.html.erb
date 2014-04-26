@@ -1,0 +1,20 @@
+<%= flash_messages %>
+
+<h3> <%= @user.name %> (<%= @user.role_to_s %>) </h3>
+<p>
+  <%=@user.name%>  <%=@user.lastname%>
+</p>
+<p>
+  <%=@user.email%>
+</p>
+<p>
+ Account created <%=time_ago_in_words(@user.created_at) %> ago
+</p>
+<hr />
+<p>
+  <ul class="list-unstyled">
+    <li>
+     <a href="<%=edit_user_path(@user)%>" class="btn btn-default"> <i class="fa fa-wrench"></i> Edit this account</a>
+    </li>
+  </ul>
+</p>

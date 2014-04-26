@@ -1,0 +1,14 @@
+<% if @spot.errors.any? %>
+<div id="error_explanation" class="alert alert-danger">
+  <strong><%= pluralize(@spot.errors.count, "error") %> prohibited
+    this post from being saved:</strong>
+  <ul>
+  <% @spot.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+
+<h3>Edit spot</h3>
+<%= render 'form' %>

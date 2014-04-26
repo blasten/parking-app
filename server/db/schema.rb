@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417032405) do
+ActiveRecord::Schema.define(version: 20140426212140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,21 @@ ActiveRecord::Schema.define(version: 20140417032405) do
     t.datetime "updated_at"
     t.decimal  "latitude"
     t.decimal  "longitude"
+    t.integer  "designation"
   end
+
+  create_table "reports", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "lot_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "reservation_id"
+    t.integer  "time"
+  end
+
+  add_index "reports", ["lot_id"], name: "index_reports_on_lot_id", using: :btree
+  add_index "reports", ["reservation_id"], name: "index_reports_on_reservation_id", using: :btree
+  add_index "reports", ["user_id"], name: "index_reports_on_user_id", using: :btree
 
   create_table "reservations", force: true do |t|
     t.integer  "user_id"
@@ -41,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140417032405) do
     t.integer  "lot_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "number"
   end
 
   create_table "users", force: true do |t|
@@ -51,6 +66,7 @@ ActiveRecord::Schema.define(version: 20140417032405) do
     t.string   "name"
     t.string   "lastname"
     t.integer  "role"
+    t.string   "remember_token"
   end
 
 end

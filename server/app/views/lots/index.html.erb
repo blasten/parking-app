@@ -1,0 +1,46 @@
+<%= flash_messages %>
+
+<a class="btn btn-default pull-right" href="<%=new_lot_path%>">
+  <i class="fa fa fa-plus"></i>
+  <b>New lot</b>
+</a>
+
+<h3 class="page-header">Lots</h3>
+
+<% unless @lots.blank? %>
+<table class="table table-striped table-vertical-aligned">
+  <thead>
+    <tr>
+      <th width="100">Location</th>
+      <th>Name</th>
+      <th>Designation</th>
+      <th>Spots</th>
+      <th width="150">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @lots.each do |lot| %>
+    <tr>
+      <td> 
+        <a href="<%= lot_path(lot) %>">
+          <img src="http://maps.googleapis.com/maps/api/staticmap?center=<%= lot.latitude %>,<%= lot.longitude %>&zoom=15&size=100x100&sensor=false&scale=2" width="100" height="100">
+        </a>
+      </td>
+      <td> 
+        <a href="<%= lot_path(lot) %>"><%= lot.name %></a> 
+        <%= '(Disabled)' unless lot.enabled? %> 
+      </td>
+      <td> <%= lot.designation_to_s %> </td>
+      <td> <%= lot.spots.size %> </td>
+      <td> 
+        <a class="btn btn-default" href="<%= lot_path(lot) %>"> <i class="fa fa-map-marker"></i> </a>
+        <a class="btn btn-default" href="<%= edit_lot_path(lot) %>"> <i class="fa fa-pencil-square-o"></i> </a>
+        <%= link_to lot_path(lot), method: :delete, data: {confirm: "You sure?"}, class: "btn btn-danger"  do %> <i class="fa fa-trash-o"></i> <% end %>
+      </td>
+    </tr>  
+  <% end %>
+  </tbody>
+</table>
+<% else %>
+  No lot created yet.
+<% end %>

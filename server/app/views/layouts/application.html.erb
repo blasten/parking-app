@@ -1,14 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Server</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <title><%= content_for?(:title) ? yield(:title) : brand_name %></title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+ <div class="navbar navbar-default navbar-static-top " role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="<%=root_path%>"> <%= brand_name %></a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <% if signed_in? %>
+          <ul class="nav navbar-nav">
+            <li><a href="<%=lots_path%>">Lots</a></li>
+            <li><a href="<%=reservations_path%>">Reservations</a></li>
+            <li><a href="<%=users_path%>">Users</a></li>
+          </ul>
+        <% end %>
+        <ul class="nav navbar-nav navbar-right">
+        <% if signed_in? %>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %>  <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="<%=settings_path%>">Settings</a></li>
+            <li><a href="<%=sign_out_path%>">Sign out</a></li>
+          </ul>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container theme-showcase" role="main">
+  <%= yield %>
+</div>
+
+<%= yield :javascript %>
 
 </body>
 </html>

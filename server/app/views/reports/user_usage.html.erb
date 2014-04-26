@@ -1,0 +1,9 @@
+
+<div class="text-center">
+<%= form_tag(user_usage_download_report_path(format: "csv"), method: :post) do %>
+  <h2>Choose a time period</h2> <br />
+  <%= date_field_tag('from', @from, class: 'input-medium') %>
+  <%= date_field_tag('to', @to, class: 'input-medium') %>
+  <%= submit_tag "Generate", :class=> "btn btn-primary" %> or <%= link_to "Cancel", reservations_path %>
+<% end %>
+</div>
