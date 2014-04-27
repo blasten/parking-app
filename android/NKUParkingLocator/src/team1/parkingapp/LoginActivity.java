@@ -136,7 +136,8 @@ public class LoginActivity extends Activity
 		//If the user is valid then close this activity and return true (not used)
 		Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
 		
-		this.finish();
+		Intent i = new Intent(this,MainActivity.class);
+		startActivity(i);
 		return true;
 	}
 	

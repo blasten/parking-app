@@ -65,10 +65,6 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 			
 			//Use the same method to get a single lot.  Just add on the id to the end of the uri.
 			String uri = RestContract.LOTS_API;
-			if(params.length > 0)
-		    {
-		    	uri = uri + "/" + params[0];
-		    }
 			
 		    HttpGet httpget = new HttpGet(uri);
 
@@ -84,7 +80,7 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 		        	//Log.i("GET Lot", status.getReasonPhrase());
 		        	ByteArrayOutputStream out = new ByteArrayOutputStream();
 	                response.getEntity().writeTo(out);
-	                Session.getInstance().setParkingLots(parseResults(out.toString()));
+	                Session.getInstance().setParkingLots(parseResults(out.toString(), params[0]));
 		        	out.close();
 		        }
 
@@ -107,7 +103,7 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 		super.onPostExecute(result);
 	}
 	
-	private Vector<ParkingLot> parseResults(String results)
+	private Vector<ParkingLot> parseResults(String results, String role)
 	{
 		Vector<ParkingLot> v = new Vector<ParkingLot>();
 
@@ -119,7 +115,14 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 			{
 				JSONObject obj = arr.getJSONObject(i);
 				//Have to do some data validation before trying to create the object because of nullable entries in the database
-				v.add(validateData(obj));
+				ParkingLot temp = validateData(obj);
+				if( (temp.getRole() == "visitor" && role.toLowerCase().contains("visitor")) || 
+					(temp.getRole() == "student" && role.toLowerCase().contains("student")) ||
+					(temp.getRole() == "faculty" && role.toLowerCase().contains("staff")))
+				{
+					v.add(temp);
+				}
+					
 			}
 		}
 		catch(Exception e)
@@ -132,7 +135,7 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 	private ParkingLot validateData(JSONObject obj)
 	{
 		int id, num_spots_available;
-		String name;
+		String name, role;
 		boolean enabled;
 		double lat, lng;
 		
@@ -185,8 +188,30 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 		{
 			lng = 0;
 		}
+		try
+		{			
+			switch(obj.getInt(RestContract.LOT_ROLE))
+			{
+			case 1:
+				role = "faculty";
+				break;
+			case 2:
+				role = "student";
+				break;
+			case 3:
+				role = "visitor";
+				break;
+			default:
+				role = "";
+				break;
+			}
+		}
+		catch(Exception e)
+		{
+			role = "";
+		}
 		
-		return new ParkingLot(id, name, enabled, num_spots_available, lat, lng);
+		return new ParkingLot(id, name, enabled, num_spots_available, lat, lng, role);
 		
 	}
 	

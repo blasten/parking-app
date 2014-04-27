@@ -32,7 +32,7 @@
     <string name="lblUserRegistration_PostalCode">Postal Code:</string>
     <string name="lblUserRegistration_PhoneNumber1">Phone Number 1:</string>
     <string name="lblUserRegistration_PhoneNumber2">Phone Number 2:</string>
-    <string name="lblUserRegistration_Email">NKU Email Address:</string>
+    <string name="lblUserRegistration_Email">Email Address:</string>
     <string name="lblUserRegistration_UserName">Username:</string>
     <string name="lblUserRegistration_Password">Password:</string>
     <string name="lblUserRegistration_ConfirmPassword">Confirm Password:</string>
@@ -46,7 +46,7 @@
     <string name="txtUserRegistration_PostalCode_Hint">Enter your Postal Code</string>
     <string name="txtUserRegistration_PhoneNumber1_Hint">Enter your Phone Number 1</string>
     <string name="txtUserRegistration_PhoneNumber2_Hint">Enter your Phone Number 2</string>
-    <string name="txtUserRegistration_Email_Hint">Enter your NKU Email Address</string>
+    <string name="txtUserRegistration_Email_Hint">Enter your NKU Email</string>
     <string name="txtUserRegistration_Password_Hint">Enter a password</string>
     <string name="txtUserRegistration_ConfirmPassword_Hint">Confirm password</string>
     

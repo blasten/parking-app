@@ -48,7 +48,7 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 	  private GoogleMap map;
 	  
 	  @Override
-	  protected void onCreate(Bundle savedInstanceState) { 
+	  protected void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
 		    setContentView(R.layout.activity_main);
 		    
@@ -57,7 +57,7 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 		    
 		    try
 		    {
-		    	RestTaskFactory.getParkingLots(this).get();
+		    	RestTaskFactory.getParkingLots(this, Session.getInstance().getUser().getRole()).get();
 		    }
 		    catch(Exception e)
 		    {
@@ -74,6 +74,7 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 		    	map.addMarker(lots.get(i).getMarkerOptions());
 		    }
 			
+		    
 		    // Move the camera instantly to NKU with a zoom of 16.
 		    map.moveCamera(CameraUpdateFactory.newLatLngZoom(NKU, 16));
 		    
@@ -119,8 +120,6 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 
 		        }
 		    });
-		    
-
 	  }
 
 	  @Override

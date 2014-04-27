@@ -99,6 +99,7 @@ public class ParkingSpotDetailActivity extends Activity {
 						//ReserveSpot((Integer) star.getTag(),intLotNumber );
 						//Navigate To the spot...
 						//navigate(spot.getLat(), spot.getLongitude());
+
 					}
 					  
 				  });
