@@ -137,6 +137,7 @@ public class LoginActivity extends Activity
 		Toast.makeText(this, "Logged in", Toast.LENGTH_SHORT).show();
 		
 		Intent i = new Intent(this,MainActivity.class);
+		clearFields();
 		startActivity(i);
 		return true;
 	}
@@ -167,5 +168,13 @@ public class LoginActivity extends Activity
     private String getText(EditText e)
     {
     	return e.getText().toString();
+    }
+    
+    /*
+     * Clears the email and password fields.
+     */
+    private void clearFields() {
+    	this.txtEmail.setText("");
+    	this.txtPassword.setText("");
     }
 }

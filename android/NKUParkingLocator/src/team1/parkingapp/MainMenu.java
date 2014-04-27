@@ -43,6 +43,7 @@ public class MainMenu extends Activity {
 				Session.getInstance().setUser(null);
 				a.invalidateOptionsMenu();
 				Toast.makeText(a, R.string.logged_out, Toast.LENGTH_SHORT).show();
+				a.finish();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
