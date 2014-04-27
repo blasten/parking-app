@@ -2,6 +2,8 @@ package team1.parkingapp.rest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -19,7 +21,6 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import team1.parkingapp.data.Reservation;
-import team1.parkingapp.data.User;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -93,7 +94,7 @@ public class PutReservationTask  extends AsyncTask<String, String, String> {
 	                response.getEntity().writeTo(out);
 	                String s = out.toString();
 	                out.close();
-	                if(s.toLowerCase().contains("error"))
+	                if(s.toLowerCase(Locale.getDefault()).contains("error"))
 	                {
 	                	Session.getInstance().setReservation(null);
 	                }

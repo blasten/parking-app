@@ -10,7 +10,6 @@ package team1.parkingapp;
 import java.util.Vector;
 
 import team1.parkingapp.data.ParkingLot;
-import team1.parkingapp.rest.RestContract;
 import team1.parkingapp.rest.RestTaskFactory;
 import team1.parkingapp.rest.Session;
 import android.app.Activity;

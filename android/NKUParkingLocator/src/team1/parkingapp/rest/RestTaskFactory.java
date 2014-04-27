@@ -19,12 +19,9 @@
 package team1.parkingapp.rest;
 
 import java.util.Vector;
-import java.util.concurrent.ExecutionException;
 
 import team1.parkingapp.data.Spot;
-
 import android.content.Context;
-import android.util.Log;
 
 public class RestTaskFactory {
 

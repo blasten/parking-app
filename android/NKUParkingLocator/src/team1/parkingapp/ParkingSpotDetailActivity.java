@@ -13,7 +13,6 @@ import java.util.Vector;
 
 import team1.parkingapp.data.ParkingLot;
 import team1.parkingapp.data.Spot;
-import team1.parkingapp.rest.RestContract;
 import team1.parkingapp.rest.RestTaskFactory;
 import team1.parkingapp.rest.Session;
 import android.app.Activity;
@@ -63,7 +62,7 @@ public class ParkingSpotDetailActivity extends Activity {
 		  for(int i = 1; i <= 36; i++)
 		  {
 			  star = (ImageView) findViewById(getResources().getIdentifier("spot" + i, "id", "team1.parkingapp"));
-			  star.setVisibility(star.INVISIBLE);
+			  star.setVisibility(ImageView.INVISIBLE);
 		  }
 	  }
 	  
@@ -78,7 +77,7 @@ public class ParkingSpotDetailActivity extends Activity {
 			  if(spots.get(i).getStatus().equals("AVAILABLE") )
 			  {
 				  star = (ImageView) findViewById(getResources().getIdentifier("spot" + (i + 1) , "id", "team1.parkingapp"));
-				  star.setVisibility(star.VISIBLE);
+				  star.setVisibility(ImageView.VISIBLE);
 				  
 				  // Store spot information so that we may reserve the spot later if needed.
 				  star.setTag(spots.get(i));
@@ -96,7 +95,7 @@ public class ParkingSpotDetailActivity extends Activity {
 					    ReserveSpot((Integer) spot.getId());
 					    
 					    // Update star
-					    star.setVisibility(star.INVISIBLE);
+					    star.setVisibility(ImageView.INVISIBLE);
 						
 					    //Navigate To the spot...
 						navigate(spot.getLat(), spot.getLongitude());

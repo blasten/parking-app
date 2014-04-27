@@ -8,7 +8,6 @@
 package team1.parkingapp.rest;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Vector;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
