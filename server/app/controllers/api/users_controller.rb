@@ -22,7 +22,10 @@ class Api::UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
+    params = user_params
+    params["role"] = User::get_role(params["role"])
+
+    user = User.new(params)
     if user.save
       respond_with(user.to_hash, :location => "/")
     else
@@ -41,7 +44,11 @@ class Api::UsersController < ApplicationController
 
   def update_me
     user = @authenticated_user
-    if user.update(user_params)
+
+    params = user_params
+    params["role"] = User::get_role(params["role"])
+
+    if user.update(params)
       render(:json => user.to_hash)
     else
       render(:json => {:error => user.errors})
@@ -50,7 +57,7 @@ class Api::UsersController < ApplicationController
 
   private
     def user_params
-      params.permit(:name, :lastname, :email, :password)
+      params.permit(:name, :lastname, :email, :password, :role)
     end
 
     def authenticate

@@ -11,8 +11,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
-    if @user.save
+    User.admin_permission true
+    result = @user.create(user_params)
+    User.admin_permission false
+    
+    if result
        redirect_to user_path(@user), notice: "User created!"
     else
       render 'new'
@@ -25,7 +28,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params) 
+    User.admin_permission true
+    result = @user.update(user_params)
+    User.admin_permission false
+
+    if result
       redirect_to user_path(@user), notice: "Account settings successfully changed!"
     else
       render 'edit'
