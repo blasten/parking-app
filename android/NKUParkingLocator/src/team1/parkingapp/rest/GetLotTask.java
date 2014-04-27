@@ -116,9 +116,9 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 				JSONObject obj = arr.getJSONObject(i);
 				//Have to do some data validation before trying to create the object because of nullable entries in the database
 				ParkingLot temp = validateData(obj);
-				if( (temp.getRole() == "visitor" && role.toLowerCase().contains("visitor")) || 
-					(temp.getRole() == "student" && role.toLowerCase().contains("student")) ||
-					(temp.getRole() == "faculty" && role.toLowerCase().contains("staff")))
+				if( (temp.getRole() == "student" && role.toLowerCase().contains("student")) ||
+					(temp.getRole() == "faculty" && role.toLowerCase().contains("staff")) ||
+					temp.getRole() == "visitor" || temp.getRole() == "All")
 				{
 					v.add(temp);
 				}
@@ -200,6 +200,9 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 				break;
 			case 3:
 				role = "visitor";
+				break;
+			case 4:
+				role = "All";
 				break;
 			default:
 				role = "";
