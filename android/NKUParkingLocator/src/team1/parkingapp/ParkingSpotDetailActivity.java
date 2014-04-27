@@ -91,8 +91,6 @@ public class ParkingSpotDetailActivity extends Activity {
 						ImageView star = (ImageView) v;
 						Spot spot = (Spot) star.getTag(); 
 						
-						Toast.makeText(ParkingSpotDetailActivity.this,"You clicked a star for spot " + spot.getId(),Toast.LENGTH_LONG).show();
-						
 					    ReserveSpot((Integer) spot.getId());
 					    
 					    // Update star
@@ -187,6 +185,7 @@ public class ParkingSpotDetailActivity extends Activity {
 		  Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(googleMapsIntent));
 		  startActivityForResult(i, 1);
 	  }
+	  
 	  
 }
 
