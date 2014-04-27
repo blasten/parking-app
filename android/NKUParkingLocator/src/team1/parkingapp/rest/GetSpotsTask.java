@@ -68,6 +68,9 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 			if (params.length == 1 || params.length == 4) {
 				getParams = buildGetParameterString(params);
 			}
+			else if(params.length == 2)
+				//Do nothing, handle later
+				;
 			else {
 				Log.e("GET spots", "Wrong number of arguments.");
 				return null;
