@@ -13,6 +13,7 @@ import java.util.Vector;
 
 import team1.parkingapp.data.ParkingLot;
 import team1.parkingapp.data.Spot;
+import team1.parkingapp.rest.RestContract;
 import team1.parkingapp.rest.RestTaskFactory;
 import team1.parkingapp.rest.Session;
 import android.app.Activity;
@@ -36,6 +37,7 @@ public class ParkingSpotDetailActivity extends Activity {
 		  super.onCreate(savedInstanceState);
 		    setContentView(R.layout.parking_spot_detail);
 		    int intLotID;
+		    
 		    // update the title
 		    String TitleScreen = getIntent().getExtras().getString("GarageTitle");
   	      	TextView txtTitle = (TextView) findViewById(R.id.txtTitle);
@@ -96,9 +98,13 @@ public class ParkingSpotDetailActivity extends Activity {
 						
 						Toast.makeText(ParkingSpotDetailActivity.this,"You clicked a star for spot " + spot.getId(),Toast.LENGTH_LONG).show();
 						
-						//ReserveSpot((Integer) star.getTag(),intLotNumber );
-						//Navigate To the spot...
-						//navigate(spot.getLat(), spot.getLongitude());
+					    ReserveSpot((Integer) spot.getId());
+					    
+					    // Update star
+					    star.setVisibility(star.INVISIBLE);
+						
+					    //Navigate To the spot...
+						navigate(spot.getLat(), spot.getLongitude());
 
 					}
 					  
@@ -109,19 +115,15 @@ public class ParkingSpotDetailActivity extends Activity {
 			    
 	 }
 		  
-	  public void ReserveSpot(int spotNumber, int lot )
+	  public void ReserveSpot(int spotID )
 	  {
-		  String SpotID = GetSpotID(spotNumber,lot);
+		  String SpotID = Integer.toString(spotID);
 		  String User = Session.getInstance().getUser().getEmail();
 		  String Password = Session.getInstance().getUser().getPassword();
-		  RestTaskFactory.makeReservation(this,User,Password, SpotID, "reserved");
+		  RestTaskFactory.makeReservation(this,User,Password, SpotID,"RESERVED");
 	  }
 	  
-	  public String GetSpotID(int SpotNumber, int LotID)
-	  {
-		  // Calculate the spot ID
-		  return Integer.toString(SpotNumber * LotID);
-	  }
+
 	  public int getLotID(String strTitle)
 	  {
 		  	int intLotID = 0;
@@ -162,6 +164,10 @@ public class ParkingSpotDetailActivity extends Activity {
 	  {
 		  LocationManager sensorManager = ((LocationManager)getSystemService(Context.LOCATION_SERVICE));
 		  Location location = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		  while( location == null )
+		  {
+			  location = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		  }
 		  String googleMapsIntent = "http://maps.google.com/maps?saddr=" + location.getLatitude() + "," + location.getLongitude() + "&daddr=" + Latitude + "," + Longitude;
 		  Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(googleMapsIntent));
 		  startActivityForResult(i, 1);
