@@ -80,16 +80,25 @@ public class ParkingSpotDetailActivity extends Activity {
 			  // Is the spot occupied?
 			  if(spots.get(i).getStatus().equals("AVAILABLE") )
 			  {
-				  star = (ImageView) findViewById(getResources().getIdentifier("spot" + (i + 1), "id", "team1.parkingapp"));
+				  star = (ImageView) findViewById(getResources().getIdentifier("spot" + (i + 1) , "id", "team1.parkingapp"));
 				  star.setVisibility(star.VISIBLE);
+				  
+				  // Store spot information so that we may reserve the spot later if needed.
+				  star.setTag(spots.get(i));
+				  
 				  star.setClickable(true);
 				  star.setOnClickListener(new View.OnClickListener() {
 
 					@Override
 					public void onClick(View v) {
 						ImageView star = (ImageView) v;
-						Toast.makeText(ParkingSpotDetailActivity.this,"You clicked a star for spot " + star.getTag(),Toast.LENGTH_LONG).show();
-						ReserveSpot();
+						Spot spot = (Spot) star.getTag(); 
+						
+						Toast.makeText(ParkingSpotDetailActivity.this,"You clicked a star for spot " + spot.getId(),Toast.LENGTH_LONG).show();
+						
+						//ReserveSpot((Integer) star.getTag(),intLotNumber );
+						//Navigate To the spot...
+						//navigate(spot.getLat(), spot.getLongitude());
 					}
 					  
 				  });
@@ -99,11 +108,19 @@ public class ParkingSpotDetailActivity extends Activity {
 			    
 	 }
 		  
-	  public void ReserveSpot()
+	  public void ReserveSpot(int spotNumber, int lot )
 	  {
-	  
+		  String SpotID = GetSpotID(spotNumber,lot);
+		  String User = Session.getInstance().getUser().getEmail();
+		  String Password = Session.getInstance().getUser().getPassword();
+		  RestTaskFactory.makeReservation(this,User,Password, SpotID, "reserved");
 	  }
 	  
+	  public String GetSpotID(int SpotNumber, int LotID)
+	  {
+		  // Calculate the spot ID
+		  return Integer.toString(SpotNumber * LotID);
+	  }
 	  public int getLotID(String strTitle)
 	  {
 		  	int intLotID = 0;
@@ -135,10 +152,10 @@ public class ParkingSpotDetailActivity extends Activity {
 	  }
 	  
 	  @Override
-		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-			invalidateOptionsMenu();
-			super.onActivityResult(requestCode, resultCode, data);
-		}
+	  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		 invalidateOptionsMenu();
+		 super.onActivityResult(requestCode, resultCode, data);
+	  }
 	  
 	  private void navigate(double Latitude, double Longitude)
 	  {
@@ -149,42 +166,6 @@ public class ParkingSpotDetailActivity extends Activity {
 		  startActivityForResult(i, 1);
 	  }
 	  
-	  
-	  /* We may have to use this if the spot process takes to long so im saving this here for now.. 
-	     If we find we don't need it we can always just take it out... 
-	  private class UpdateTitle extends AsyncTask<Void, String, Void>  {
-		  // Update UI here
-		  @Override
-		  protected void onProgressUpdate(String... values) {
-	  	      	TextView txtTitle = (TextView) findViewById(R.id.txtTitle);
-	  	      	txtTitle.setText( values[0]);   
-	  	      	// Force view to update...
-	  	      	//txtTitle.invalidate();
-
-		  }
-
-		  // Get data here... 
-		  @Override
-		  protected Void doInBackground(Void... params) {
-			  // Pull out the extra information passed through the intent 
-		  	  String TitleScreen = getIntent().getExtras().getString("GarageTitle");
-		  	  publishProgress( TitleScreen);
-		  	  return null;
-		  }
-		  @Override
-		  protected void onPostExecute(Void result) {
-		    // TODO Auto-generated method stub
-		    super.onPostExecute(result);
-		  }
-
-		  @Override
-		  protected void onPreExecute() {
-		    // TODO Auto-generated method stub
-		    super.onPreExecute();
-		  }
-
-		
-		 }*/
 }
 
 

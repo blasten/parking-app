@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -91,7 +92,13 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 		        @Override
 		        public View getInfoContents(Marker arg0) {
 		        	View v = getLayoutInflater().inflate(R.layout.customlayout, null);
-		        	 
+		        	TextView txtTitle = (TextView) v.findViewById(R.id.txtTitle);
+		        	TextView txtAvailableSpot = (TextView) v.findViewById(R.id.txtAvailableSpot);
+		    
+		        	// Set the title
+		        	txtTitle.setText(arg0.getTitle());
+		        	
+		        	// Set the Image
 		        	ImageView image = (ImageView) v.findViewById(R.id.parkinglotphoto);
 		        	for(int i = 0 ; i < lots.size() ; ++i)
 		        	{
@@ -101,21 +108,18 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 		        			if( i < NUMBER_OF_PARKING_LOT_PICTURES ) image.setImageResource(  getResources().getIdentifier("parkinglot" + (i + 1) , "drawable", "team1.parkingapp"));
 		        			//If not get a random one
 		        			else image.setImageResource( getRandomDrawable());
+		        			
+		        			// Set the number of available spots
+		        			txtAvailableSpot.append(Long.toString(lots.get(i).getSpotsAvailable()));
 		        		}
 		        	}
+		        	
+
 		            return v;
 
 		        }
 		    });
 		    
-		    try
-		    {
-		    	RestTaskFactory.changeReservation(this, 4, 1, RestContract.OCCUPIED, "test@nku.edu", "test");
-		    }
-		    catch(Exception e)
-		    {
-		    	
-		    }
 
 	  }
 
