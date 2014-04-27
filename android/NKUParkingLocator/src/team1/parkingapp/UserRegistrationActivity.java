@@ -19,15 +19,20 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemSelectedListener;
 
-public class UserRegistrationActivity extends Activity {
+public class UserRegistrationActivity extends Activity implements OnItemSelectedListener {
 	private EditText email;			
 	private EditText password;		
 	private EditText confirmPwd;
 	private EditText firstName;
 	private EditText lastName;
+	Spinner spinRole;
 	
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +44,13 @@ public class UserRegistrationActivity extends Activity {
         confirmPwd = (EditText) findViewById(R.id.txtUserRegistration_ConfirmPassword);
         firstName = (EditText) findViewById(R.id.txtUserRegistration_FirstName);
         lastName = (EditText) findViewById(R.id.txtUserRegistration_LastName);
+        spinRole = (Spinner) findViewById(R.id.spinUserRegistration_Role);
+        
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        		R.array.roles, android.R.layout.simple_spinner_item);
+     	adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+     	spinRole.setAdapter(adapter);
+     	spinRole.setOnItemSelectedListener(this);
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -165,5 +177,16 @@ public class UserRegistrationActivity extends Activity {
 				Toast.makeText(UserRegistrationActivity.this, msg, Toast.LENGTH_SHORT).show();
 			}
 		});
+	}
+	
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,
+			long id) {
+		
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+
 	}
 }

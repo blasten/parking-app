@@ -13,7 +13,7 @@
     <string name="txtLogin_Password_Hint">Enter your Password</string>
     <string name="btnLogin_Login">Login</string>
     <string name="lblLogin_ForgotUsername">I Forgot My Username or Password</string>
-    <string name="lblLogin_Register">Register</string>
+    <string name="lblLogin_Register">New user? Register an account</string>
     
     <!-- Strings for Forgot Username Layout -->
     <string name="lblForgotUsername_Description">Enter your e-mail address below to have your username and a temporary password sent to your email.</string>
@@ -37,6 +37,7 @@
     <string name="lblUserRegistration_Password">Password:</string>
     <string name="lblUserRegistration_ConfirmPassword">Confirm Password:</string>
     <string name="strUserRegistration_InitialState">Kentucky</string>
+    <string name="lblUserRegistration_Role">Account Type:</string>
     
     <string name="txtUserRegistration_FirstName_Hint">Enter your first name</string>
     <string name="txtUserRegistration_LastName_Hint">Enter your last name</string>
@@ -60,6 +61,11 @@
     <string name="invalid_password_length">Password must be at least four characters long.</string>
     <string name="email_taken">Email address already in use.</string>
     <string name="user_created">User created successfully!</string>
+    
+    <string-array name="roles">
+        <item>Visitor</item>
+        <item>Student</item>
+    </string-array>
     
     <!-- Account Settings Strings -->
     <string name="account_settings_label">Change Password</string>
@@ -134,7 +140,4 @@
     
     <!--  Miscellaneous strings -->
     <string name="empty_string"></string>
-    
- 
-
 </resources>

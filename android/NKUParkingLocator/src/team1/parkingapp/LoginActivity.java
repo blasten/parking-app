@@ -30,7 +30,6 @@ public class LoginActivity extends Activity
 	EditText txtEmail;
 	EditText txtPassword;
 	Button btnLogin;
-	TextView lblForgotUsername;
 	TextView lblRegister;
 	
 	protected void onCreate(Bundle savedInstanceState)
@@ -42,7 +41,6 @@ public class LoginActivity extends Activity
         txtEmail = (EditText)findViewById(R.id.txtLogin_Username);
         txtPassword = (EditText)findViewById(R.id.txtLogin_Password);
         btnLogin = (Button)findViewById(R.id.btnLogin_Login);
-        lblForgotUsername = (TextView)findViewById(R.id.lblLogin_ForgotUsername);
         lblRegister = (TextView)findViewById(R.id.lblLogin_Register);
         
         //Create an onClick for the Login Button
@@ -53,15 +51,8 @@ public class LoginActivity extends Activity
 	    		verifyLogin(v);
 	    	}
 	    } );
-        //Create an onClick for the Forgot Username label
-        lblForgotUsername.setOnClickListener(new View.OnClickListener()
-		{
-	    	public void onClick(View v)
-	    	{
-	    		forgotUsernameOrPassword();
-	    	}
-	    } );
-      //Create an onClick for the Register label
+        
+        //Create an onClick for the Register label
         lblRegister.setOnClickListener(new View.OnClickListener()
 		{
 	    	public void onClick(View v)
@@ -80,13 +71,6 @@ public class LoginActivity extends Activity
 	private void register()
 	{
 		Intent intent = new Intent(this,UserRegistrationActivity.class);
-		this.startActivityForResult(intent, 1);
-	}
-	
-	//If the Register Label is clicked then start the ForgotUsername Activity
-	private void forgotUsernameOrPassword()
-	{
-		Intent intent = new Intent(this,ForgotUsernameActivity.class);
 		this.startActivityForResult(intent, 1);
 	}
 	
@@ -156,13 +140,13 @@ public class LoginActivity extends Activity
 		return result;
 	}
 	
-    public boolean onCreateOptionsMenu(Menu menu) {
-    	if(Session.getInstance().getUser() != null)
-    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
-    	else
-    		getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//    	if(Session.getInstance().getUser() != null)
+//    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
+//    	else
+//    		getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+//    }
 
     //Get the String Text out of an edit text.
     private String getText(EditText e)

@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:columnCount="2"
-    android:rowCount="4" >
+    android:rowCount="5" >
 
-    <TextView
-		android:id="@+id/lblLogin_Username"
-        android:text="@string/lblLogin_Username"
+    <ImageView 
+        android:id="@+id/imgLogo"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_gravity="right"
-        android:textSize="@dimen/textview_FontSize"
-        android:paddingBottom="@dimen/paddingBetweenRows"
-	/>
+        android:layout_row="0"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/nku_logo_big"
+        android:layout_marginTop="5dp"
+    />
     
     <EditText
 		android:id="@+id/txtLogin_Username"
@@ -21,67 +23,61 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_gravity="fill_horizontal"
+        android:gravity="center"
         android:textSize="@dimen/textview_FontSize"
         android:inputType="text"
         android:paddingBottom="@dimen/paddingBetweenRows"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginTop="5dp"
 	/>
-    
-    <TextView
-		android:id="@+id/lblLogin_Password"
-        android:text="@string/lblLogin_Password"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="right"
-        android:textSize="@dimen/textview_FontSize"
-        android:paddingBottom="@dimen/paddingBetweenRows"
-	/>
-    
+
     <EditText
 		android:id="@+id/txtLogin_Password"
         android:hint="@string/txtLogin_Password_Hint"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_gravity="fill_horizontal"
+        android:gravity="center"
         android:textSize="@dimen/textview_FontSize"
         android:inputType="textPassword"
         android:paddingBottom="@dimen/paddingBetweenRows"
+        android:layout_row="2"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginTop="5dp"
 	/>
-    
-    <TextView
-    	android:id="@+id/lblLogin_Register"
-    	android:text="@string/lblLogin_Register"
-    	android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-    	android:layout_gravity="right"
-    	android:textSize="@dimen/textview_FontSize"
-    	android:layout_columnSpan="2"
-    	android:clickable="true"
-    	android:textColor="@color/blue"
-    	android:paddingBottom="@dimen/paddingBetweenRows"
-    />
-    
-    <TextView
-    	android:id="@+id/lblLogin_ForgotUsername"
-    	android:text="@string/lblLogin_ForgotUsername"
-    	android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-    	android:layout_gravity="right"
-    	android:textSize="@dimen/textview_FontSize"
-    	android:layout_columnSpan="2"
-    	android:clickable="true"
-    	android:textColor="@color/blue"
-    	android:paddingBottom="@dimen/paddingBetweenRows"
-    	android:visibility="invisible"
-    />
     
     <Button
     	android:id="@+id/btnLogin_Login"
     	android:text="@string/btnLogin_Login"
     	android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+    	android:layout_gravity="fill_horizontal"
+    	android:textSize="@dimen/textview_FontSize"
+    	android:layout_row="3"
+    	android:layout_column="0"
+    	android:layout_columnSpan="2"
+    	android:layout_marginTop="5dp"
+    />
+    
+    <TextView
+    	android:id="@+id/lblLogin_Register"
+    	android:text="@string/lblLogin_Register"
+    	android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
     	android:layout_gravity="center_horizontal"
     	android:textSize="@dimen/textview_FontSize"
     	android:layout_columnSpan="2"
+    	android:clickable="true"
+    	android:textColor="@color/blue"
+    	android:paddingBottom="@dimen/paddingBetweenRows"
+ 	    android:layout_row="4"
+        android:layout_column="0"
+        android:layout_marginTop="5dp"
     />
 
 </GridLayout>

@@ -61,7 +61,8 @@
         <activity
             android:name="team1.parkingapp.ParkingSpotDetailActivity"
             android:label="@string/spot_detail_label" 
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light" >
         </activity>
         
         <activity
