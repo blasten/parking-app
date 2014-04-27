@@ -15,8 +15,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -131,22 +129,6 @@ public class LoginActivity extends Activity
 		invalidateOptionsMenu();
 		super.onActivityResult(requestCode, resultCode, data);
 	}
-	
-	//Set up the menu
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		boolean result = new MainMenu(this).handleOnClick(item);
-		invalidateOptionsMenu();
-		return result;
-	}
-	
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//    	if(Session.getInstance().getUser() != null)
-//    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
-//    	else
-//    		getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
 
     //Get the String Text out of an edit text.
     private String getText(EditText e)
