@@ -1,5 +1,7 @@
 package team1.parkingapp;
 
+import team1.parkingapp.rest.RestContract;
+import team1.parkingapp.rest.Session;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -55,11 +57,17 @@ public class ForgotUsernameActivity extends Activity
 		return new MainMenu(this).handleOnClick(item);
 	}
 	
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+	  public boolean onCreateOptionsMenu(Menu menu) {
+		if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.RESERVED))
+			getMenuInflater().inflate(R.menu.main_has_reservation, menu);
+		else if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.OCCUPIED))
+			getMenuInflater().inflate(R.menu.main_is_checked_in, menu);
+		else if(Session.getInstance().getUser() != null)
+			getMenuInflater().inflate(R.menu.main_logged_in, menu);
+		else
+			getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	  }
     
     private Button getSendButton()
     {

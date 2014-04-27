@@ -10,6 +10,7 @@ package team1.parkingapp;
 import java.util.Vector;
 
 import team1.parkingapp.data.ParkingLot;
+import team1.parkingapp.rest.RestContract;
 import team1.parkingapp.rest.RestTaskFactory;
 import team1.parkingapp.rest.Session;
 import android.app.Activity;
@@ -34,6 +35,16 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 	  private static final LatLng NKU = new LatLng(39.031087, -84.466808);
 	  private static final int NUMBER_OF_PARKING_LOT_PICTURES = 7;
 	  private Vector<ParkingLot> lots;
+	  
+	  /*static final LatLng GarageOne = new LatLng(39.032266, -84.461506);
+	  static final LatLng GarageTwo = new LatLng(39.034431, -84.464019);
+	  static final LatLng GarageThree = new LatLng(39.032689, -84.468182);
+	  static final LatLng GarageFour = new LatLng(39.031514, -84.468311);
+	  static final LatLng GarageFive = new LatLng(39.030247, -84.467656);
+	  static final LatLng GarageSix = new LatLng(39.030064, -84.461187);
+	  static final LatLng GarageSeven = new LatLng(39.028388, -84.466455);
+	  static final LatLng AIM_SURPLUS = new LatLng(39.490509, -84.366419); 
+	  static final LatLng AIM_SURPLUS = new LatLng(39.490509, -84.366419);*/ 
 	  private GoogleMap map;
 	  
 	  @Override
@@ -103,12 +114,22 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 		        			txtAvailableSpot.append(Long.toString(lots.get(i).getSpotsAvailable()));
 		        		}
 		        	}
-		        
+		        	
+
 		            return v;
+
 		        }
 		    });
 	  }
 
+	  @Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		invalidateOptionsMenu();
+		
+	}
+	  
 	  @Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		invalidateOptionsMenu();
@@ -124,11 +145,15 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 	  
 	  @Override
 	  public boolean onCreateOptionsMenu(Menu menu) {
-		  if(Session.getInstance().getUser() != null)
-	    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
-	    	else
-	    		getMenuInflater().inflate(R.menu.main, menu);
-	        return true;
+		if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.RESERVED))
+			getMenuInflater().inflate(R.menu.main_has_reservation, menu);
+		else if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.OCCUPIED))
+			getMenuInflater().inflate(R.menu.main_is_checked_in, menu);
+		else if(Session.getInstance().getUser() != null)
+			getMenuInflater().inflate(R.menu.main_logged_in, menu);
+		else
+			getMenuInflater().inflate(R.menu.main, menu);
+		return true;
 	  }
 	  
 	  private int getRandomDrawable()
@@ -139,9 +164,10 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 	  }
 
 		@Override
-		public void onInfoWindowClick(Marker clicked) {
+		public void onInfoWindowClick(Marker arg0) {
 			Intent i = new Intent(this, team1.parkingapp.ParkingSpotDetailActivity.class);
-			i.putExtra("GarageTitle", clicked.getTitle());
+			i.putExtra("GarageTitle",arg0.getTitle());
 			startActivityForResult(i, 1);
+			
 		}
 }

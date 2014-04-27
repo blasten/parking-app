@@ -29,8 +29,8 @@ public class RestTaskFactory {
 	 * Creates a new user with the given email, password, first name, and lastname.
 	 * Returns the PostUserTask object that was created. This task assumes that UserRegistrationActivity is calling it.
 	 */
-	public static PostUserTask createNewUser(Context ctx, String email, String password, String firstName, String lastName) {
-		return (PostUserTask) new PostUserTask(ctx).execute(email, password, firstName, lastName);
+	public static PostUserTask createNewUser(Context ctx, String email, String password, String firstName, String lastName, String role) {
+		return (PostUserTask) new PostUserTask(ctx).execute(email, password, firstName, lastName, role);
 	}
 	
 	public static PostReservationTask makeReservation(Context ctx, String email, String password, String Spot, String status) {

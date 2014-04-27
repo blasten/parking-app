@@ -33,6 +33,7 @@ public class UserRegistrationActivity extends Activity implements OnItemSelected
 	private EditText firstName;
 	private EditText lastName;
 	Spinner spinRole;
+	String role;
 	
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +81,7 @@ public class UserRegistrationActivity extends Activity implements OnItemSelected
 		
 		if (verifyInput()) {
 			// Start the POST request
-			PostUserTask userTask = RestTaskFactory.createNewUser(this, emailAddr, pwd, fName, lName);
+			PostUserTask userTask = RestTaskFactory.createNewUser(getParent(), emailAddr, pwd, fName, lName, role);
 			
 			try {
 				User temp = userTask.get();
@@ -182,7 +183,8 @@ public class UserRegistrationActivity extends Activity implements OnItemSelected
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
-		
+		Object item = parent.getItemAtPosition(pos);
+		role = item.toString();
 	}
 
 	@Override

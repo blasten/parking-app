@@ -66,16 +66,17 @@ public class PostUserTask extends AsyncTask<String, Void, User> {
 	    HttpClient httpclient = new DefaultHttpClient();			// HTTP client used to perform the request;
 	    HttpPost httppost = new HttpPost(RestContract.USERS_API);	// HTTP POST header
 	    String[] postKeys = 										// Array of keys to be sent to the server
-	    	{RestContract.USER_EMAIL, RestContract.USER_PASSWORD, RestContract.USER_NAME, RestContract.USER_LASTNAME};
+	    	{RestContract.USER_EMAIL, RestContract.USER_PASSWORD, RestContract.USER_NAME, RestContract.USER_LASTNAME,
+	    		RestContract.USER_ROLE};
 
 	    // There should be exactly 4 parameters passed in
-	    if (params.length != 4) {
+	    if (params.length != postKeys.length) {
 	    	Log.e("POST user", "Incorrect number of parameters received.");
 	    	return null;
 	    }
 	    
 	    try {
-	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);
+	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(postKeys.length);
 	        
 	        // Add the data to the request
 	        for (int i = 0; i < postKeys.length; i++) 

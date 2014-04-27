@@ -84,6 +84,7 @@ public class PostReservationTask extends AsyncTask<String, Void, Reservation> {
 				Log.i("POST Reservation", Integer.toString(status.getStatusCode()));
 				Log.i("POST Reservation", status.getReasonPhrase());
 				ByteArrayOutputStream out = new ByteArrayOutputStream();
+				response.getEntity().writeTo(out);
 				res = this.parseResults(out.toString());
 				out.close();
 			}
@@ -115,6 +116,7 @@ public class PostReservationTask extends AsyncTask<String, Void, Reservation> {
 		try {
 			JSONObject json = new JSONObject(tokener);
 			res = Reservation.validateJSONData(json);
+			Session.getInstance().setReservation(res);
 		}
 		catch (Exception e) {
 			Log.e("POST Reservation", "Error parsing JSON objects");

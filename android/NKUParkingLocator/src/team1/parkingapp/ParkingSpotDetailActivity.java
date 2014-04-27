@@ -13,6 +13,7 @@ import java.util.Vector;
 
 import team1.parkingapp.data.ParkingLot;
 import team1.parkingapp.data.Spot;
+import team1.parkingapp.rest.RestContract;
 import team1.parkingapp.rest.RestTaskFactory;
 import team1.parkingapp.rest.Session;
 import android.app.Activity;
@@ -141,11 +142,15 @@ public class ParkingSpotDetailActivity extends Activity {
 	  
 	  @Override
 	  public boolean onCreateOptionsMenu(Menu menu) {
-		  if(Session.getInstance().getUser() != null)
-	    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
-	    	else
-	    		getMenuInflater().inflate(R.menu.main, menu);
-	        return true;
+		if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.RESERVED))
+			getMenuInflater().inflate(R.menu.main_has_reservation, menu);
+		else if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.OCCUPIED))
+			getMenuInflater().inflate(R.menu.main_is_checked_in, menu);
+		else if(Session.getInstance().getUser() != null)
+			getMenuInflater().inflate(R.menu.main_logged_in, menu);
+		else
+			getMenuInflater().inflate(R.menu.main, menu);
+		return true;
 	  }
 	  
 	  @Override

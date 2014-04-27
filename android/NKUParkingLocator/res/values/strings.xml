@@ -137,6 +137,10 @@
     <string name="menuMain_Logout">Logout</string>
     <string name="menuMain_EditUser">Change Password</string>
     <string name="logged_out">Successfully logged out</string>
+    <string name="menuMain_CheckIn">Check In</string>
+    <string name="menuMain_CheckOut">Check Out</string>
+    <string name="checked_in">Successfully Checked In</string>
+    <string name="checked_out">Successfully Checked Out</string>
     
     <!--  Miscellaneous strings -->
     <string name="empty_string"></string>
