@@ -13,12 +13,14 @@ import android.util.Log;
 
 import team1.parkingapp.rest.RestContract;
 
-public class Spot {
+public class Spot implements Comparable<Spot>{
 	private int id;				// The spot's ID
 	private int lotId;			// ID of the lot containing the spot
 	private double lat;			// Latitude of the spot
 	private double longitude;	// Longitude of the spot
 	private String status;		// Current status of the spot
+	
+
 	
 	public Spot(int id, int lotId, double lat, double longitude, String status) {
 		this.id = id;
@@ -115,5 +117,14 @@ public class Spot {
 
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
+	}
+	
+	@Override
+	public int compareTo(Spot spot2) {
+		if(this.id > spot2.id)
+			return 1;
+		else if(this.id == spot2.id)
+			return 0;
+		return -1;
 	}
 }

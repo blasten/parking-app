@@ -20,14 +20,16 @@ public class User {
 	private String name;				// User's first name
 	private String lastName;			// User's last name
 	private Reservation reservation;	// Current reservation
+	private String role;				// User's Role
 	
-	public User(int id, String email, String password, String name, String lastName) {
+	public User(int id, String email, String password, String name, String lastName, String role) {
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.name = name;
 		this.lastName = lastName;
 		this.reservation = null;
+		this.role = role;
 	}
 	
 	/*
@@ -36,7 +38,7 @@ public class User {
 	 */
 	public static User validateJSONData(JSONObject json) {
 		int id;
-		String email, password, name, lastname;
+		String email, password, name, lastname, role;
 
 		Log.i("Creating User from JSON", json.toString());
 		
@@ -74,13 +76,31 @@ public class User {
 		catch (Exception e) {
 			lastname = "";
 		}
+		try {
+			lastname = json.getString(RestContract.USER_LASTNAME);
+		}
+		catch (Exception e) {
+			lastname = "";
+		}
+		try
+		{
+			role = json.getString(RestContract.USER_ROLE);
+		}
+		catch (Exception e)
+		{
+			role = "";
+		}
 		
-		return new User(id, email, password, name, lastname);
+		return new User(id, email, password, name, lastname, role);
 	}
 
 	/*
 	 * Accessors and mutators follow.
 	 */
+	public String getRole()
+	{
+		return role;
+	}
 	public String getEmail() {
 		return email;
 	}

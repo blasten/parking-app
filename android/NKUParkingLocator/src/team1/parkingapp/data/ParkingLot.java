@@ -14,8 +14,9 @@ public class ParkingLot
 	private double lng;
 	private MarkerOptions markerOptions;
 	private LatLng latlng;
+	private String role;
 	
-	public ParkingLot(int id, String name, boolean enabled, long spotsAvailable, double lat, double lng)
+	public ParkingLot(int id, String name, boolean enabled, long spotsAvailable, double lat, double lng, String role)
 	{
 		this.id = id;
 		this.name = name;
@@ -25,8 +26,14 @@ public class ParkingLot
 		this.lng = lng;
 		this.latlng = new LatLng(this.lat, this.lng);
 		this.markerOptions = new MarkerOptions().position(this.latlng).title(this.name);
+		this.role = role;
 	}
 
+	public String getRole()
+	{
+		return this.role;
+	}
+	
 	public int getId()
 	{
 		return this.id;

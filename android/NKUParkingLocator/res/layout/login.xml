@@ -20,7 +20,7 @@
         android:hint="@string/txtLogin_Username_Hint"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_gravity="left"
+        android:layout_gravity="fill_horizontal"
         android:textSize="@dimen/textview_FontSize"
         android:inputType="text"
         android:paddingBottom="@dimen/paddingBetweenRows"
@@ -41,7 +41,7 @@
         android:hint="@string/txtLogin_Password_Hint"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_gravity="left"
+        android:layout_gravity="fill_horizontal"
         android:textSize="@dimen/textview_FontSize"
         android:inputType="textPassword"
         android:paddingBottom="@dimen/paddingBetweenRows"
@@ -71,6 +71,7 @@
     	android:clickable="true"
     	android:textColor="@color/blue"
     	android:paddingBottom="@dimen/paddingBetweenRows"
+    	android:visibility="invisible"
     />
     
     <Button

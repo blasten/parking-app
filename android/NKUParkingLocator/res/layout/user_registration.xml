@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:columnCount="2"
-    android:rowCount="14">
-    
+    android:rowCount="6"
+>
+
     <TextView
 		android:id="@+id/lblUserRegistration_Email"
         android:text="@string/lblUserRegistration_Email"
@@ -19,10 +20,10 @@
 		android:id="@+id/txtUserRegistration_Email"
         android:hint="@string/txtUserRegistration_Email_Hint"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="left"
+        android:layout_width="match_parent"
         android:textSize="@dimen/textview_FontSize"
         android:inputType="textEmailAddress"
+        android:layout_gravity="fill_horizontal"
         android:paddingBottom="@dimen/paddingBetweenRows"
 	/>
     
@@ -40,10 +41,10 @@
 		android:id="@+id/txtUserRegistration_FirstName"
         android:hint="@string/txtUserRegistration_FirstName_Hint"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="left"
+        android:layout_width="match_parent"
         android:textSize="@dimen/textview_FontSize"
         android:inputType="textEmailAddress"
+        android:layout_gravity="fill_horizontal"
         android:paddingBottom="@dimen/paddingBetweenRows"
 	/>
     
@@ -61,10 +62,10 @@
 		android:id="@+id/txtUserRegistration_LastName"
         android:hint="@string/txtUserRegistration_LastName_Hint"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="left"
+        android:layout_width="match_parent"
         android:textSize="@dimen/textview_FontSize"
         android:inputType="textEmailAddress"
+        android:layout_gravity="fill_horizontal"
         android:paddingBottom="@dimen/paddingBetweenRows"
 	/>
 
@@ -82,10 +83,10 @@
 		android:id="@+id/txtUserRegistration_Password"
         android:hint="@string/txtUserRegistration_Password_Hint"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="left"
+        android:layout_width="match_parent"
         android:textSize="@dimen/textview_FontSize"
         android:inputType="textPassword"
+        android:layout_gravity="fill_horizontal"
         android:paddingBottom="@dimen/paddingBetweenRows"
 	/>
     
@@ -103,10 +104,10 @@
 		android:id="@+id/txtUserRegistration_ConfirmPassword"
         android:hint="@string/txtUserRegistration_ConfirmPassword_Hint"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="left"
+        android:layout_width="match_parent"
         android:textSize="@dimen/textview_FontSize"
         android:inputType="textPassword"
+        android:layout_gravity="fill_horizontal"
         android:paddingBottom="@dimen/paddingBetweenRows"
 	/>
     

@@ -19,6 +19,7 @@
 package team1.parkingapp.rest;
 
 import java.util.Vector;
+import java.util.concurrent.ExecutionException;
 
 import team1.parkingapp.data.Spot;
 
@@ -35,6 +36,10 @@ public class RestTaskFactory {
 		return (PostUserTask) new PostUserTask(ctx).execute(email, password, firstName, lastName);
 	}
 	
+	public static PostReservationTask makeReservation(Context ctx, String email, String password, String Spot, String status) {
+		return (PostReservationTask) new PostReservationTask(ctx).execute(email, password, Spot, status);
+	}
+	
 	/*
 	 * Gets a spot based on its ID.
 	 */
@@ -49,18 +54,17 @@ public class RestTaskFactory {
 		return (GetSpotsTask) new GetSpotsTask(ctx).execute(lat1, long1, lat2, long2);
 	}
 	
+	
 	/*
 	 * Gets all spots that are in the lot specified by lotId.
 	 */
 	public static Vector<Spot> getSpotsByLot(Context ctx, int lotId) {
-		GetSpotsTask getSpots = (GetSpotsTask) new GetSpotsTask(ctx).execute(RestContract.MIN_LAT, RestContract.MIN_LNG,
-				RestContract.MAX_LAT, RestContract.MAX_LNG);
-		try {
-			Vector<Spot> spots = getSpots.get();
-			return GetSpotsTask.filterSpotsByLotId(spots, lotId);
+		try
+		{
+			return ((GetSpotsTask) new GetSpotsTask(ctx)).execute(Integer.toString(lotId), "extra").get();
 		}
-		catch (Exception e) {
-			Log.e("Get Spots By Lot ID", "Error getting spots");
+		catch(Exception e)
+		{
 			return null;
 		}
 	}
@@ -68,8 +72,8 @@ public class RestTaskFactory {
 	/*
 	 * Get all parking lots
 	 */
-	public static GetLotTask getParkingLots(Context ctx) {
-		return (GetLotTask) new GetLotTask(ctx).execute();
+	public static GetLotTask getParkingLots(Context ctx, String role) {
+		return (GetLotTask) new GetLotTask(ctx).execute(role);
 	}
 	
 	/*

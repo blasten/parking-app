@@ -1,4 +1,5 @@
 
 <resources>
     <dimen name="textview_FontSize">16sp</dimen>
+    <dimen name="textview_FontSize_Small">10sp</dimen>
 </resources>

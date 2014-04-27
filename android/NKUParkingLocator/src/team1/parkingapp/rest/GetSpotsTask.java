@@ -7,11 +7,10 @@
  */
 package team1.parkingapp.rest;
 
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
+import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
+
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -22,7 +21,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
 import team1.parkingapp.data.Spot;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
 
 public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 	private ProgressDialog progress;	// ProgressDialog letting the user know the app is working on their request
@@ -64,13 +68,24 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 			if (params.length == 1 || params.length == 4) {
 				getParams = buildGetParameterString(params);
 			}
+			else if(params.length == 2)
+				//Do nothing, handle later
+				;
 			else {
 				Log.e("GET spots", "Wrong number of arguments.");
 				return null;
 			}
-
+			
+			if(params.length == 2)
+			{
+				httpGet = new HttpGet(RestContract.LOTS_API + params[0] + "/" + "spots");				
+			}
+			else
+			{
+				httpGet = new HttpGet(RestContract.SPOTS_API + getParams);
+			}
+			
 	        // Execute HTTP Get request & get the response
-			httpGet = new HttpGet(RestContract.SPOTS_API + getParams);
 	        HttpResponse response = httpclient.execute(httpGet);
 	        
 	        Log.i("GET Spots URL", RestContract.SPOTS_API + getParams);
@@ -144,7 +159,7 @@ public class GetSpotsTask extends AsyncTask<String, Void, Vector<Spot> > {
 			Log.e("GET Spots", "Error parsing JSON objects");
 			return null;
 		}
-		
+		Collections.sort(spots);
 		return spots;
 	}
 	

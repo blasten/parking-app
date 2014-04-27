@@ -13,6 +13,7 @@ import java.util.Vector;
 
 import team1.parkingapp.data.ParkingLot;
 import team1.parkingapp.data.Spot;
+import team1.parkingapp.rest.RestContract;
 import team1.parkingapp.rest.RestTaskFactory;
 import team1.parkingapp.rest.Session;
 import android.app.Activity;
@@ -36,6 +37,7 @@ public class ParkingSpotDetailActivity extends Activity {
 		  super.onCreate(savedInstanceState);
 		    setContentView(R.layout.parking_spot_detail);
 		    int intLotID;
+		    
 		    // update the title
 		    String TitleScreen = getIntent().getExtras().getString("GarageTitle");
   	      	TextView txtTitle = (TextView) findViewById(R.id.txtTitle);
@@ -80,16 +82,30 @@ public class ParkingSpotDetailActivity extends Activity {
 			  // Is the spot occupied?
 			  if(spots.get(i).getStatus().equals("AVAILABLE") )
 			  {
-				  star = (ImageView) findViewById(getResources().getIdentifier("spot" + (i + 1), "id", "team1.parkingapp"));
+				  star = (ImageView) findViewById(getResources().getIdentifier("spot" + (i + 1) , "id", "team1.parkingapp"));
 				  star.setVisibility(star.VISIBLE);
+				  
+				  // Store spot information so that we may reserve the spot later if needed.
+				  star.setTag(spots.get(i));
+				  
 				  star.setClickable(true);
 				  star.setOnClickListener(new View.OnClickListener() {
 
 					@Override
 					public void onClick(View v) {
 						ImageView star = (ImageView) v;
-						Toast.makeText(ParkingSpotDetailActivity.this,"You clicked a star for spot " + star.getTag(),Toast.LENGTH_LONG).show();
-						ReserveSpot();
+						Spot spot = (Spot) star.getTag(); 
+						
+						Toast.makeText(ParkingSpotDetailActivity.this,"You clicked a star for spot " + spot.getId(),Toast.LENGTH_LONG).show();
+						
+					    ReserveSpot((Integer) spot.getId());
+					    
+					    // Update star
+					    star.setVisibility(star.INVISIBLE);
+						
+					    //Navigate To the spot...
+						navigate(spot.getLat(), spot.getLongitude());
+
 					}
 					  
 				  });
@@ -99,11 +115,15 @@ public class ParkingSpotDetailActivity extends Activity {
 			    
 	 }
 		  
-	  public void ReserveSpot()
+	  public void ReserveSpot(int spotID )
 	  {
-	  
+		  String SpotID = Integer.toString(spotID);
+		  String User = Session.getInstance().getUser().getEmail();
+		  String Password = Session.getInstance().getUser().getPassword();
+		  RestTaskFactory.makeReservation(this,User,Password, SpotID,"RESERVED");
 	  }
 	  
+
 	  public int getLotID(String strTitle)
 	  {
 		  	int intLotID = 0;
@@ -135,56 +155,24 @@ public class ParkingSpotDetailActivity extends Activity {
 	  }
 	  
 	  @Override
-		protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-			invalidateOptionsMenu();
-			super.onActivityResult(requestCode, resultCode, data);
-		}
+	  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		 invalidateOptionsMenu();
+		 super.onActivityResult(requestCode, resultCode, data);
+	  }
 	  
 	  private void navigate(double Latitude, double Longitude)
 	  {
 		  LocationManager sensorManager = ((LocationManager)getSystemService(Context.LOCATION_SERVICE));
 		  Location location = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		  while( location == null )
+		  {
+			  location = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		  }
 		  String googleMapsIntent = "http://maps.google.com/maps?saddr=" + location.getLatitude() + "," + location.getLongitude() + "&daddr=" + Latitude + "," + Longitude;
 		  Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(googleMapsIntent));
 		  startActivityForResult(i, 1);
 	  }
 	  
-	  
-	  /* We may have to use this if the spot process takes to long so im saving this here for now.. 
-	     If we find we don't need it we can always just take it out... 
-	  private class UpdateTitle extends AsyncTask<Void, String, Void>  {
-		  // Update UI here
-		  @Override
-		  protected void onProgressUpdate(String... values) {
-	  	      	TextView txtTitle = (TextView) findViewById(R.id.txtTitle);
-	  	      	txtTitle.setText( values[0]);   
-	  	      	// Force view to update...
-	  	      	//txtTitle.invalidate();
-
-		  }
-
-		  // Get data here... 
-		  @Override
-		  protected Void doInBackground(Void... params) {
-			  // Pull out the extra information passed through the intent 
-		  	  String TitleScreen = getIntent().getExtras().getString("GarageTitle");
-		  	  publishProgress( TitleScreen);
-		  	  return null;
-		  }
-		  @Override
-		  protected void onPostExecute(Void result) {
-		    // TODO Auto-generated method stub
-		    super.onPostExecute(result);
-		  }
-
-		  @Override
-		  protected void onPreExecute() {
-		    // TODO Auto-generated method stub
-		    super.onPreExecute();
-		  }
-
-		
-		 }*/
 }
 
 

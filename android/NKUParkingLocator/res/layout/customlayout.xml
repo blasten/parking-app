@@ -1,31 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-  	tools:context=".MainActivity" >
+    tools:context=".MainActivity" >
 
-	       <ImageView
-	           android:id="@+id/parkinglotphoto"
-	           android:layout_width="200px"
-	           android:layout_height="100px"
-	           android:layout_alignBottom="@+id/txtDetail1"
-	           android:src="@drawable/parkinglot2" />
-	       
-        <TextView
-        	android:id="@+id/txtdetail2"
-    	    android:layout_width="wrap_content"
-   		    android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/parkinglotphoto"
-            android:text="Number of Total Spots: 55" />
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Garage Title" />
 
-        <TextView
-            android:id="@+id/txtdetail1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/txtdetail2"
-            android:layout_alignRight="@+id/txtdetail2"
-            android:layout_below="@+id/txtdetail2"
-            android:text="Number of Avaliable Spots: 22" />
-   
+    <ImageView
+        android:id="@+id/parkinglotphoto"
+        android:layout_width="200px"
+        android:layout_height="100px"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/txtTitle"
+        android:src="@drawable/parkinglot2" />
+
+    <TextView
+        android:id="@+id/txtdetail2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/parkinglotphoto"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/parkinglotphoto"
+        android:text="Number of Total Spots: 36" />
+
+    <TextView
+        android:id="@+id/txtAvailableSpot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtdetail2"
+        android:layout_toRightOf="@+id/parkinglotphoto"
+        android:text="Number of Avaliable Spots: " />
+
 </RelativeLayout>
