@@ -14,6 +14,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Role</th>
+      <th width="20"></th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,9 @@
       <td> <%= link_to user.name, user_path(user) %> </td>
       <td> <%= link_to user.email, user_path(user) %> </td>
       <td> <%= user.role_to_s%> </td>
+      <td> 
+        <a class="btn btn-default" href="<%= edit_user_path(user) %>"><i class="fa fa-pencil-square-o"></i> </a>
+      </td>
     </tr>  
   <% end %>
   </tbody>
