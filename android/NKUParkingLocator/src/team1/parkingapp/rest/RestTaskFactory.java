@@ -35,6 +35,10 @@ public class RestTaskFactory {
 		return (PostUserTask) new PostUserTask(ctx).execute(email, password, firstName, lastName);
 	}
 	
+	public static PostReservationTask makeReservation(Context ctx, String email, String password, String Spot, String status) {
+		return (PostReservationTask) new PostReservationTask(ctx).execute(email, password, Spot, status);
+	}
+	
 	/*
 	 * Gets a spot based on its ID.
 	 */
