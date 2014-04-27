@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import android.widget.Toast;
 
 public class ParkingSpotDetailActivity extends Activity {
 	
+	 private Location CurrentLocation; 
 	  @Override
 	  protected void onCreate(Bundle savedInstanceState) { 
 		  super.onCreate(savedInstanceState);
@@ -49,15 +51,8 @@ public class ParkingSpotDetailActivity extends Activity {
   	      	// Get the lot ID
   	        intLotID = getLotID(TitleScreen);
   	        
-  	        //navigate(39.032266, -84.461506);
-  	      	
   	      	// Display the spots for this lot The Rest API is not currently returning the spots so this does not wok atm
   	      	DisplaySpots(intLotID);
-  	      	
-  	      	 
-  	      	// May need to use this later if the spot updating process takes to long 
-  	      	// and the app times out so please leave this here...
-		    //new UpdateTitle().execute();
 		    
 	  }
 	  
@@ -163,12 +158,28 @@ public class ParkingSpotDetailActivity extends Activity {
 	  private void navigate(double Latitude, double Longitude)
 	  {
 		  LocationManager sensorManager = ((LocationManager)getSystemService(Context.LOCATION_SERVICE));
-		  Location location = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-		  while( location == null )
+		  CurrentLocation = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		  
+		  // Set up the location Listener...
+		  LocationListener locationListener = new LocationListener() {
+			     public void onLocationChanged(Location location) {
+			    	 CurrentLocation= location;
+				  }
+
+				  public void onProviderDisabled(String provider){}
+				  public void onProviderEnabled(String provider) {}
+				  public void onStatusChanged(String provider, int status, Bundle extras) {}
+		  };
+		  
+		  sensorManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100, 1, locationListener );
+		  
+		  // Wait till you get a location..
+		  while( CurrentLocation == null )
 		  {
-			  location = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+			  CurrentLocation = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		  }
-		  String googleMapsIntent = "http://maps.google.com/maps?saddr=" + location.getLatitude() + "," + location.getLongitude() + "&daddr=" + Latitude + "," + Longitude;
+		  
+		  String googleMapsIntent = "http://maps.google.com/maps?saddr=" + CurrentLocation.getLatitude() + "," + CurrentLocation.getLongitude() + "&daddr=" + Latitude + "," + Longitude;
 		  Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(googleMapsIntent));
 		  startActivityForResult(i, 1);
 	  }
