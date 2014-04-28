@@ -47,7 +47,7 @@ class LotsController < ApplicationController
     @show_status = params[:status] || 0
     @spots = (@show_status.to_i == 0) ? @lot.spots : Spot.where('lot_id = ? and status = ?', params[:id], params[:status]);
     @total_spots = Spot.count(:all, :conditions => ['lot_id = ?', params[:id]])
-    @available_spots = 100 * 
+    @available_spots = @total_spots == 0 ? 0 : 100 * 
     Spot.count(:all, :conditions => ['lot_id = ? and status = ?', params[:id], Spot::STATUS['AVAILABLE']]) / @total_spots
 
   end
