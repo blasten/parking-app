@@ -118,7 +118,8 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 				ParkingLot temp = validateData(obj);
 				if( (temp.getRole() == "student" && role.toLowerCase().contains("student")) ||
 					(temp.getRole() == "faculty" && role.toLowerCase().contains("staff")) ||
-					temp.getRole() == "visitor" || temp.getRole() == "All")
+					(temp.getRole() == "visitor" && role.toLowerCase().contains("visitor")) ||
+					 temp.getRole() == "All")
 				{
 					v.add(temp);
 				}

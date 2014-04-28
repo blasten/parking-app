@@ -144,4 +144,5 @@
     
     <!--  Miscellaneous strings -->
     <string name="empty_string"></string>
+    <string name="parkingDetailAvailable"> = Available Spot</string>
 </resources>
