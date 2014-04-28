@@ -9,15 +9,12 @@ package team1.parkingapp;
 
 import java.util.concurrent.TimeUnit;
 
-import team1.parkingapp.rest.RestContract;
 import team1.parkingapp.rest.RestTaskFactory;
 import team1.parkingapp.rest.Session;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +23,6 @@ import android.widget.Toast;
 
 public class LoginActivity extends Activity
 {
-	
 	//Set references to the different views.
 	EditText txtEmail;
 	EditText txtPassword;
@@ -133,25 +129,26 @@ public class LoginActivity extends Activity
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 	
-	//Set up the menu
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		boolean result = new MainMenu(this).handleOnClick(item);
-		invalidateOptionsMenu();
-		return result;
-	}
+//	//Set up the menu
+//	public boolean onOptionsItemSelected(MenuItem item)
+//	{
+//		boolean result = new MainMenu(this).handleOnClick(item);
+//		invalidateOptionsMenu();
+//		return result;
+//	}
+//	
+//	  public boolean onCreateOptionsMenu(Menu menu) {
+//		if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.RESERVED))
+//			getMenuInflater().inflate(R.menu.main_has_reservation, menu);
+//		else if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.OCCUPIED))
+//			getMenuInflater().inflate(R.menu.main_is_checked_in, menu);
+//		else if(Session.getInstance().getUser() != null)
+//			getMenuInflater().inflate(R.menu.main_logged_in, menu);
+//		else
+//			getMenuInflater().inflate(R.menu.main, menu);
+//		return true;
+//	  }
 	
-	  public boolean onCreateOptionsMenu(Menu menu) {
-		if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.RESERVED))
-			getMenuInflater().inflate(R.menu.main_has_reservation, menu);
-		else if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.OCCUPIED))
-			getMenuInflater().inflate(R.menu.main_is_checked_in, menu);
-		else if(Session.getInstance().getUser() != null)
-			getMenuInflater().inflate(R.menu.main_logged_in, menu);
-		else
-			getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	  }
     //Get the String Text out of an edit text.
     private String getText(EditText e)
     {

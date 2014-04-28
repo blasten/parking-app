@@ -35,15 +35,6 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 	  private static final LatLng NKU = new LatLng(39.031087, -84.466808);
 	  private static final int NUMBER_OF_PARKING_LOT_PICTURES = 7;
 	  private Vector<ParkingLot> lots;
-	  /*static final LatLng GarageOne = new LatLng(39.032266, -84.461506);
-	  static final LatLng GarageTwo = new LatLng(39.034431, -84.464019);
-	  static final LatLng GarageThree = new LatLng(39.032689, -84.468182);
-	  static final LatLng GarageFour = new LatLng(39.031514, -84.468311);
-	  static final LatLng GarageFive = new LatLng(39.030247, -84.467656);
-	  static final LatLng GarageSix = new LatLng(39.030064, -84.461187);
-	  static final LatLng GarageSeven = new LatLng(39.028388, -84.466455);
-	  static final LatLng AIM_SURPLUS = new LatLng(39.490509, -84.366419); 
-	  static final LatLng AIM_SURPLUS = new LatLng(39.490509, -84.366419);*/ 
 	  private GoogleMap map;
 	  
 	  @Override
@@ -115,7 +106,6 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 		        	}
 		        	
 		            return v;
-
 		        }
 		    });
 	  }
@@ -242,10 +232,16 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 		        	}
 		        	
 		            return v;
-	
 		        }
 		    });
-      
+	  }
 	  
+	  /*
+	   * When the user presses the back button, it should log them out.
+	   */
+	  @Override
+	  public void onBackPressed() {
+		  Session.getInstance().setUser(null);
+		  this.finish();
 	  }
 }

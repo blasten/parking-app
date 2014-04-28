@@ -25,7 +25,7 @@
         android:layout_gravity="fill_horizontal"
         android:gravity="center"
         android:textSize="@dimen/textview_FontSize"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:paddingBottom="@dimen/paddingBetweenRows"
         android:layout_row="1"
         android:layout_column="0"

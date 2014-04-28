@@ -59,11 +59,9 @@ public class GetUserTask extends AsyncTask<String, String, String> {
 	 */
 	@Override
 	protected String doInBackground(String... params)
-	{
-		    // Create a new HttpClient and Post Header
-		
-		
-		HttpClient httpclient = new DefaultHttpClient();
+	{	
+		User user = null;
+		HttpClient httpclient = new DefaultHttpClient(); // Create a new HttpClient and Post Header
         UsernamePasswordCredentials creds = new UsernamePasswordCredentials(params[0], params[1]);
         ((AbstractHttpClient) httpclient).getCredentialsProvider().setCredentials(new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), creds);
 			
@@ -81,7 +79,7 @@ public class GetUserTask extends AsyncTask<String, String, String> {
 		        	//Log.i("GET User", status.getReasonPhrase());
 		        	ByteArrayOutputStream out = new ByteArrayOutputStream();
 	                response.getEntity().writeTo(out);
-	                Session.getInstance().setUser(parseResults(out.toString()));
+	                user = this.parseResults(out.toString());
 		        	out.close();
 		        }
 
@@ -90,6 +88,8 @@ public class GetUserTask extends AsyncTask<String, String, String> {
 		    	Log.e("GET User", e.getMessage());
 		    }
 		    
+		    if (user != null)
+		    	Session.getInstance().setUser(user);
 		    
 		    return null;
 	}

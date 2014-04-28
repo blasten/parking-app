@@ -10,14 +10,12 @@ package team1.parkingapp;
 
 import team1.parkingapp.data.User;
 import team1.parkingapp.rest.PostUserTask;
+import team1.parkingapp.rest.RestContract;
 import team1.parkingapp.rest.RestTaskFactory;
-import team1.parkingapp.rest.Session;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,13 +25,13 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class UserRegistrationActivity extends Activity implements OnItemSelectedListener {
-	private EditText email;			
-	private EditText password;		
-	private EditText confirmPwd;
-	private EditText firstName;
-	private EditText lastName;
-	Spinner spinRole;
-	String role;
+	private EditText email;						// Contains the user's email
+	private EditText password;					// Contains the user's password
+	private EditText confirmPwd;				// Contains the user's confirmed password
+	private EditText firstName;					// Contains the user's first name
+	private EditText lastName;					// Contains the user's last name
+	Spinner spinRole;							// Role dropdown (Visitor/Student)
+	String role = RestContract.ROLE_VISITOR;	// The user's role
 	
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,21 +52,6 @@ public class UserRegistrationActivity extends Activity implements OnItemSelected
      	spinRole.setOnItemSelectedListener(this);
 	}
 	
-	public boolean onCreateOptionsMenu(Menu menu) {
-		if(Session.getInstance().getUser() != null)
-    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
-    	else
-    		getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		boolean result = new MainMenu(this).handleOnClick(item);
-		invalidateOptionsMenu();
-		return result;
-	}
-	
 	/*
 	 * This is the onClick() listener for the confirm button.
 	 * If the user entered valid data then submit the user creation request.
@@ -81,7 +64,7 @@ public class UserRegistrationActivity extends Activity implements OnItemSelected
 		
 		if (verifyInput()) {
 			// Start the POST request
-			PostUserTask userTask = RestTaskFactory.createNewUser(getParent(), emailAddr, pwd, fName, lName, role);
+			PostUserTask userTask = RestTaskFactory.createNewUser(this, emailAddr, pwd, fName, lName, role);
 			
 			try {
 				User temp = userTask.get();
@@ -180,13 +163,24 @@ public class UserRegistrationActivity extends Activity implements OnItemSelected
 		});
 	}
 	
+	/*
+	 * Fired when the user selects a role from the role dropdown.
+	 * Sets the class attribute for role to either visitor or student.
+	 */
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
-		Object item = parent.getItemAtPosition(pos);
-		role = item.toString();
+		this.role = parent.getItemAtPosition(pos).toString();
+		
+		if (role.equalsIgnoreCase(RestContract.ROLE_VISITOR))
+			this.role = RestContract.ROLE_VISITOR;
+		else
+			this.role = RestContract.ROLE_STUDENT;
 	}
 
+	/*
+	 * Not used.
+	 */
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
 
