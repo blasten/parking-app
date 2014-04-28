@@ -102,15 +102,15 @@ public class ParkingSpotDetailActivity extends Activity {
   	        	if(spots.get(i).getStatus().equals(RestContract.AVAILABLE) && 
   	        			Session.getInstance().getReservation() == null)
   	        	{
-  	        		
-  	        		final int spotID = spots.get(i).getId();
-  	        		final double Latitude = currentParkingLot.getLat();
-  	        		final double Longitude = currentParkingLot.getLng();
 	  	        	psv.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
-								ReserveSpot(spotID);
-								navigate(Latitude, Longitude);
+							ParkingSpotView spotView = (ParkingSpotView)v;
+							
+							if(spotView.isAvail()){
+								ReserveSpot(spotView.getSpotID());
+								navigate(spotView.getLatitude(), spotView.getLongitude());
+							}
 						}
 					});
   	        	}

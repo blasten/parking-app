@@ -105,6 +105,21 @@ public class ParkingSpotView extends View implements OnClickListener
 		parent.startActivityForResult(i, 1);
 	}
 	
-	
+	public boolean isAvail()
+	{
+		return isAvail;
+	}
+	public double getLatitude()
+	{
+		return Latitude;
+	}
+	public double getLongitude()
+	{
+		return Longitude;
+	}
+	public int getSpotID()
+	{
+		return spotID;
+	}
 	
 }
