@@ -9,8 +9,8 @@
     <string name="login_label">Login</string>
     <string name="lblLogin_Username">Username:</string>
     <string name="lblLogin_Password">Password:</string>
-    <string name="txtLogin_Username_Hint">Enter your Username</string>
-    <string name="txtLogin_Password_Hint">Enter your Password</string>
+    <string name="txtLogin_Username_Hint">Enter your email address</string>
+    <string name="txtLogin_Password_Hint">Enter your password</string>
     <string name="btnLogin_Login">Login</string>
     <string name="lblLogin_ForgotUsername">I Forgot My Username or Password</string>
     <string name="lblLogin_Register">New user? Register an account</string>
