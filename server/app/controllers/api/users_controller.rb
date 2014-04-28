@@ -46,7 +46,10 @@ class Api::UsersController < ApplicationController
     user = @authenticated_user
 
     params = user_params
-    params["role"] = User::get_role(params["role"])
+
+    if params["role"].present?
+      params["role"] = User::get_role(params["role"])
+    end
 
     if user.update(params)
       render(:json => user.to_hash)
