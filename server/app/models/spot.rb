@@ -91,7 +91,7 @@ class Spot < ActiveRecord::Base
     end
 
     def remove_reservations
-      reservations = Reservation.find_by_spot_id(self.attributes["spot_id"])
+      reservations = Reservation.find_by_spot_id(self.attributes["id"])
       reservations.destroy unless reservations.nil?
     end
 end
