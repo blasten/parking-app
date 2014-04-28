@@ -20,6 +20,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,10 +29,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ParkingSpotDetailActivity extends Activity {
 	
+	 private Location CurrentLocation; 
 	  @Override
 	  protected void onCreate(Bundle savedInstanceState) { 
 		  super.onCreate(savedInstanceState);
@@ -49,15 +50,8 @@ public class ParkingSpotDetailActivity extends Activity {
   	      	// Get the lot ID
   	        intLotID = getLotID(TitleScreen);
   	        
-  	        //navigate(39.032266, -84.461506);
-  	      	
   	      	// Display the spots for this lot The Rest API is not currently returning the spots so this does not wok atm
   	      	DisplaySpots(intLotID);
-  	      	
-  	      	 
-  	      	// May need to use this later if the spot updating process takes to long 
-  	      	// and the app times out so please leave this here...
-		    //new UpdateTitle().execute();
 		    
 	  }
 	  
@@ -68,7 +62,7 @@ public class ParkingSpotDetailActivity extends Activity {
 		  for(int i = 1; i <= 36; i++)
 		  {
 			  star = (ImageView) findViewById(getResources().getIdentifier("spot" + i, "id", "team1.parkingapp"));
-			  star.setVisibility(star.INVISIBLE);
+			  star.setVisibility(ImageView.INVISIBLE);
 		  }
 	  }
 	  
@@ -83,7 +77,7 @@ public class ParkingSpotDetailActivity extends Activity {
 			  if(spots.get(i).getStatus().equals("AVAILABLE") )
 			  {
 				  star = (ImageView) findViewById(getResources().getIdentifier("spot" + (i + 1) , "id", "team1.parkingapp"));
-				  star.setVisibility(star.VISIBLE);
+				  star.setVisibility(ImageView.VISIBLE);
 				  
 				  // Store spot information so that we may reserve the spot later if needed.
 				  star.setTag(spots.get(i));
@@ -96,12 +90,10 @@ public class ParkingSpotDetailActivity extends Activity {
 						ImageView star = (ImageView) v;
 						Spot spot = (Spot) star.getTag(); 
 						
-						Toast.makeText(ParkingSpotDetailActivity.this,"You clicked a star for spot " + spot.getId(),Toast.LENGTH_LONG).show();
-						
 					    ReserveSpot((Integer) spot.getId());
 					    
 					    // Update star
-					    star.setVisibility(star.INVISIBLE);
+					    star.setVisibility(ImageView.INVISIBLE);
 						
 					    //Navigate To the spot...
 						navigate(spot.getLat(), spot.getLongitude());
@@ -147,11 +139,15 @@ public class ParkingSpotDetailActivity extends Activity {
 	  
 	  @Override
 	  public boolean onCreateOptionsMenu(Menu menu) {
-		  if(Session.getInstance().getUser() != null)
-	    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
-	    	else
-	    		getMenuInflater().inflate(R.menu.main, menu);
-	        return true;
+		if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.RESERVED))
+			getMenuInflater().inflate(R.menu.main_has_reservation, menu);
+		else if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.OCCUPIED))
+			getMenuInflater().inflate(R.menu.main_is_checked_in, menu);
+		else if(Session.getInstance().getUser() != null)
+			getMenuInflater().inflate(R.menu.main_logged_in, menu);
+		else
+			getMenuInflater().inflate(R.menu.main, menu);
+		return true;
 	  }
 	  
 	  @Override
@@ -163,15 +159,32 @@ public class ParkingSpotDetailActivity extends Activity {
 	  private void navigate(double Latitude, double Longitude)
 	  {
 		  LocationManager sensorManager = ((LocationManager)getSystemService(Context.LOCATION_SERVICE));
-		  Location location = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-		  while( location == null )
+		  CurrentLocation = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		  
+		  // Set up the location Listener...
+		  LocationListener locationListener = new LocationListener() {
+			     public void onLocationChanged(Location location) {
+			    	 CurrentLocation= location;
+				  }
+
+				  public void onProviderDisabled(String provider){}
+				  public void onProviderEnabled(String provider) {}
+				  public void onStatusChanged(String provider, int status, Bundle extras) {}
+		  };
+		  
+		  sensorManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100, 1, locationListener );
+		  
+		  // Wait till you get a location..
+		  while( CurrentLocation == null )
 		  {
-			  location = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+			  CurrentLocation = sensorManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		  }
-		  String googleMapsIntent = "http://maps.google.com/maps?saddr=" + location.getLatitude() + "," + location.getLongitude() + "&daddr=" + Latitude + "," + Longitude;
+		  
+		  String googleMapsIntent = "http://maps.google.com/maps?saddr=" + CurrentLocation.getLatitude() + "," + CurrentLocation.getLongitude() + "&daddr=" + Latitude + "," + Longitude;
 		  Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(googleMapsIntent));
 		  startActivityForResult(i, 1);
 	  }
+	  
 	  
 }
 

@@ -35,16 +35,6 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 	  private static final LatLng NKU = new LatLng(39.031087, -84.466808);
 	  private static final int NUMBER_OF_PARKING_LOT_PICTURES = 7;
 	  private Vector<ParkingLot> lots;
-	  
-	  /*static final LatLng GarageOne = new LatLng(39.032266, -84.461506);
-	  static final LatLng GarageTwo = new LatLng(39.034431, -84.464019);
-	  static final LatLng GarageThree = new LatLng(39.032689, -84.468182);
-	  static final LatLng GarageFour = new LatLng(39.031514, -84.468311);
-	  static final LatLng GarageFive = new LatLng(39.030247, -84.467656);
-	  static final LatLng GarageSix = new LatLng(39.030064, -84.461187);
-	  static final LatLng GarageSeven = new LatLng(39.028388, -84.466455);
-	  static final LatLng AIM_SURPLUS = new LatLng(39.490509, -84.366419); 
-	  static final LatLng AIM_SURPLUS = new LatLng(39.490509, -84.366419);*/ 
 	  private GoogleMap map;
 	  
 	  @Override
@@ -115,13 +105,19 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 		        		}
 		        	}
 		        	
-
 		            return v;
-
 		        }
 		    });
 	  }
 
+	  @Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		invalidateOptionsMenu();
+		
+	}
+	  
 	  @Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		invalidateOptionsMenu();
@@ -137,11 +133,15 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 	  
 	  @Override
 	  public boolean onCreateOptionsMenu(Menu menu) {
-		  if(Session.getInstance().getUser() != null)
-	    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
-	    	else
-	    		getMenuInflater().inflate(R.menu.main, menu);
-	        return true;
+		if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.RESERVED))
+			getMenuInflater().inflate(R.menu.main_has_reservation, menu);
+		else if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.OCCUPIED))
+			getMenuInflater().inflate(R.menu.main_is_checked_in, menu);
+		else if(Session.getInstance().getUser() != null)
+			getMenuInflater().inflate(R.menu.main_logged_in, menu);
+		else
+			getMenuInflater().inflate(R.menu.main, menu);
+		return true;
 	  }
 	  
 	  private int getRandomDrawable()
@@ -151,11 +151,97 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 		  return res;
 	  }
 
-		@Override
-		public void onInfoWindowClick(Marker arg0) {
-			Intent i = new Intent(this, team1.parkingapp.ParkingSpotDetailActivity.class);
-			i.putExtra("GarageTitle",arg0.getTitle());
-			startActivityForResult(i, 1);
+	 @Override
+	 public void onInfoWindowClick(Marker arg0) {
+		 Intent i = new Intent(this, team1.parkingapp.ParkingSpotDetailActivity.class);
+		 i.putExtra("GarageTitle",arg0.getTitle());
+		
+		 startActivityForResult(i, 1);
+		
+	 }
+		
+	  
+	  @Override
+	  public void onRestart() { 
+		  
+		  	super.onRestart();
+		  	
+			// Clear the map and reload everything updated when the back button is pressed. 
+			map.clear();
 			
-		}
+		    try
+		    {
+		    	RestTaskFactory.getParkingLots(this, Session.getInstance().getUser().getRole()).get();
+		    }
+		    catch(Exception e)
+		    {
+		    	new AlertDialog.Builder(this)
+					.setTitle("Parking App")
+					.setMessage("Could not connect to the network.  Application will now close.\nPlease try again.")
+					.setNeutralButton("OK", null)
+					.show();
+		    	finish();
+		    }
+		    // Refresh lot information to display possible reserved lot..
+		    lots = Session.getInstance().getParkingLots();
+		    
+		    for(int i = 0 ; i < lots.size() ; ++i)
+		    {
+		    	map.addMarker(lots.get(i).getMarkerOptions());
+		    }
+			
+		    
+		    // Move the camera instantly to NKU with a zoom of 16.
+		    map.moveCamera(CameraUpdateFactory.newLatLngZoom(NKU, 16));
+		    
+		    // Set the custom info screen listener 
+		    map.setOnInfoWindowClickListener(this);
+		    
+		    // Custom reset Marker Window... 
+		    map.setInfoWindowAdapter(new InfoWindowAdapter() {
+	
+		    	// Do nothing here.. 
+		        @Override
+		        public View getInfoWindow(Marker arg0) {
+		            return null;
+		        }
+	
+		        @Override
+		        public View getInfoContents(Marker arg0) {
+		        	View v = getLayoutInflater().inflate(R.layout.customlayout, null);
+		        	TextView txtTitle = (TextView) v.findViewById(R.id.txtTitle);
+		        	TextView txtAvailableSpot = (TextView) v.findViewById(R.id.txtAvailableSpot);
+		    
+		        	// Set the title
+		        	txtTitle.setText(arg0.getTitle());
+		        	
+		        	// Set the Image
+		        	ImageView image = (ImageView) v.findViewById(R.id.parkinglotphoto);
+		        	for(int i = 0 ; i < lots.size() ; ++i)
+		        	{
+		        		if(arg0.getTitle().equals(lots.get(i).getName()))
+		        		{
+		        			// If we have a picture for it use it.
+		        			if( i < NUMBER_OF_PARKING_LOT_PICTURES ) image.setImageResource(  getResources().getIdentifier("parkinglot" + (i + 1) , "drawable", "team1.parkingapp"));
+		        			//If not get a random one
+		        			else image.setImageResource( getRandomDrawable());
+		        			
+		        			// Set the number of available spots
+		        			txtAvailableSpot.append(Long.toString(lots.get(i).getSpotsAvailable()));
+		        		}
+		        	}
+		        	
+		            return v;
+		        }
+		    });
+	  }
+	  
+	  /*
+	   * When the user presses the back button, it should log them out.
+	   */
+	  @Override
+	  public void onBackPressed() {
+		  Session.getInstance().setUser(null);
+		  this.finish();
+	  }
 }

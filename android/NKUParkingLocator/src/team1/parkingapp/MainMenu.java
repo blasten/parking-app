@@ -7,6 +7,8 @@
 
 package team1.parkingapp;
 
+import team1.parkingapp.rest.RestContract;
+import team1.parkingapp.rest.RestTaskFactory;
 import team1.parkingapp.rest.Session;
 import android.app.Activity;
 import android.content.Intent;
@@ -44,6 +46,19 @@ public class MainMenu extends Activity {
 				a.invalidateOptionsMenu();
 				Toast.makeText(a, R.string.logged_out, Toast.LENGTH_SHORT).show();
 				a.finish();
+				return true;
+			case R.id.menuCheckIn:
+				RestTaskFactory.changeReservation(a, Session.getInstance().getReservation().getId(),
+						Session.getInstance().getReservation().getSpotId(), RestContract.OCCUPIED,
+						Session.getInstance().getUser().getEmail(), Session.getInstance().getUser().getPassword());
+				Toast.makeText(a, R.string.checked_in, Toast.LENGTH_SHORT).show();
+				a.invalidateOptionsMenu();
+				return true;
+			case R.id.menuCheckOut:
+				RestTaskFactory.deleteReservation(a, Session.getInstance().getUser().getEmail(),
+						Session.getInstance().getUser().getPassword(),Session.getInstance().getReservation().getId());
+				Toast.makeText(a, R.string.checked_out, Toast.LENGTH_SHORT).show();
+				a.invalidateOptionsMenu();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

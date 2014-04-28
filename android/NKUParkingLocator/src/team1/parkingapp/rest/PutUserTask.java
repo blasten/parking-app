@@ -70,6 +70,7 @@ public class PutUserTask extends AsyncTask<String, Void, User> {
 		String newPwd = params[4];								// Modified user's new pwd (if not null)
 		String newName  = params[5];							// Modified user's new name (if not null)
 		String newLastname = params[6];							// Modified user's new last name (if not null)
+		String role = Session.getInstance().getUser().getRole();// User's role
 		User user = null;										// User to be returned
 		HttpClient httpClient = new DefaultHttpClient();		// HTTP client used to perform the request;
 		HttpPut httpPut = 										// HTTP PUT header
@@ -99,6 +100,9 @@ public class PutUserTask extends AsyncTask<String, Void, User> {
 				args.add(new BasicNameValuePair(RestContract.USER_LASTNAME, newLastname));
 				Log.i("PUT User", "Lastname not null");
 			}
+			
+			// Add the role
+			args.add(new BasicNameValuePair(RestContract.USER_ROLE, role));
 			
 			// Execute the PUT request and get the response
 			httpPut.setEntity(new UrlEncodedFormEntity(args));

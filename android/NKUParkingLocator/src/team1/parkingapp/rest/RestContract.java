@@ -23,6 +23,8 @@ public final class RestContract {
 	public static final String USER_LASTNAME		= 	"lastname";
 	public static final String USER_ID				=	"id";
 	public static final String USER_ROLE			=	"role";
+	public static final String ROLE_VISITOR			=	"visitor";
+	public static final String ROLE_STUDENT			=	"student";
 
 	// Spots API key-value parameters
 	// GET parameters

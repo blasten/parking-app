@@ -15,8 +15,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,12 +23,10 @@ import android.widget.Toast;
 
 public class LoginActivity extends Activity
 {
-	
 	//Set references to the different views.
 	EditText txtEmail;
 	EditText txtPassword;
 	Button btnLogin;
-	TextView lblForgotUsername;
 	TextView lblRegister;
 	
 	protected void onCreate(Bundle savedInstanceState)
@@ -42,7 +38,6 @@ public class LoginActivity extends Activity
         txtEmail = (EditText)findViewById(R.id.txtLogin_Username);
         txtPassword = (EditText)findViewById(R.id.txtLogin_Password);
         btnLogin = (Button)findViewById(R.id.btnLogin_Login);
-        lblForgotUsername = (TextView)findViewById(R.id.lblLogin_ForgotUsername);
         lblRegister = (TextView)findViewById(R.id.lblLogin_Register);
         
         //Create an onClick for the Login Button
@@ -53,15 +48,8 @@ public class LoginActivity extends Activity
 	    		verifyLogin(v);
 	    	}
 	    } );
-        //Create an onClick for the Forgot Username label
-        lblForgotUsername.setOnClickListener(new View.OnClickListener()
-		{
-	    	public void onClick(View v)
-	    	{
-	    		forgotUsernameOrPassword();
-	    	}
-	    } );
-      //Create an onClick for the Register label
+        
+        //Create an onClick for the Register label
         lblRegister.setOnClickListener(new View.OnClickListener()
 		{
 	    	public void onClick(View v)
@@ -80,13 +68,6 @@ public class LoginActivity extends Activity
 	private void register()
 	{
 		Intent intent = new Intent(this,UserRegistrationActivity.class);
-		this.startActivityForResult(intent, 1);
-	}
-	
-	//If the Register Label is clicked then start the ForgotUsername Activity
-	private void forgotUsernameOrPassword()
-	{
-		Intent intent = new Intent(this,ForgotUsernameActivity.class);
 		this.startActivityForResult(intent, 1);
 	}
 	
@@ -148,22 +129,26 @@ public class LoginActivity extends Activity
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 	
-	//Set up the menu
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		boolean result = new MainMenu(this).handleOnClick(item);
-		invalidateOptionsMenu();
-		return result;
-	}
+//	//Set up the menu
+//	public boolean onOptionsItemSelected(MenuItem item)
+//	{
+//		boolean result = new MainMenu(this).handleOnClick(item);
+//		invalidateOptionsMenu();
+//		return result;
+//	}
+//	
+//	  public boolean onCreateOptionsMenu(Menu menu) {
+//		if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.RESERVED))
+//			getMenuInflater().inflate(R.menu.main_has_reservation, menu);
+//		else if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.OCCUPIED))
+//			getMenuInflater().inflate(R.menu.main_is_checked_in, menu);
+//		else if(Session.getInstance().getUser() != null)
+//			getMenuInflater().inflate(R.menu.main_logged_in, menu);
+//		else
+//			getMenuInflater().inflate(R.menu.main, menu);
+//		return true;
+//	  }
 	
-    public boolean onCreateOptionsMenu(Menu menu) {
-    	if(Session.getInstance().getUser() != null)
-    		getMenuInflater().inflate(R.menu.main_logged_in, menu);
-    	else
-    		getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
     //Get the String Text out of an edit text.
     private String getText(EditText e)
     {

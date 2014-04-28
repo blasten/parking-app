@@ -9,12 +9,14 @@ package team1.parkingapp;
 
 import team1.parkingapp.data.User;
 import team1.parkingapp.rest.PutUserTask;
+import team1.parkingapp.rest.RestContract;
 import team1.parkingapp.rest.RestTaskFactory;
 import team1.parkingapp.rest.Session;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -38,6 +40,18 @@ public class AccountSettingsActivity extends Activity {
 		
 		Log.i("User", user.getFullName());
 	}
+	
+	  public boolean onCreateOptionsMenu(Menu menu) {
+		if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.RESERVED))
+			getMenuInflater().inflate(R.menu.main_has_reservation, menu);
+		else if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.OCCUPIED))
+			getMenuInflater().inflate(R.menu.main_is_checked_in, menu);
+		else if(Session.getInstance().getUser() != null)
+			getMenuInflater().inflate(R.menu.main_logged_in, menu);
+		else
+			getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	  }
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
