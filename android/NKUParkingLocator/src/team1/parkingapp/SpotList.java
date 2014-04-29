@@ -43,8 +43,9 @@ public class SpotList extends ListActivity {
 	    String TitleScreen = getIntent().getExtras().getString("GarageTitle");
         int lotID = getLotID(TitleScreen);
 		
-        // Get the spots
+        // Get the spots that are available
         spots = RestTaskFactory.getSpotsByLot(this, lotID);
+        spots = filterUnavailableSpots(spots);
 		
         // Setup the SpotAdapter to display the spots.
 		SpotAdapter adapter = new SpotAdapter(this, R.layout.spot_row, spots);
@@ -156,5 +157,19 @@ public class SpotList extends ListActivity {
 	  	Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(googleMapsIntent));
 	  	startActivityForResult(i, 1);
 	  	finish();
-	}	
+	}
+	
+	/*
+	 * Filter out any spots in the passed in vector that aren't available.
+	 */
+	private Vector<Spot> filterUnavailableSpots(Vector<Spot> spots) {
+		Vector<Spot> available = new Vector<Spot>();
+		
+		for (Spot spot : spots) {
+			if (spot.getStatus().equals(RestContract.AVAILABLE))
+				available.add(spot);
+		}
+		
+		return available;
+	}
 }

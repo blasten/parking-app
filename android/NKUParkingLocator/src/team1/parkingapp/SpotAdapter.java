@@ -21,17 +21,17 @@ import android.widget.TextView;
 
 public class SpotAdapter extends ArrayAdapter<Spot> {
 	private final Context ctx;								// Context of the activity using this adapter
-	private final List<Spot> values;						// Source of data
+	private final List<Spot> spots;							// Source of data
 	private final String SPOT_NUM_HEADER = "Spot Number: "; // Header for the spot number
 	private final String SPOT_STATUS_HEADER = "Status: ";	// Header for the spot status
 
 	/*
 	 * Assign references.
 	 */
-	public SpotAdapter(Context ctx, int resource, List<Spot> values) {
-		super(ctx, resource, values);
+	public SpotAdapter(Context ctx, int resource, List<Spot> spots) {
+		super(ctx, resource, spots);
 		this.ctx = ctx;
-		this.values = values;
+		this.spots = spots;
 	}
 	
 	/*
@@ -52,8 +52,8 @@ public class SpotAdapter extends ArrayAdapter<Spot> {
 	    TextView spotStatus = (TextView) row.findViewById(R.id.spot_status);
 	    
 	    // Assign the values
-	    spotNum.setText(SPOT_NUM_HEADER + Integer.toString(values.get(position).getId()));
-	    spotStatus.setText(SPOT_STATUS_HEADER + capitalize(values.get(position).getStatus()));
+	    spotNum.setText(SPOT_NUM_HEADER + Integer.toString(spots.get(position).getId()));
+	    spotStatus.setText(SPOT_STATUS_HEADER + capitalize(spots.get(position).getStatus()));
 	    
 	    return row;
 	}
