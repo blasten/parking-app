@@ -61,8 +61,7 @@
         <activity
             android:name="team1.parkingapp.ParkingSpotDetailActivity"
             android:label="@string/spot_detail_label" 
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo.Light" >
+            android:screenOrientation="portrait" >
         </activity>
         
         <activity
@@ -78,7 +77,7 @@
          
         <meta-data 
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBiIU-pQCqceEBPZ-X4PYhEvfwXDZuA4M4" />
+            android:value="AIzaSyD5N-oVehms79OKJRkq8A8OOl_O92s1WkY" />
         
         <meta-data android:name="com.google.android.gms.version"
            android:value="@integer/google_play_services_version" />

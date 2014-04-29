@@ -31,8 +31,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+
 public class ParkingSpotDetailActivity extends Activity {
 	
 	 private Location CurrentLocation; 
@@ -60,7 +62,7 @@ public class ParkingSpotDetailActivity extends Activity {
   	      	// Get the lot ID
   	        intLotID = getLotID(TitleScreen);
   	        
-  	        FrameLayout layout = (FrameLayout)findViewById(R.id.newParkingDetailScreen);
+  	        LinearLayout layout = (LinearLayout)findViewById(R.id.newParkingDetailScreen);
   	        
   	        ParkingLot currentParkingLot = null;
   	        for(ParkingLot p : Session.getInstance().getParkingLots())
@@ -75,8 +77,8 @@ public class ParkingSpotDetailActivity extends Activity {
   	        
   	        Vector<Spot> spots = RestTaskFactory.getSpotsByLot(this,intLotID );
   	        
-  	        float numRows = getNumRowsCols(spots.size())[0];
-  	        float numCols = getNumRowsCols(spots.size())[1];
+  	        int numRows = getNumRowsCols(spots.size())[0];
+  	        int numCols = getNumRowsCols(spots.size())[1];
   	        
   	        float radius = 0f;
   	        	if(screenWidth < (screenHeight - TOP_MARGIN))
@@ -86,7 +88,9 @@ public class ParkingSpotDetailActivity extends Activity {
   	        
   	        float rowHeight = (screenHeight / numRows);
   	        float colWidth = (screenWidth / numCols);
-  	        	
+  	        
+  	      LinearLayout curLayout = null;
+  	      
   	        for(int i = 0 ; i < spots.size() ; ++i)
   	        {
   	        	float topLeftX = (i % (int)numCols) * colWidth;
@@ -94,10 +98,22 @@ public class ParkingSpotDetailActivity extends Activity {
   	        	float botRightX = ((i % (int)numCols) + 1) * colWidth;
   	        	float botRightY = ((i / (int)numCols) + 1) * rowHeight + TOP_MARGIN;
   	        	
+  	        	if((i % (int)numCols) == 0)
+  	        	{
+  	        		curLayout = new LinearLayout(this);
+  	        		curLayout.setOrientation(LinearLayout.VERTICAL);
+  	        		curLayout.setLayoutParams(new LinearLayout.LayoutParams((int)colWidth, (int)rowHeight));
+  	        		layout.addView(curLayout);
+  	        	}
+  	        	
   	        	ParkingSpotView psv = new ParkingSpotView(this, topLeftX, topLeftY, botRightX, botRightY,
   	        			radius, spots.get(i).getStatus().equals(RestContract.AVAILABLE), currentParkingLot.getLat(), currentParkingLot.getLng(),
   	        			spots.get(i).getId(), this);
-  	        	layout.addView(psv);
+  	        	
+  	        	curLayout.addView(psv);
+  	        	
+  	        	psv.getLayoutParams().height = (int)rowHeight;
+  	        	psv.getLayoutParams().width = (int)colWidth;
   	        	
   	        	if(spots.get(i).getStatus().equals(RestContract.AVAILABLE) && 
   	        			Session.getInstance().getReservation() == null)
@@ -107,7 +123,8 @@ public class ParkingSpotDetailActivity extends Activity {
 						public void onClick(View v) {
 							ParkingSpotView spotView = (ParkingSpotView)v;
 							
-							if(spotView.isAvail()){
+							if(spotView.isAvail())
+							{
 								ReserveSpot(spotView.getSpotID());
 								navigate(spotView.getLatitude(), spotView.getLongitude());
 							}
@@ -248,6 +265,7 @@ public class ParkingSpotDetailActivity extends Activity {
 		  String googleMapsIntent = "http://maps.google.com/maps?saddr=" + CurrentLocation.getLatitude() + "," + CurrentLocation.getLongitude() + "&daddr=" + Latitude + "," + Longitude;
 		  Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(googleMapsIntent));
 		  startActivityForResult(i, 1);
+		  finish();
 	  }
 	  
 	  private void getDisplaySize()

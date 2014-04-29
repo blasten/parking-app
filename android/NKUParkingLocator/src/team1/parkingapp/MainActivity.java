@@ -112,7 +112,6 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 
 	  @Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		invalidateOptionsMenu();
 		
@@ -157,6 +156,7 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 		 i.putExtra("GarageTitle",arg0.getTitle());
 		
 		 startActivityForResult(i, 1);
+		 invalidateOptionsMenu();
 		
 	 }
 		
