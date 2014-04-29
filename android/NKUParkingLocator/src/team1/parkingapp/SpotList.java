@@ -74,7 +74,12 @@ public class SpotList extends ListActivity {
 		
 		// Don't let dicks conquer the parking lot
 		if (Session.getInstance().getReservation() != null) {
-			Toast.makeText(this, R.string.already_has_reservation, Toast.LENGTH_LONG).show();
+			Toast.makeText(this, R.string.user_already_has_reservation, Toast.LENGTH_LONG).show();
+			return;
+		}
+		
+		if ( !currentSpot.getStatus().equals(RestContract.AVAILABLE) ) {
+			Toast.makeText(this, R.string.spot_unavailable, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		
