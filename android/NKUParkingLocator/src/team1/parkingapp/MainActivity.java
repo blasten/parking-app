@@ -152,12 +152,12 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 
 	 @Override
 	 public void onInfoWindowClick(Marker arg0) {
-		 Intent i = new Intent(this, team1.parkingapp.ParkingSpotDetailActivity.class);
+		 //Intent i = new Intent(this, team1.parkingapp.ParkingSpotDetailActivity.class);
+		 Intent i = new Intent(this, team1.parkingapp.SpotList.class);
 		 i.putExtra("GarageTitle",arg0.getTitle());
 		
 		 startActivityForResult(i, 1);
 		 invalidateOptionsMenu();
-		
 	 }
 		
 	  

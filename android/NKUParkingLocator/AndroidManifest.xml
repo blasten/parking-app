@@ -74,10 +74,15 @@
             android:name="com.google.android.apps.MapsActivity"
             android:screenOrientation="portrait" >
 		</activity>
+		
+        <activity
+            android:name="team1.parkingapp.SpotList"
+            android:screenOrientation="portrait" >
+        </activity>
          
         <meta-data 
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyD5N-oVehms79OKJRkq8A8OOl_O92s1WkY" />
+            android:value="AIzaSyBiIU-pQCqceEBPZ-X4PYhEvfwXDZuA4M4" />
         
         <meta-data android:name="com.google.android.gms.version"
            android:value="@integer/google_play_services_version" />
