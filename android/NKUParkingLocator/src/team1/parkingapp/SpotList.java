@@ -37,11 +37,12 @@ public class SpotList extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-        //ParkingLot currentParkingLot = null;
         
         // Get the title of the current lot
-	    String TitleScreen = getIntent().getExtras().getString("GarageTitle");
-        int lotID = getLotID(TitleScreen);
+	    String titleScreen = getIntent().getExtras().getString("GarageTitle");
+        int lotID = getLotID(titleScreen);
+        
+        setTitle(titleScreen);
 		
         // Get the spots that are available
         spots = RestTaskFactory.getSpotsByLot(this, lotID);

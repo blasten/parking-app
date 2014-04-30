@@ -143,7 +143,7 @@
     <string name="checked_out">Successfully Checked Out</string>
     
     <!-- Strings for SpotList -->
-    <string name="user_already_has_reservation">Seriously you asshole? Stop trying to conquer the parking lot.</string>
+    <string name="user_already_has_reservation">You must check out of your current reservation before requesting another.</string>
     <string name="spot_unavailable">This spot is not available.</string>
     
     <!--  Miscellaneous strings -->
