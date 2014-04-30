@@ -77,8 +77,6 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 		        
 		        if(status.getStatusCode() == HttpStatus.SC_OK)
 		        {
-		        	//Log.i("GET Lot", Integer.toString(status.getStatusCode()));
-		        	//Log.i("GET Lot", status.getReasonPhrase());
 		        	ByteArrayOutputStream out = new ByteArrayOutputStream();
 	                response.getEntity().writeTo(out);
 	                Session.getInstance().setParkingLots(parseResults(out.toString(), params[0]));

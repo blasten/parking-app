@@ -49,16 +49,6 @@ public class ParkingSpotDetailActivity extends Activity {
 		    setContentView(R.layout.new_parking_spot_detail);
 		    int intLotID;
 		    
-		    // update the title
-		    String TitleScreen = getIntent().getExtras().getString("GarageTitle");
-  	      	//TextView txtTitle = (TextView) findViewById(R.id.txtTitle);
-  	      	//txtTitle.setText( TitleScreen); 
-		    
-  	      	// Clear the stars
-  	      	//ClearSpots();
-		    
-  	      	// Display the spots for this lot The Rest API is not currently returning the spots so this does not wok atm
-  	      	//DisplaySpots(intLotID);
   	      
   	      	// Get the lot ID
   	        intLotID = getLotID(TitleScreen);

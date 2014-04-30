@@ -14,9 +14,6 @@
         android:layout_height="wrap_content"
         android:text="TextView" />
 
-
-
-
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"
@@ -33,366 +30,374 @@
         android:text=" = Available Spot" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="209dp"
-        android:layout_y="1dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/star" />
-
-    <ImageView
         android:id="@+id/spot1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="37dp"
-        android:layout_y="47dp"
+        android:layout_width="44dp"
+        android:layout_height="51dp"
+        android:layout_x="23dp"
+        android:layout_y="31dp"
+        android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="1" />
 
     <ImageView
         android:id="@+id/spot2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="87dp"
-        android:layout_y="48dp"
+        android:layout_width="46dp"
+        android:layout_height="53dp"
+        android:layout_x="71dp"
+        android:layout_y="30dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="2" />
 
     <ImageView
         android:id="@+id/spot3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="133dp"
-        android:layout_y="49dp"
+        android:layout_width="44dp"
+        android:layout_height="50dp"
+        android:layout_x="118dp"
+        android:layout_y="31dp"
         android:src="@drawable/star"
+        android:scaleType="centerInside"
         android:tag="3" />
 
     <ImageView
         android:id="@+id/spot4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="180dp"
-        android:layout_y="49dp"
+        android:layout_width="44dp"
+        android:layout_height="51dp"
+        android:layout_x="165dp"
+        android:layout_y="31dp"
         android:src="@drawable/star"
+        android:scaleType="centerInside"
         android:tag="4" />
 
     <ImageView
         android:id="@+id/spot6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="278dp"
-        android:layout_y="50dp"
+        android:layout_width="43dp"
+        android:layout_height="51dp"
+        android:layout_x="261dp"
+        android:layout_y="30dp"
         android:src="@drawable/star"
+        android:scaleType="centerInside"
         android:tag="6" />
 
     <ImageView
         android:id="@+id/spot5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="47dp"
+        android:layout_height="55dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="17dp"
-        android:layout_x="230dp"
-        android:layout_y="49dp"
+        android:layout_x="212dp"
+        android:layout_y="29dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="5" />
 
     <ImageView
         android:id="@+id/spot7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="38dp"
-        android:layout_y="102dp"
+        android:layout_width="42dp"
+        android:layout_height="47dp"
+        android:layout_x="23dp"
+        android:layout_y="85dp"
         android:src="@drawable/star"
+        android:scaleType="centerInside"
         android:tag="7" />
 
     <ImageView
         android:id="@+id/spot8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="86dp"
-        android:layout_y="103dp"
+        android:layout_width="42dp"
+        android:layout_height="48dp"
+        android:layout_x="71dp"
+        android:layout_y="86dp"
         android:src="@drawable/star"
+        android:scaleType="centerInside"
         android:tag="8" />
 
     <ImageView
         android:id="@+id/spot9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="135dp"
-        android:layout_y="103dp"
+        android:layout_width="43dp"
+        android:layout_height="50dp"
+        android:layout_x="118dp"
+        android:layout_y="85dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="9" />
 
     <ImageView
         android:id="@+id/spot10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="181dp"
-        android:layout_y="105dp"
+        android:layout_width="41dp"
+        android:layout_height="47dp"
+        android:layout_x="165dp"
+        android:layout_y="87dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="10" />
 
     <ImageView
         android:id="@+id/spot11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="230dp"
-        android:layout_y="103dp"
+        android:layout_width="42dp"
+        android:layout_height="48dp"
+        android:layout_x="214dp"
+        android:layout_y="85dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="11" />
 
     <ImageView
         android:id="@+id/spot12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="276dp"
-        android:layout_y="103dp"
+        android:layout_width="39dp"
+        android:layout_height="40dp"
+        android:layout_x="263dp"
+        android:layout_y="85dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="12" />
 
     <ImageView
-        android:id="@+id/spot13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="39dp"
-        android:layout_y="178dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/star"
-        android:tag="13" />
-
-    <ImageView
         android:id="@+id/spot14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="86dp"
-        android:layout_y="177dp"
+        android:layout_width="42dp"
+        android:layout_height="53dp"
+        android:layout_x="71dp"
+        android:layout_y="160dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="14" />
 
     <ImageView
         android:id="@+id/spot15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="134dp"
-        android:layout_y="178dp"
+        android:layout_width="42dp"
+        android:layout_height="49dp"
+        android:layout_x="119dp"
+        android:layout_y="161dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="15" />
 
     <ImageView
         android:id="@+id/spot16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="184dp"
-        android:layout_y="181dp"
+        android:layout_width="38dp"
+        android:layout_height="49dp"
+        android:layout_x="168dp"
+        android:layout_y="162dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="16" />
 
     <ImageView
         android:id="@+id/spot17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="230dp"
-        android:layout_y="180dp"
+        android:layout_width="46dp"
+        android:layout_height="53dp"
+        android:layout_x="213dp"
+        android:layout_y="160dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="17" />
 
     <ImageView
         android:id="@+id/spot18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="276dp"
-        android:layout_y="179dp"
+        android:layout_width="39dp"
+        android:layout_height="56dp"
+        android:layout_x="264dp"
+        android:layout_y="156dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="18" />
 
     <ImageView
         android:id="@+id/spot19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="39dp"
-        android:layout_y="235dp"
+        android:layout_width="39dp"
+        android:layout_height="46dp"
+        android:layout_x="26dp"
+        android:layout_y="220dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="19" />
 
     <ImageView
         android:id="@+id/spot20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="85dp"
-        android:layout_y="234dp"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:layout_x="72dp"
+        android:layout_y="219dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="20" />
 
     <ImageView
         android:id="@+id/spot21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
         android:layout_marginRight="18dp"
-        android:layout_x="133dp"
-        android:layout_y="236dp"
+        android:layout_x="120dp"
+        android:layout_y="221dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="21" />
 
     <ImageView
         android:id="@+id/spot22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="180dp"
-        android:layout_y="235dp"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_x="167dp"
+        android:layout_y="220dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="22" />
 
     <ImageView
         android:id="@+id/spot23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="231dp"
-        android:layout_y="238dp"
+        android:layout_width="44dp"
+        android:layout_height="45dp"
+        android:layout_x="215dp"
+        android:layout_y="220dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="23" />
 
     <ImageView
         android:id="@+id/spot24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="275dp"
-        android:layout_y="237dp"
+        android:layout_width="39dp"
+        android:layout_height="38dp"
+        android:layout_x="264dp"
+        android:layout_y="224dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="24" />
 
     <ImageView
         android:id="@+id/spot26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="86dp"
-        android:layout_y="312dp"
+        android:layout_width="37dp"
+        android:layout_height="48dp"
+        android:layout_x="74dp"
+        android:layout_y="300dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="26" />
 
     <ImageView
         android:id="@+id/spot25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="40dp"
-        android:layout_y="315dp"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_x="24dp"
+        android:layout_y="302dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="25" />
 
     <ImageView
         android:id="@+id/spot27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="135dp"
-        android:layout_y="314dp"
+        android:layout_width="39dp"
+        android:layout_height="46dp"
+        android:layout_x="119dp"
+        android:layout_y="303dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="27" />
 
     <ImageView
         android:id="@+id/spot28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="180dp"
-        android:layout_y="313dp"
+        android:layout_width="35dp"
+        android:layout_height="46dp"
+        android:layout_x="169dp"
+        android:layout_y="299dp"
         android:src="@drawable/star"
+        android:scaleType="centerInside"
         android:tag="28" />
 
     <ImageView
         android:id="@+id/spot29"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="231dp"
-        android:layout_y="312dp"
+        android:layout_width="44dp"
+        android:layout_height="50dp"
+        android:layout_x="215dp"
+        android:layout_y="298dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="29" />
 
     <ImageView
-        android:id="@+id/spot31"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="35dp"
-        android:layout_y="372dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/star"
-        android:tag="31" />
-
-    <ImageView
         android:id="@+id/spot32"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="86dp"
-        android:layout_y="372dp"
+        android:layout_width="36dp"
+        android:layout_height="42dp"
+        android:layout_x="74dp"
+        android:layout_y="358dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="32" />
 
     <ImageView
-        android:id="@+id/spot33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="134dp"
-        android:layout_y="372dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/star"
-        android:tag="33" />
-
-    <ImageView
         android:id="@+id/spot34"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="181dp"
-        android:layout_y="374dp"
+        android:layout_width="38dp"
+        android:layout_height="45dp"
+        android:layout_x="168dp"
+        android:layout_y="358dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="34" />
 
     <ImageView
         android:id="@+id/spot30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="278dp"
-        android:layout_y="311dp"
+        android:layout_width="38dp"
+        android:layout_height="50dp"
+        android:layout_x="264dp"
+        android:layout_y="298dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="30" />
 
     <ImageView
         android:id="@+id/spot35"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="228dp"
-        android:layout_y="372dp"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:layout_x="215dp"
+        android:layout_y="358dp"
         android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="35" />
 
     <ImageView
+        android:id="@+id/spot13"
+        android:layout_width="39dp"
+        android:layout_height="53dp"
+        android:layout_x="25dp"
+        android:layout_y="159dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/star"
+        android:tag="13" />
+
+    <ImageView
+        android:id="@+id/spot33"
+        android:layout_width="46dp"
+        android:layout_height="49dp"
+        android:layout_x="117dp"
+        android:layout_y="355dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/star"
+        android:tag="33" />
+
+    <ImageView
+        android:id="@+id/spot31"
+        android:layout_width="37dp"
+        android:layout_height="43dp"
+        android:layout_x="27dp"
+        android:layout_y="359dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/star"
+        android:tag="31" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="15px"
+        android:layout_height="15px"
+        android:layout_x="216dp"
+        android:layout_y="3dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/star" />
+
+    <ImageView
         android:id="@+id/spot36"
-        android:layout_width="wrap_content"
+        android:layout_width="37dp"
         android:layout_height="wrap_content"
-        android:layout_x="277dp"
-        android:layout_y="371dp"
+        android:layout_x="266dp"
+        android:layout_y="364dp"
+        android:scaleType="centerInside"
         android:src="@drawable/star"
         android:tag="36" />
     

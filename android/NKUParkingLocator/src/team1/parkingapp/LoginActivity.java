@@ -129,25 +129,6 @@ public class LoginActivity extends Activity
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 	
-//	//Set up the menu
-//	public boolean onOptionsItemSelected(MenuItem item)
-//	{
-//		boolean result = new MainMenu(this).handleOnClick(item);
-//		invalidateOptionsMenu();
-//		return result;
-//	}
-//	
-//	  public boolean onCreateOptionsMenu(Menu menu) {
-//		if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.RESERVED))
-//			getMenuInflater().inflate(R.menu.main_has_reservation, menu);
-//		else if(Session.getInstance().getReservation() != null && Session.getInstance().getReservation().getStatus().equals(RestContract.OCCUPIED))
-//			getMenuInflater().inflate(R.menu.main_is_checked_in, menu);
-//		else if(Session.getInstance().getUser() != null)
-//			getMenuInflater().inflate(R.menu.main_logged_in, menu);
-//		else
-//			getMenuInflater().inflate(R.menu.main, menu);
-//		return true;
-//	  }
 	
     //Get the String Text out of an edit text.
     private String getText(EditText e)

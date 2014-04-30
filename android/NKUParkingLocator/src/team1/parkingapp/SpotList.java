@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 public class SpotList extends ListActivity {
 	private Vector<Spot> spots;			// Vector of the spots in the current lot
-	private Location CurrentLocation; 	// Where the dumbass using this app currently stands
+	private Location CurrentLocation; 	
 	
 	/*
 	 * Gets the current lot's spots and sets up the list of spots.
@@ -68,13 +68,12 @@ public class SpotList extends ListActivity {
 	
 	/*
 	 * If the user doesn't have a reservation, let them reserve a spot.
-	 * Otherwise tell them where they can shove it.
 	 */
 	@Override
 	public void onListItemClick(ListView l, View v, int pos, long id) {
 		Spot currentSpot = spots.get(pos);
 		
-		// Don't let dicks conquer the parking lot
+		// Don't let users conquer the parking lot
 		if (Session.getInstance().getReservation() != null) {
 			Toast.makeText(this, R.string.user_already_has_reservation, Toast.LENGTH_LONG).show();
 			return;
@@ -85,7 +84,7 @@ public class SpotList extends ListActivity {
 			return;
 		}
 		
-		// If the user isn't a dick, let them reserve the spot and go there
+		// let them reserve the spot and go there
 		reserveSpot(currentSpot.getId());
 		navigate(currentSpot.getLat(), currentSpot.getLongitude());
 	}

@@ -223,7 +223,7 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 		        		{
 		        			// If we have a picture for it use it.
 		        			if( i < NUMBER_OF_PARKING_LOT_PICTURES ) image.setImageResource(  getResources().getIdentifier("parkinglot" + (i + 1) , "drawable", "team1.parkingapp"));
-		        			//If not get a random one
+		        			// If not get a random one
 		        			else image.setImageResource( getRandomDrawable());
 		        			
 		        			// Set the number of available spots
