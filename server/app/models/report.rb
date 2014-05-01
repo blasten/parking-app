@@ -4,7 +4,7 @@ class Report < ActiveRecord::Base
   has_one :reservation
 
   def self.to_csv(from, to, options = {})
-    reports = where("date(created_at) >= ? and date(created_at) <= ?", "2014-04-26", "2014-04-26")
+    reports = where("date(created_at) >= ? and date(created_at) <= ?", from, to)
 
     CSV.generate(options) do |csv|
       csv << column_names
