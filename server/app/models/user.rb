@@ -33,6 +33,9 @@ class User < ActiveRecord::Base
 
   before_save :create_remember_token
 
+  before_destroy :remove_reservations
+
+
   def is_mobile_user?
     is_staff? || is_student? || is_visitor?
   end
@@ -100,6 +103,10 @@ class User < ActiveRecord::Base
       if self.remember_token.nil? || self.remember_token.empty?
         self.remember_token = SecureRandom.urlsafe_base64
       end
+    end
+
+    def remove_reservations
+      reservations.delete_all
     end
 
     def verify_role

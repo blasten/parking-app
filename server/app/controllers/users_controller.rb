@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     User.admin_permission true
-    result = @user.create(user_params)
+    result = @user.save(user_params)
     User.admin_permission false
     
     if result
