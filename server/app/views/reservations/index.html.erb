@@ -21,7 +21,7 @@
   <tbody>
   <% @reservations.each do |reservation| %>
     <tr>
-      <td> <%= link_to reservation.user.name, user_path(reservation.user) %> </td>
+      <td> <%= (reservation.user.nil?) ? 'n/a' : link_to reservation.user.name, user_path(reservation.user) %> </td>
       <td> <%= (reservation.spot.nil?) ? 'Invalid spot' : link_to(reservation.spot.lot.name, lot_path(reservation.spot.lot)) %>, 
         <%= (reservation.spot.nil?) ? '' : link_to(reservation.spot.number.nil? || reservation.spot.number.empty? ? "Spot" : reservation.spot.number, edit_lot_spot_path(reservation.spot.lot, reservation.spot)) %></td>
       <td> <%= reservation.status %> </td>
