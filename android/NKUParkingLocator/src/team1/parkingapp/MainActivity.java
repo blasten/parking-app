@@ -112,7 +112,6 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 
 	  @Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		invalidateOptionsMenu();
 		
@@ -153,11 +152,12 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 
 	 @Override
 	 public void onInfoWindowClick(Marker arg0) {
-		 Intent i = new Intent(this, team1.parkingapp.ParkingSpotDetailActivity.class);
+		 //Intent i = new Intent(this, team1.parkingapp.ParkingSpotDetailActivity.class);
+		 Intent i = new Intent(this, team1.parkingapp.SpotList.class);
 		 i.putExtra("GarageTitle",arg0.getTitle());
 		
 		 startActivityForResult(i, 1);
-		
+		 invalidateOptionsMenu();
 	 }
 		
 	  
@@ -223,7 +223,7 @@ public class MainActivity extends Activity implements  OnInfoWindowClickListener
 		        		{
 		        			// If we have a picture for it use it.
 		        			if( i < NUMBER_OF_PARKING_LOT_PICTURES ) image.setImageResource(  getResources().getIdentifier("parkinglot" + (i + 1) , "drawable", "team1.parkingapp"));
-		        			//If not get a random one
+		        			// If not get a random one
 		        			else image.setImageResource( getRandomDrawable());
 		        			
 		        			// Set the number of available spots

@@ -1,5 +1,7 @@
 package team1.parkingapp.rest;
 
+import java.util.Locale;
+
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -71,11 +73,12 @@ public class DeleteReservationTask  extends AsyncTask<String, String, String> {
 		        }
 		        else
 		        {
+		        	Session.getInstance().setReservation(null);
 		        	ByteArrayOutputStream out = new ByteArrayOutputStream();
 	                response.getEntity().writeTo(out);
 	                String s = out.toString();
 	                out.close();
-	                if(s.toLowerCase().contains("error"))
+	                if(s.toLowerCase(Locale.ENGLISH).contains("error"))
 	                {
 	                	return null;
 	                }

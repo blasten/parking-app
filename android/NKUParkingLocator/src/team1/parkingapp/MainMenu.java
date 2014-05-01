@@ -48,15 +48,29 @@ public class MainMenu extends Activity {
 				a.finish();
 				return true;
 			case R.id.menuCheckIn:
-				RestTaskFactory.changeReservation(a, Session.getInstance().getReservation().getId(),
-						Session.getInstance().getReservation().getSpotId(), RestContract.OCCUPIED,
-						Session.getInstance().getUser().getEmail(), Session.getInstance().getUser().getPassword());
+				try
+				{
+					RestTaskFactory.changeReservation(a, Session.getInstance().getReservation().getId(),
+							Session.getInstance().getReservation().getSpotId(), RestContract.OCCUPIED,
+							Session.getInstance().getUser().getEmail(), Session.getInstance().getUser().getPassword()).get();
+				}
+				catch(Exception e)
+				{
+					
+				}
 				Toast.makeText(a, R.string.checked_in, Toast.LENGTH_SHORT).show();
 				a.invalidateOptionsMenu();
 				return true;
 			case R.id.menuCheckOut:
+				try
+				{
 				RestTaskFactory.deleteReservation(a, Session.getInstance().getUser().getEmail(),
-						Session.getInstance().getUser().getPassword(),Session.getInstance().getReservation().getId());
+						Session.getInstance().getUser().getPassword(),Session.getInstance().getReservation().getId()).get();
+				}
+				catch(Exception e)
+				{
+					
+				}
 				Toast.makeText(a, R.string.checked_out, Toast.LENGTH_SHORT).show();
 				a.invalidateOptionsMenu();
 				return true;

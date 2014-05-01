@@ -73,7 +73,7 @@ public class GetReservationsTask extends AsyncTask<String, Void, Vector<Reservat
 		if (params[2] != null)	// See if the user is trying to get details about a particular spot
 			resId = Integer.parseInt(params[2]);
 		
-		// Add those credentials brah
+		// Add those credentials 
 		((AbstractHttpClient) client).getCredentialsProvider()
 			.setCredentials(new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), creds);
 		try {

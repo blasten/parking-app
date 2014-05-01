@@ -8,6 +8,7 @@
  */
 package team1.parkingapp.rest;
 
+import java.util.Locale;
 import java.util.Vector;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.http.HttpResponse;
@@ -76,8 +77,6 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 		        
 		        if(status.getStatusCode() == HttpStatus.SC_OK)
 		        {
-		        	//Log.i("GET Lot", Integer.toString(status.getStatusCode()));
-		        	//Log.i("GET Lot", status.getReasonPhrase());
 		        	ByteArrayOutputStream out = new ByteArrayOutputStream();
 	                response.getEntity().writeTo(out);
 	                Session.getInstance().setParkingLots(parseResults(out.toString(), params[0]));
@@ -116,9 +115,10 @@ public class GetLotTask extends AsyncTask<String, String, String> {
 				JSONObject obj = arr.getJSONObject(i);
 				//Have to do some data validation before trying to create the object because of nullable entries in the database
 				ParkingLot temp = validateData(obj);
-				if( (temp.getRole() == "student" && role.toLowerCase().contains("student")) ||
-					(temp.getRole() == "faculty" && role.toLowerCase().contains("staff")) ||
-					temp.getRole() == "visitor" || temp.getRole() == "All")
+				if( (temp.getRole() == "student" && role.toLowerCase(Locale.ENGLISH).contains("student")) ||
+					(temp.getRole() == "faculty" && role.toLowerCase(Locale.ENGLISH).contains("staff")) ||
+					(temp.getRole() == "visitor" && role.toLowerCase(Locale.ENGLISH).contains("visitor")) ||
+					 temp.getRole() == "All")
 				{
 					v.add(temp);
 				}

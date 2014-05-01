@@ -75,8 +75,6 @@ public class GetUserTask extends AsyncTask<String, String, String> {
 		        
 		        if(status.getStatusCode() == HttpStatus.SC_OK)
 		        {
-		        	//Log.i("GET User", Integer.toString(status.getStatusCode()));
-		        	//Log.i("GET User", status.getReasonPhrase());
 		        	ByteArrayOutputStream out = new ByteArrayOutputStream();
 	                response.getEntity().writeTo(out);
 	                user = this.parseResults(out.toString());

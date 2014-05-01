@@ -45,7 +45,6 @@ public class User {
 		if (json.has(RestContract.ERROR))
 			return null;
 		
-		// Another disgusting wall of try catches
 		try {
 			id = json.getInt(RestContract.USER_ID);
 		}

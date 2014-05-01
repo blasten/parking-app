@@ -52,7 +52,7 @@ public final class RestContract {
 	public static final String LOT_SPOTS_AVAIL		=	"num_spots_available";
 	public static final String LOT_LAT				=	"latitude";
 	public static final String LOT_LNG				=	"longitude";
-	public static final String LOT_ROLE					=	"designation";
+	public static final String LOT_ROLE				=	"designation";
 	
 	// Reservation API key-value parameters
 	public static final String RESERVATION_ID		=	"id";
